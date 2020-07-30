@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :task_comments
-  resources :user_comments
-  resources :comments
-  resources :user_tasks
-  resources :tasks
-  resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :users
+      resources :tasks
+      resources :comments
+    end
+  end
 end

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
 
   def logged_in?
     !!session[:user_id]
@@ -11,11 +11,11 @@ class ApplicationController < ActionController::API
     end
   end
   
-  def require_login
-    unless logged_in?
-      render json: {message: 'Please log in to view information!'}
-      redirect_to login_path
-    end
-  end
+  # def require_login
+  #   unless logged_in?
+  #     render json: {message: 'Please log in to view information!'}
+  #     redirect_to login_path
+  #   end
+  # end
 
 end

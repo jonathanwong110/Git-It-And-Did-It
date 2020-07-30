@@ -1,5 +1,5 @@
 class Api::V1::TasksController < ApplicationController
-  before_action :set_task, only [:show, :update, :destroy]
+  before_action :set_task, only: [:show, :update, :destroy]
   
   def index
     @tasks = Task.all
@@ -30,10 +30,10 @@ class Api::V1::TasksController < ApplicationController
 
   private
     def set_task
-      @task = task.find(params[:id])
+      @task = Task.find(params[:id])
     end
 
     def task_params
-      params.require(:task).permit(:title, category, description, status, priority, :user)
+      params.require(:task).permit(:title, :category, :description, :status, :priority, :user)
     end
 end
