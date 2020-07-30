@@ -19,9 +19,9 @@ Task.create([
 ])
 
 Comment.create([
-  { content: 'testing1', user_id: 3 },
-  { content: 'testing2', user_id: 2 },
-  { content: 'testing3', user_id: 1 }
+  { content: 'testing1', user_id: 3, task_id: 1 },
+  { content: 'testing2', user_id: 2, task_id: 2 },
+  { content: 'testing3', user_id: 1, task_id: 3 }
 ])
 
 UserTask.create([
