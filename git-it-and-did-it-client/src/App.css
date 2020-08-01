@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar-left-side-main {
+  color: white;
+  font-size: 25px;
+  margin: 0.5%;
+}
+
+.navbar-left-side, .span {
+  color: white;
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+.navbar-left-side-main:hover, .navbar-left-side:hover, .span:hover {
+  color: white;
+  text-decoration: none;
+}
