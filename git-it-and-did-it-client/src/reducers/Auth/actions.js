@@ -2,7 +2,7 @@ import { reset } from'redux-form'
 import serverApi from '../../helpers/Api'
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
 import Loading from '../../../components/Loading'
-import {errorHandler} from '../Error/actions'
+import { errorHandler } from '../Error/actions'
 
 export const authenticationRequest = () =>{
 	return {
@@ -86,8 +86,6 @@ export const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
   authenticatedSelector: state => state.auth.currentUser !== null,
   wrapperDisplayName: 'UserIsAuthenticated',
-  // Returns true if the user auth state is loading
   authenticatingSelector: state => state.auth.willAuthenticate,
-  // Render this component when the authenticatingSelector returns true
   AuthenticatingComponent: Loading,
 })
