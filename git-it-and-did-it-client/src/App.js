@@ -10,6 +10,8 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <MainNav />
+          <br></br>
+          <br></br>
           <Switch>
             <Route exact path="/login"> <LogIn/> </Route>
           </Switch>
