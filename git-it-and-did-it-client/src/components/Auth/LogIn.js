@@ -6,7 +6,6 @@ import InputField from './Input'
 const LoginFormFunction = (props) => {
   return (
     <div className='login'>
-      <h2>Log In</h2>
       <Form onSubmit={data => props.handleSubmit(data)}>
         <Form.Field>
           <Field
@@ -23,7 +22,7 @@ const LoginFormFunction = (props) => {
             component={InputField} />
         </Form.Field>
         <br></br>
-        <Form.Button content='submit' />
+        <Form.Button content='Log In' />
       </Form>
     </div>
   );
