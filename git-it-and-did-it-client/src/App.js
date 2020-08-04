@@ -6,6 +6,7 @@ import LogIn from './components/Auth/LogIn'
 import SignUp from './components/Auth/SignUp'
 
 class App extends Component {
+  
   render() {
     return (
       <BrowserRouter>

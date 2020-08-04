@@ -1,43 +1,53 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form'
-import { Form } from 'semantic-ui-react'
-import InputField from './Input'
+import React, { Component } from 'react';
 
-const SignUpFormFunction = (props) => {
-  return (
-    <div className="signup">
-      <Form onSubmit={data => props.handleSubmit(data)}>
-        <Form.Field>
-          <Field
-            label='Email'
-            name="email"
-            component={InputField}
-            type="email" />
-        </Form.Field>
-        <Form.Field>
-          <Field
-            label='Username'
-            name="username"
-            component={InputField}
-            type="text" />
-        </Form.Field>
-        <Form.Field>
-          <Field
-            label='Password'
-            name="password"
-            component={InputField}
-            type="password" />
-        </Form.Field>
-        <br></br>
-        <Form.Button content='Sign Up' />
-      </Form>
-    </div>
-  );
+class SignUpForm extends Component {
+  state = {
+    username: '',
+    password: ''
+  };
+
+
+  handleInputChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.username !== "" && this.state.password !== "") {
+      return this.props.handleLogin(this.state)
+    }
+  }
+
+
+  render() {
+    return (
+      <form onSubmit={event => this.handleSubmit(event)}>
+        <div>
+          <label>
+            Email
+          <input id="email" name="email" type="text" onChange={event => this.handleInputChange(event)} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Username
+          <input id="username" name="username" type="text" onChange={event => this.handleInputChange(event)} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Password
+          <input id="password" name="password" type="password" onChange={event => this.handleInputChange(event)} />
+          </label>
+        </div>
+        <div>
+          <button type="submit">Log in</button>
+        </div>
+      </form>
+    );
+  }
 }
 
-
-const SignUpForm = reduxForm({
-  form: 'signup'
-})(SignUpFormFunction);
-
-export default SignUpForm;
+export default SignUpForm
