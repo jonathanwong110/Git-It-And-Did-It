@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {logInStart} from '../../redux/Auth/actions'
 
 class LogInForm extends Component {
   constructor() {
@@ -11,17 +13,21 @@ class LogInForm extends Component {
 
 
 
-  handleInputChange = (e) => {
+  handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
   handleSubmit = (e) => {
-    e.preDefault();
-    if (this.state.username !== "" && this.state.password !== "") {
-      return this.props.handleLogin(this.state)
-    }
+    e.preventDefault();
+    const newLogin = {...this.state}
+    this.setState({
+      username: '',
+      password: ''
+    })
+    console.log('testing', logInStart(newLogin))
+    logInStart(newLogin)
   }
 
 
@@ -32,21 +38,27 @@ class LogInForm extends Component {
           <h5>
             Username
           </h5>
-          <input id="username" name="username" type="text" onChange={e => this.handleInputChange(e)} />
+          <input id="username" name="username" type="text" onChange={e => this.handleChange(e)} value={this.username} />
         </div>
         <div>
           <h5>
             Password
           </h5>
-          <input id="password" name="password" type="password" onChange={e => this.handleInputChange(e)} />
+          <input id="password" name="password" type="password" onChange={e => this.handleChange(e)} value={this.password}/>
         </div>
         <br></br>
         <div>
-          <button type="submit">Log in</button>
+          <button type="submit" value="submit">Log in</button>
         </div>
       </form>
     );
   }
 }
 
-export default LogInForm
+const mapDispatchToProps = dispatch => {
+  return {
+    logInStart: (newLogin) => dispatch(logInStart(newLogin))
+  }
+}
+
+export default connect (null, mapDispatchToProps)(LogInForm)

@@ -17,10 +17,12 @@ class SignUpForm extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preDefault();
-    if (this.state.username !== "" && this.state.password !== "") {
-      return this.props.handleLogin(this.state)
-    }
+    e.preventDefault();
+    this.setState({
+      email: '',
+      username: '',
+      password: ''
+    })
   }
 
 
