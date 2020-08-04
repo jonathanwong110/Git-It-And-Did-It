@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {logInStart} from '../../redux/Auth/actions'
+import { logInStart } from '../../redux/Auth/actions'
+import { Button } from 'react-bootstrap'
 
 class LogInForm extends Component {
   constructor() {
@@ -11,8 +12,6 @@ class LogInForm extends Component {
     }
   }
 
-
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -21,12 +20,7 @@ class LogInForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newLogin = {...this.state}
-    this.setState({
-      username: '',
-      password: ''
-    })
-    console.log('testing', logInStart(newLogin))
+    const newLogin = { ...this.state }
     logInStart(newLogin)
   }
 
@@ -34,22 +28,16 @@ class LogInForm extends Component {
   render() {
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
-        <div>
-          <h5>
-            Username
+        <h5>
+          Username
           </h5>
-          <input id="username" name="username" type="text" onChange={e => this.handleChange(e)} value={this.username} />
-        </div>
-        <div>
-          <h5>
-            Password
+        <input id="username" name="username" type="text" onChange={e => this.handleChange(e)} value={this.username} />
+        <h5>
+          Password
           </h5>
-          <input id="password" name="password" type="password" onChange={e => this.handleChange(e)} value={this.password}/>
-        </div>
+        <input id="password" name="password" type="password" onChange={e => this.handleChange(e)} value={this.password} />
         <br></br>
-        <div>
-          <button type="submit" value="submit">Log in</button>
-        </div>
+        <Button type="submit" value="submit">Log in</Button>
       </form>
     );
   }
@@ -61,4 +49,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect (null, mapDispatchToProps)(LogInForm)
+export default connect(null, mapDispatchToProps)(LogInForm)

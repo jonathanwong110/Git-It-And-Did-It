@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import auth from './redux/Auth/reducer'
+import userReducer from './redux/Auth/reducer'
 
 const reducer = combineReducers({
-  login: auth,
+  user: userReducer,
   task: null
 })
 
