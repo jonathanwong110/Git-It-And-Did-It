@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 
 class LogInForm extends Component {
-  state = {
-    username: '',
-    password: ''
-  };
+  constructor() {
+    super();
+    this.state = {
+      username: '',
+      password: ''
+    }
+  }
 
 
-  handleInputChange = (event) => {
+
+  handleInputChange = (e) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     })
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  handleSubmit = (e) => {
+    e.preDefault();
     if (this.state.username !== "" && this.state.password !== "") {
       return this.props.handleLogin(this.state)
     }
@@ -23,19 +27,20 @@ class LogInForm extends Component {
 
   render() {
     return (
-      <form onSubmit={event => this.handleSubmit(event)}>
+      <form onSubmit={e => this.handleSubmit(e)}>
         <div>
-          <label>
+          <h5>
             Username
-          <input id="username" name="username" type="text" onChange={event => this.handleInputChange(event)} />
-          </label>
+          </h5>
+          <input id="username" name="username" type="text" onChange={e => this.handleInputChange(e)} />
         </div>
         <div>
-          <label>
+          <h5>
             Password
-          <input id="password" name="password" type="password" onChange={event => this.handleInputChange(event)} />
-          </label>
+          </h5>
+          <input id="password" name="password" type="password" onChange={e => this.handleInputChange(e)} />
         </div>
+        <br></br>
         <div>
           <button type="submit">Log in</button>
         </div>
