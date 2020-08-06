@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInStart } from '../../redux/Auth/actions'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 class LogInForm extends Component {
   constructor() {
@@ -21,23 +22,26 @@ class LogInForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newLogin = { ...this.state }
-    logInStart(newLogin)
+    this.props.logInStart(newLogin)
   }
 
 
   render() {
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
-        <h5>
+        <p>
           Username
-          </h5>
+        </p>
         <input id="username" name="username" type="text" onChange={e => this.handleChange(e)} value={this.username} />
-        <h5>
+        <p>
           Password
-          </h5>
+        </p>
         <input id="password" name="password" type="password" onChange={e => this.handleChange(e)} value={this.password} />
         <br></br>
-        <Button type="submit" value="submit">Log in</Button>
+        <br></br>
+        <Button variant="success" type="submit">
+          Log In
+        </Button>
       </form>
     );
   }

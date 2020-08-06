@@ -7,12 +7,12 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case UserActionTypes.LOG_IN_SUCCESS:
+    case UserActionTypes.LOG_IN_START:
       return {
         ...state,
-        currentUser: action.payload,
-        error: null,
-      };
+        currentUser: action.payload.username,
+        error: null
+      }
     default:
       return state;
   }
