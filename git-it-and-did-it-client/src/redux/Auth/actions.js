@@ -26,19 +26,18 @@ export const logInStart = (usernameAndPassword) => {
   }
 }
 
-export const logInSuccess = (user) => ({
-  type: UserActionTypes.LOG_IN_SUCCESS,
-  payload: user,
-});
-
 export const logInFailure = (error) => ({
   type: UserActionTypes.LOG_IN_FAILURE,
   payload: error,
 });
 
-export const setCurrentUser = (user) => {
-	return {
-		type: UserActionTypes.AUTHENTICATION_SUCCESS,
-		user
-	}
+export const logOutProcess = () => ({
+  type: UserActionTypes.LOG_OUT_START,
+});
+
+export const logOutStart = () => {
+  localStorage.removeItem('token')
+  return dispatch => {
+    return dispatch(logOutProcess())
+  }
 }

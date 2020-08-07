@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { logOutStart } from '../../redux/Auth/actions'
 
 class MainNav extends Component {
 
@@ -19,7 +20,7 @@ class MainNav extends Component {
             </Nav>
             <Nav>
               {currentUser ?
-                <Link to="/logout" className="span">Log Out</Link> :
+                <Link to="/" className="span" onClick={this.props.logOutStart}>Log Out</Link> :
                 <Link to="/login" className="span">Log In</Link>}
               {currentUser ?
                 null :
@@ -40,4 +41,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(MainNav);
+const mapDispatchToProps = dispatch => {
+  return {
+    logOutStart: () => dispatch(logOutStart())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainNav);

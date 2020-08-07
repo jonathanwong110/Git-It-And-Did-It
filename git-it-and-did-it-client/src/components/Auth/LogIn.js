@@ -21,8 +21,8 @@ class LogInForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newLogin = { ...this.state }
-    this.props.logInStart(newLogin)
+    const newLogIn = { ...this.state }
+    this.props.logInStart(newLogIn)
   }
 
 
@@ -49,7 +49,7 @@ class LogInForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logInStart: (newLogin) => dispatch(logInStart(newLogin))
+    logInStart: (newLogIn) => dispatch(logInStart(newLogIn))
   }
 }
 
