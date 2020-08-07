@@ -14,8 +14,8 @@ export const logInStart = (usernameAndPassword) => {
       usernameAndPassword
     )
     .then(function (response) {
-      console.log(response);
-      const token = response.data
+      const token = response
+      console.log(response)
       localStorage.setItem('token', token)
       return dispatch(logInProcess(usernameAndPassword))
     })

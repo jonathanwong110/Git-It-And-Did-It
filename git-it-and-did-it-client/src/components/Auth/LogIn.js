@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInStart } from '../../redux/Auth/actions'
 import { Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
 
 class LogInForm extends Component {
   constructor() {
