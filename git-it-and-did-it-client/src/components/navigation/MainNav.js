@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class MainNav extends Component {
 
   render() {
-
+    const { currentUser } = this.props
     return (
       <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -17,10 +18,14 @@ class MainNav extends Component {
               <Link to="/tasks" className="navbar-left-side">Tasks</Link>
             </Nav>
             <Nav>
-              <Link to="/login" className="span">Log In</Link>
-              <Link to="/signup" className="span">
-                Sign Up
-              </Link>
+              {currentUser ?
+                <Link to="/logout" className="span">Log Out</Link> :
+                <Link to="/login" className="span">Log In</Link>}
+              {currentUser ?
+                null :
+                <Link to="/signup" className="span">
+                  Sign Up
+                </Link>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -29,4 +34,10 @@ class MainNav extends Component {
   }
 }
 
-export default MainNav;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.user.currentUser
+  }
+}
+
+export default connect(mapStateToProps)(MainNav);

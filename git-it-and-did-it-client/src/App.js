@@ -4,10 +4,6 @@ import MainNav from './components/Navigation/MainNav'
 import './App.css';
 import LogIn from './components/Auth/LogIn'
 import SignUp from './components/Auth/SignUp'
-// import { createStructuredSelector } from "reselect";
-// import { selectCurrentUser } from "./redux/Auth/selector";
-// import { checkUserSession } from "./redux/Auth/actions";
-// import { connect } from "react-redux";
 
 class App extends Component {
 
@@ -20,8 +16,8 @@ class App extends Component {
           <br></br>
           <br></br>
           <Switch>
-            <Route exact path="/login" component={LogIn}/>
-            <Route exact path="/signup" component={SignUp}/>
+            <Route exact path="/login" component={LogIn} />
+            <Route exact path="/signup" component={SignUp} />
           </Switch>
         </div>
       </BrowserRouter>

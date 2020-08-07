@@ -15,6 +15,8 @@ export const logInStart = (usernameAndPassword) => {
     )
     .then(function (response) {
       console.log(response);
+      const token = response.data
+      localStorage.setItem('token', token)
       return dispatch(logInProcess(usernameAndPassword))
     })
     .catch(function (error) {
@@ -34,6 +36,9 @@ export const logInFailure = (error) => ({
   payload: error,
 });
 
-export const checkUserSession = () => ({
-  type: UserActionTypes.CHECK_USER_SESSION,
-});
+export const setCurrentUser = (user) => {
+	return {
+		type: UserActionTypes.AUTHENTICATION_SUCCESS,
+		user
+	}
+}
