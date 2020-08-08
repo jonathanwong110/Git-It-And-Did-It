@@ -1,8 +1,8 @@
-const UserActionTypes = {
+const AuthActionTypes = {
   LOG_IN_START: "LOG_IN_START",
   LOG_IN_FAILURE: "LOG_IN_FAILURE",
   AUTHENTICATION_SUCCESS: "AUTHENTICATION_SUCCESS",
   LOG_OUT_START: "LOG_OUT_START",
 };
 
-export default UserActionTypes;
+export default AuthActionTypes;

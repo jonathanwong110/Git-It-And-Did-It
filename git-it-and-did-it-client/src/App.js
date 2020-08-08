@@ -5,6 +5,8 @@ import MainNav from './components/Navigation/MainNav'
 import './App.css';
 import LogIn from './components/Auth/LogIn'
 import SignUp from './components/Auth/SignUp'
+import Users from './components/Users/index'
+import UserShow from './components/Users/UserShow'
 
 class App extends Component {
 
@@ -18,6 +20,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/login" render={() => this.props.currentUser ? <Redirect to="/" /> : <LogIn />} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/users" component={Users} />
+            <Route exact path="/user" component={UserShow} />
           </Switch>
         </div>
       </BrowserRouter>
@@ -27,7 +31,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.user.currentUser
+    currentUser: state.auth.currentUser
   }
 }
 

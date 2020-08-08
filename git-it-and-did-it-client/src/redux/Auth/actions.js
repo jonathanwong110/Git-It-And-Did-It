@@ -1,10 +1,10 @@
-import UserActionTypes from "./types";
+import AuthActionTypes from "./types";
 import axios from 'axios'
 
 let baseUrl = 'http://localhost:3000/api/v1/login'
 
 export const logInProcess = (usernameAndPassword) => ({
-  type: UserActionTypes.LOG_IN_START,
+  type: AuthActionTypes.LOG_IN_START,
   payload: usernameAndPassword,
 });
 
@@ -27,12 +27,12 @@ export const logInStart = (usernameAndPassword) => {
 }
 
 export const logInFailure = (error) => ({
-  type: UserActionTypes.LOG_IN_FAILURE,
+  type: AuthActionTypes.LOG_IN_FAILURE,
   payload: error,
 });
 
 export const logOutProcess = () => ({
-  type: UserActionTypes.LOG_OUT_START,
+  type: AuthActionTypes.LOG_OUT_START,
 });
 
 export const logOutStart = () => {
