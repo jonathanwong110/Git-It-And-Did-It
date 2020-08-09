@@ -49,7 +49,7 @@ html, body {
 .navbar-left-side-main {
   color: white;
   font-size: 25px;
-  margin: 0.5%;
+  margin: 0.6%;
 }
 
 .navbar-left-side, .span {
@@ -59,6 +59,15 @@ html, body {
 }
 
 .navbar-left-side-main:hover, .navbar-left-side:hover, .span:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.testing {
+  color: white;
+}
+
+#sidebar a:hover, .testing:hover {
   color: white;
   text-decoration: none;
 }

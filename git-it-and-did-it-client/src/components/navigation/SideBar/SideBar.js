@@ -8,7 +8,7 @@ const Container = styled.div`
     top: 6%;
     bottom: 0;
     background-color: rgba(84,185, 205, 1.0);
-    width: 11rem;
+    width: 12rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,8 +17,8 @@ const Container = styled.div`
 const SideBar = () => {
 
     return (
-        <Container>
-            <Menu />
+        <Container id="sidebar">
+            <Menu/>
         </Container>
     )
 }

@@ -3,7 +3,7 @@ import MenuLink from './MenuLink'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faClipboard, faCog, faEnvelope, faUsers } from '@fortawesome/free-solid-svg-icons'
 
 const Container = styled.div`
     margin-top: 1rem;
@@ -12,12 +12,17 @@ const Container = styled.div`
 
 const Menu = () => {
   const homeIcon = <FontAwesomeIcon icon={faHome} />
+  const boardIcon = <FontAwesomeIcon icon={faClipboard}/>
+  const usersIcon = <FontAwesomeIcon icon={faUsers}/>
+  const mailIcon = <FontAwesomeIcon icon={faEnvelope}/>
+  const settingsIcon = <FontAwesomeIcon icon={faCog}/>
   return (
-    <Container>
+    <Container className="testing">
       <Link to="/dashboard"> <MenuLink title="Dashboard" icon={homeIcon}> </MenuLink> </Link>
-      <Link to="/tasks"> <MenuLink title="Tasks"> </MenuLink> </Link>
-      <Link to="/inbox"> <MenuLink title="Inbox"> </MenuLink> </Link>
-      <Link to="/settings"> <MenuLink title="Settings"> </MenuLink> </Link>
+      <Link to="/users"> <MenuLink title=" Users" icon={usersIcon}> </MenuLink> </Link>
+      <Link to="/tasks"> <MenuLink title=" Tasks" icon={boardIcon}> </MenuLink> </Link>
+      <Link to="/inbox"> <MenuLink title=" Inbox" icon={mailIcon}> </MenuLink> </Link>
+      <Link to="/settings"> <MenuLink title=" Settings" icon={settingsIcon}> </MenuLink> </Link>
     </Container>
   )
 }
