@@ -8,6 +8,7 @@ import SignUp from './components/Auth/SignUp'
 import Users from './components/Users/index'
 import UserShow from './components/Users/UserShow'
 import SideBar from './components/Navigation/SideBar/SideBar'
+import Tasks from './components/Tasks/index'
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/user" component={UserShow} />
+            <Route exact path="/tasks" component={Tasks} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -43,13 +43,16 @@ html, body {
 }
 
 #main-nav {
-  background: rgba(84,185, 205, 1.0) !important;
+  background: #618685 !important;
 }
 
 .navbar-left-side-main {
   color: white;
   font-size: 25px;
-  margin: 0.6%;
+  margin-left: 0.9%;
+  margin-right: 0.6%;
+  margin-top: 0.6%;
+  margin-bottom: 0.6%;
 }
 
 .navbar-left-side, .span {
