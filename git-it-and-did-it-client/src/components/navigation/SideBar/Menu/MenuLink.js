@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-    border-left: 3px solid ${props => props.active ? props.theme.activeMenu : "transparent"};
     width: 100%;
     padding: 0.3rem;
     padding-left: 2rem;
@@ -23,11 +22,11 @@ const Title = styled.h1`
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 `
 
-const MenuLink = ({ title, active, icon }) => {
+const MenuLink = ({ title, icon }) => {
 
     return (
-        <Container active={active}>
-            <Title active={active}>{icon} {title}</Title>
+        <Container>
+            <Title>{icon} {title}</Title>
         </Container>
     )
 }
