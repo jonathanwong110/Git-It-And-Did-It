@@ -7,6 +7,7 @@ import LogIn from './components/Auth/LogIn'
 import SignUp from './components/Auth/SignUp'
 import Users from './components/Users/index'
 import UserShow from './components/Users/UserShow'
+import SideBar from './components/Navigation/SideBar/SideBar'
 
 class App extends Component {
 
@@ -14,7 +15,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <MainNav />
+          <MainNav/>
+          <SideBar/>
           <br></br>
           <br></br>
           <Switch>

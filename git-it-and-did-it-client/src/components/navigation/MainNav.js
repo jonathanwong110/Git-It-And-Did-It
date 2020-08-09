@@ -10,13 +10,11 @@ class MainNav extends Component {
     const { currentUser } = this.props
     return (
       <>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" id="main-nav">
           <Link to="/" className="navbar-left-side-main">GIDI</Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Link to="/dashboard" className="navbar-left-side">Dashboard</Link>
-              <Link to="/tasks" className="navbar-left-side">Tasks</Link>
             </Nav>
             <Nav>
               {currentUser ?

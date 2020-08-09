@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .App {
   text-align: center;
 }
@@ -35,6 +40,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#main-nav {
+  background: rgba(84,185, 205, 1.0) !important;
 }
 
 .navbar-left-side-main {

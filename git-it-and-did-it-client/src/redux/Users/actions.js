@@ -8,7 +8,6 @@ export const loadUsers = () => {
     dispatch({ type: UsersActionTypes.LOADING_USERS})
     axios.get(baseURL).then(res => {
       dispatch({ type: UsersActionTypes.USERS_LOADED, users: res.data })
-      console.log(res.data)
       }
     )
   }
