@@ -66,11 +66,11 @@ html, body {
   text-decoration: none;
 }
 
-.testing {
+.more-details {
   color: white;
 }
 
-#sidebar a:hover, .testing:hover {
+#sidebar a:hover, .more-details:hover {
   color: white;
   text-decoration: none;
 }

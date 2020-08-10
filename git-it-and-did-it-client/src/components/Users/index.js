@@ -16,11 +16,13 @@ class Users extends Component {
       <CardDeck>
         <Container>
           <Row>
-          {users.map(user => {
-            return <Col key={user.id} xs="4" md="4">
-              <UserShow key={user.id} user={user}></UserShow>
-            </Col>
-          })}
+            {users.map(user => {
+              return (
+                <Col key={user.id} xs="4" md="4">
+                  <UserShow key={user.id} user={user}></UserShow>
+                </Col>
+              )
+            })}
           </Row>
         </Container>
       </CardDeck>

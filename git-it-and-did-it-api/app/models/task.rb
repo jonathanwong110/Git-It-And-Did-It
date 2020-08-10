@@ -6,6 +6,6 @@ class Task < ApplicationRecord
   validates_presence_of :title, :category, :description, :status, :priority, :user
 
   enum category: { bugs: 0, new_feature: 1 }
-  enum status: { in_progress: 0, finished: 1 }
+  enum status: { to_do: 0, in_progress: 1, finished: 2 }
   enum priority: { low: 0, medium: 1, high: 2 }
 end

@@ -17,10 +17,11 @@ class Tasks extends Component {
         <Container>
           <Row>
             {tasks.map(task => {
-              console.log('task', task)
-              return <Col key={task.id} xs="4" md="4">
-                <TaskShow key={task.id} task={task}></TaskShow>
-              </Col>
+              return (
+                <Col key={task.id}>
+                  <TaskShow key={task.id} task={task}></TaskShow>
+                </Col>
+              )
             })}
           </Row>
         </Container>

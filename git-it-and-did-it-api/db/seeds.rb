@@ -7,21 +7,21 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create([
-  { email: '123@testing.com', username: 'JW', password: '12345' },
-  { email: '123@testing.com', username: 'OM', password: '12345' },
-  { email: '123@testing.com', username: 'KL', password: '12345' }
+  { email: 'JW@testing.com', username: 'JW', password: '12345' },
+  { email: 'OM@testing.com', username: 'OM', password: '12345' },
+  { email: 'KL@testing.com', username: 'KL', password: '12345' }
 ])
 
 Task.create([
-  { title: 'testing1', category: 0, description: 'testing1', status: 0, priority: 0, user_id: 1 },
-  { title: 'testing2', category: 0, description: 'testing2', status: 0, priority: 1, user_id: 2 },
-  { title: 'testing3', category: 0, description: 'testing3', status: 1, priority: 2, user_id: 3 }
+  { title: 'task 1', category: 0, description: 'task description 1', status: 0, priority: 0, user_id: 1 },
+  { title: 'task 2', category: 0, description: 'task description 2', status: 1, priority: 1, user_id: 2 },
+  { title: 'task 3', category: 0, description: 'task description 3', status: 2, priority: 2, user_id: 3 }
 ])
 
 Comment.create([
-  { content: 'testing1', user_id: 3, task_id: 1 },
-  { content: 'testing2', user_id: 2, task_id: 2 },
-  { content: 'testing3', user_id: 1, task_id: 3 }
+  { content: 'comment 1', user_id: 3, task_id: 1 },
+  { content: 'comment 2', user_id: 2, task_id: 2 },
+  { content: 'comment 3', user_id: 1, task_id: 3 }
 ])
 
 UserTask.create([

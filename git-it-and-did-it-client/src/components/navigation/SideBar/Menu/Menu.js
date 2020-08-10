@@ -17,7 +17,7 @@ const Menu = () => {
   const mailIcon = <FontAwesomeIcon icon={faEnvelope}/>
   const settingsIcon = <FontAwesomeIcon icon={faCog}/>
   return (
-    <Container className="testing">
+    <Container className="more-details">
       <Link to="/dashboard"> <MenuLink title="Dashboard" icon={homeIcon}> </MenuLink> </Link>
       <Link to="/users"> <MenuLink title=" Users" icon={usersIcon}> </MenuLink> </Link>
       <Link to="/tasks"> <MenuLink title=" Tasks" icon={boardIcon}> </MenuLink> </Link>

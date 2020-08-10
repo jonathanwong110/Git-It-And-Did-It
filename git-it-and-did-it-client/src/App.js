@@ -9,6 +9,7 @@ import Users from './components/Users/index'
 import UserShow from './components/Users/UserShow'
 import SideBar from './components/Navigation/SideBar/SideBar'
 import Tasks from './components/Tasks/index'
+import TaskShow from './components/Tasks/TaskShow'
 
 class App extends Component {
 
@@ -16,16 +17,17 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <MainNav/>
-          <SideBar/>
+          <MainNav />
+          <SideBar />
           <br></br>
           <br></br>
           <Switch>
             <Route exact path="/login" render={() => this.props.currentUser ? <Redirect to="/" /> : <LogIn />} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
-            <Route exact path="/user" component={UserShow} />
+            <Route exact path="/users/:id" component={UserShow} />
             <Route exact path="/tasks" component={Tasks} />
+            <Route exact path="/tasks/:id" component={TaskShow}/>
           </Switch>
         </div>
       </BrowserRouter>
@@ -35,7 +37,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.auth.currentUser
+    currentUser: state.auth.currentUser,
   }
 }
 

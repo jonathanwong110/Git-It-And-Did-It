@@ -1,5 +1,4 @@
 class Api::V1::AuthController < ApplicationController
-  before_action :authenticate_token!, only: [:refresh]
 
   def login
     @user = User.find_by(username: params[:username])
@@ -8,7 +7,7 @@ class Api::V1::AuthController < ApplicationController
         errors: { Username: [' is invalid!'] }
       }, status: 500
     elsif @user && @user.authenticate(params[:password])
-      render @user   
+      render @user
     else
       render json: { 
         errors: { Password: [' is invalid!'] }
