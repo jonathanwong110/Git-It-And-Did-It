@@ -7,7 +7,7 @@ class Api::V1::AuthController < ApplicationController
         errors: { Username: [' is invalid!'] }
       }, status: 500
     elsif @user && @user.authenticate(params[:password])
-      render @user
+      render json: @user, status: 200
     else
       render json: { 
         errors: { Password: [' is invalid!'] }
