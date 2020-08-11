@@ -18,7 +18,15 @@ class TaskShow extends Component {
         {tasks[individualTask]["description"]} <br></br>
         {tasks[individualTask]["status"]} <br></br>
         {tasks[individualTask]["priority"]} <br></br>
-        {tasks[individualTask]["user"]["username"]}
+        {tasks[individualTask]["user"]["username"]} <br></br>
+        {tasks[individualTask]["comments"].map(comment => {
+          console.log(comment)
+          return (
+            <div key={comment.id}>
+              {comment.content} - {comment.created_at.slice(5, 10)}-{comment.created_at.slice(0, 4)} at {comment.created_at.slice(11, 19)}
+            </div>
+          )
+        })}
       </div>
     )
   }
@@ -27,7 +35,8 @@ class TaskShow extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    tasks: state.tasks.tasks
+    tasks: state.tasks.tasks,
+    users: state.users.users
   }
 }
 

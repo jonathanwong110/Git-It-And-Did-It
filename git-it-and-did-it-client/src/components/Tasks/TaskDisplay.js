@@ -17,6 +17,9 @@ export default function TaskDisplay(props) {
           {capitalizeFirstLetter(props.task.title)}
         </Card.Title>
         <Card.Text>
+          {capitalizeFirstLetter(props.task.user.username)}
+        </Card.Text>
+        <Card.Text>
           {capitalizeFirstLetter(props.task.category)}
         </Card.Text>
         <Card.Text>
