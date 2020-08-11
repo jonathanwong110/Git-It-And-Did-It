@@ -1,32 +1,40 @@
-import React from 'react';
-import { Card, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loadTasks } from '../../redux/Tasks/actions'
 
-export default function TaskShow(props) {
+class TaskShow extends Component {
 
-  const { task } = props
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  componentDidMount() {
+    this.props.loadTasks()
   }
 
-  return (
-    <Card style={{ width: '13rem', margin: '20px' }}>
-      <Card.Body>
-        <Card.Title>
-          {capitalizeFirstLetter(props.task.title)}
-        </Card.Title>
-        <Card.Text>
-          {capitalizeFirstLetter(props.task.category)}
-        </Card.Text>
-        <Card.Text>
-          {capitalizeFirstLetter(props.task.priority)}
-        </Card.Text>
-        <Card.Text>
-          {capitalizeFirstLetter(props.task.status)}
-        </Card.Text>
-        <Button variant="primary"><Link to={`/tasks/${task.id}`} className="more-details">View Details</Link></Button>
-      </Card.Body>
-    </Card>
-  )
+  render() {
+    const { tasks, match } = this.props
+    const individualTask = (match.url.slice(-1)[0] - 1)
+    return (
+      <div>
+        <h1>{tasks[individualTask]["title"]}</h1>
+        {tasks[individualTask]["category"]} <br></br>
+        {tasks[individualTask]["description"]} <br></br>
+        {tasks[individualTask]["status"]} <br></br>
+        {tasks[individualTask]["priority"]} <br></br>
+        {tasks[individualTask]["user"]["username"]}
+      </div>
+    )
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.auth.currentUser,
+    tasks: state.tasks.tasks
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadTasks: () => dispatch(loadTasks())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskShow)

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../redux/Tasks/actions'
 import { CardDeck, Container, Col, Row } from 'react-bootstrap'
-import TaskShow from './TaskShow'
+import TaskDisplay from './TaskDisplay'
 
 class Tasks extends Component {
 
@@ -11,7 +11,7 @@ class Tasks extends Component {
   }
 
   render() {
-    const { tasks } = this.props
+    const { tasks, match } = this.props
     return (
       <CardDeck>
         <Container>
@@ -19,7 +19,7 @@ class Tasks extends Component {
             {tasks.map(task => {
               return (
                 <Col key={task.id}>
-                  <TaskShow key={task.id} task={task}></TaskShow>
+                  <TaskDisplay key={task.id} task={task} match={match}></TaskDisplay>
                 </Col>
               )
             })}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../redux/Users/actions'
 import { CardDeck, Container, Col, Row } from 'react-bootstrap'
-import UserShow from './UserShow'
+import UserShow from './UserDisplay'
 
 class Users extends Component {
 
