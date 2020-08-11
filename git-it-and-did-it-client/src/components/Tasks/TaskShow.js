@@ -10,17 +10,28 @@ class TaskShow extends Component {
 
   render() {
     const { tasks, match } = this.props
-    const individualTask = (match.url.slice(-1)[0] - 1)
+    const individualTaskId = (match.url.slice(-1)[0] - 1)
+    const specificTask = tasks[individualTaskId]
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
       <div>
-        <h1>{tasks[individualTask]["title"]}</h1>
-        {tasks[individualTask]["category"]} <br></br>
-        {tasks[individualTask]["description"]} <br></br>
-        {tasks[individualTask]["status"]} <br></br>
-        {tasks[individualTask]["priority"]} <br></br>
-        {tasks[individualTask]["user"]["username"]} <br></br>
-        {tasks[individualTask]["comments"].map(comment => {
-          console.log(comment)
+        <h1>{capitalizeFirstLetter(specificTask["title"])}</h1>
+        Category: {capitalizeFirstLetter(specificTask["category"])}
+        <br></br>
+        {capitalizeFirstLetter(specificTask["description"])}
+        <br></br>
+        {capitalizeFirstLetter(specificTask["status"])}
+        <br></br>
+        {capitalizeFirstLetter(specificTask["priority"])}
+        <br></br>
+        {specificTask["user"]["username"]}
+        <br></br>
+        <br></br>
+        {specificTask["comments"].map(comment => {
           return (
             <div key={comment.id}>
               {comment.content} - {comment.created_at.slice(5, 10)}-{comment.created_at.slice(0, 4)} at {comment.created_at.slice(11, 19)}
