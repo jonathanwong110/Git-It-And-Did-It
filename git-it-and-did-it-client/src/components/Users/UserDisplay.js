@@ -13,7 +13,7 @@ export default function UserShow(props) {
         <Card.Text>
           {user.email}
         </Card.Text>
-        <Button variant="primary"><Link to={`/user/${user.id}`} className="more-details">Profile</Link></Button>
+        <Button variant="primary"><Link to={`/users/${user.id}`} className="more-details">Profile</Link></Button>
       </Card.Body>
     </Card>
   )

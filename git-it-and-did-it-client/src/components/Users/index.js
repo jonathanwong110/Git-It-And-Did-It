@@ -11,7 +11,7 @@ class Users extends Component {
   }
 
   render() {
-    const { users } = this.props
+    const { users, match } = this.props
     return (
       <CardDeck>
         <Container>
@@ -19,7 +19,7 @@ class Users extends Component {
             {users.map(user => {
               return (
                 <Col key={user.id} xs="4" md="4">
-                  <UserShow key={user.id} user={user}></UserShow>
+                  <UserShow key={user.id} user={user} match={match}></UserShow>
                 </Col>
               )
             })}
