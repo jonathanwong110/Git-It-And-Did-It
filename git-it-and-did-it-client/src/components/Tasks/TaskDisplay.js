@@ -13,7 +13,7 @@ export default function TaskDisplay(props) {
   return (
     <Card style={{ width: '13rem'}} id="taskCardDisplay">
       <Card.Body id="taskBodyDisplay">
-        <Card.Title>
+        <Card.Title id="task-title">
           {capitalizeFirstLetter(props.task.title)}
         </Card.Title>
         <Card.Text>

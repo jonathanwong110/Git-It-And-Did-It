@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { CardDeck, Container, Col, Row, Card, Button } from 'react-bootstrap'
+import { CardDeck, Container, Row, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class Dashboard extends Component {
@@ -19,33 +19,33 @@ class Dashboard extends Component {
         <br></br>
         <br></br>
         <h2>Tasks Created</h2>
+        <br></br>
+        <br></br>
         <CardDeck>
           <Container>
-            <Row>
+          <Row id="task-row">
               {specificUser["tasks"].map(task => {
                 return (
-                  <Col key={task.id}>
-                    <Card style={{ width: '13rem', margin: '20px' }} key={task.id}>
-                      <Card.Body key={task.id}>
-                        <Card.Title>
-                          {this.capitalizeFirstLetter(task.title)}
-                        </Card.Title>
-                        <Card.Text>
-                          {specificUser["username"]}
-                        </Card.Text>
-                        <Card.Text>
-                          {this.capitalizeFirstLetter(task.category)}
-                        </Card.Text>
-                        <Card.Text>
-                          {this.capitalizeFirstLetter(task.priority)}
-                        </Card.Text>
-                        <Card.Text>
-                          {this.capitalizeFirstLetter(task.status)}
-                        </Card.Text>
-                        <Button variant="primary"><Link to={`/tasks/${task.id}`} className="more-details">View Details</Link></Button>
-                      </Card.Body>
-                    </Card>
-                  </Col>
+                  <Card style={{ width: '13rem'}} key={task.id} id="taskCardDisplay">
+                    <Card.Body key={task.id} id="taskBodyDisplay">
+                      <Card.Title id="task-title">
+                        {this.capitalizeFirstLetter(task.title)}
+                      </Card.Title>
+                      <Card.Text>
+                        {specificUser["username"]}
+                      </Card.Text>
+                      <Card.Text>
+                        {this.capitalizeFirstLetter(task.category)}
+                      </Card.Text>
+                      <Card.Text>
+                        {this.capitalizeFirstLetter(task.priority)}
+                      </Card.Text>
+                      <Card.Text>
+                        {this.capitalizeFirstLetter(task.status)}
+                      </Card.Text>
+                      <Button variant="primary"><Link to={`/tasks/${task.id}`} className="more-details">View Details</Link></Button>
+                    </Card.Body>
+                  </Card>
                 )
               })}
             </Row>

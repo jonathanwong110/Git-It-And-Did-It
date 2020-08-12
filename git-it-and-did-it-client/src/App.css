@@ -49,6 +49,22 @@ html, body {
   margin: 0px;
 }
 
+.navbar-expand .navbar-nav .dropdown-menu {
+  background-color: #618685 !important;
+  border-color: white;
+}
+
+.menu-task-link {
+  color: white;
+  margin-left: 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.menu-task-link:hover {
+  color: white !important;
+}
+
 #search-tasks {
   background-color: #999999;
   color: white;
@@ -104,4 +120,15 @@ html, body {
   width: 100%;
   margin: 0 auto;
   height: calc(1.5em + .75rem + 2px)
+}
+
+#task-title {
+  background-color: #d9d9d9;
+  padding: 10px;
+  width: 100%;
+}
+
+.card-body {
+  height: 270px !important;
+  padding: 0 !important;
 }

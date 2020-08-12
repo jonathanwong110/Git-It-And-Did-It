@@ -26,8 +26,8 @@ const Menu = () => {
       <Navbar>
         <Nav>
           <NavDropdown title="Tasks" className="menu-link">
-            <Link to="/tasks" className="testing">All Tasks</Link><br></br>
-            <Link to="/tasks/new" className="testing">New Task</Link>
+            <Link to="/tasks" className="menu-task-link">View All Tasks</Link><br></br>
+            <Link to="/tasks/new" className="menu-task-link">New Task</Link>
           </NavDropdown>
         </Nav>
       </Navbar>
