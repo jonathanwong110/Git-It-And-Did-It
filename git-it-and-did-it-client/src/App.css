@@ -49,16 +49,6 @@ html, body {
   margin: 0px;
 }
 
-.testing {
-  color: #618685;
-  margin-left: 15px;
-  font-weight: 500;
-}
-
-.testing:hover {
-  color: #618685 !important;
-}
-
 #search-tasks {
   background-color: #999999;
   color: white;
@@ -69,6 +59,7 @@ html, body {
   color: black;
   white-space: nowrap;
   padding-left: 0px;
+  font-weight: 500;
 }
 
 #category-section:hover {
@@ -102,4 +93,15 @@ html, body {
 
 #taskCardDisplay:hover, .userCardDisplay:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#new-task-form {
+  width: 20%;
+  margin: 0 auto;
+}
+
+#new-task-enum-field {
+  width: 100%;
+  margin: 0 auto;
+  height: calc(1.5em + .75rem + 2px)
 }
