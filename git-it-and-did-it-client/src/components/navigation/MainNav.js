@@ -18,7 +18,7 @@ class MainNav extends Component {
             </Nav>
             <Nav>
               {JSON.parse(localStorage.getItem('token')) != null ?
-                <Link to="/" className="span" onClick={this.props.logOutStart}>Log Out</Link> :
+                <Link to="/logout" className="span" onClick={this.props.logOutStart}>Log Out</Link> :
                 <Link to="/login" className="span">Log In</Link>}
               {JSON.parse(localStorage.getItem('token')) ?
                 null :
