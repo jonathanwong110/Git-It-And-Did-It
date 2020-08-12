@@ -7,7 +7,7 @@ import { logOutStart } from '../../redux/Auth/actions'
 class MainNav extends Component {
 
   render() {
-    const { currentUser } = this.props
+    // const { currentUser } = this.props
     return (
       <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" id="main-nav">
