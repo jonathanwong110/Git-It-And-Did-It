@@ -57,3 +57,8 @@ html, body {
 .testing:hover {
   color: #618685 !important;
 }
+
+#search-tasks {
+  background-color: #999999;
+  color: white;
+}
