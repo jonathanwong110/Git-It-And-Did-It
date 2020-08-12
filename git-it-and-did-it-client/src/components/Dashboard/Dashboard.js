@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadUsers } from '../../redux/Users/actions'
 import { CardDeck, Container, Col, Row, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-class UserShow extends Component {
-
-  componentDidMount() {
-    this.props.loadUsers()
-  }
+class Dashboard extends Component {
 
   capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   render() {
-    const { users, match } = this.props
-    const individualUserId = (match.url.slice(-1)[0] - 1)
-    const specificUser = users[individualUserId]
-
-    if (users.length === 0) {
-      return <div>There are no tasks</div>
-    }
+    const specificUser = (JSON.parse(localStorage.getItem('token')))
 
     return (
       <div>
@@ -74,10 +63,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadUsers: () => dispatch(loadUsers())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserShow)
+export default connect(mapStateToProps)(Dashboard)

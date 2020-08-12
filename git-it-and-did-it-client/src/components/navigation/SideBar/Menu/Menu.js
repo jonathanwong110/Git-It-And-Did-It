@@ -18,11 +18,11 @@ const Menu = () => {
   const settingsIcon = <FontAwesomeIcon icon={faCog}/>
   return (
     <Container className="more-details">
-      <Link to="/dashboard"> <MenuLink title="Dashboard" icon={homeIcon}> </MenuLink> </Link>
-      <Link to="/users"> <MenuLink title=" Users" icon={usersIcon}> </MenuLink> </Link>
-      <Link to="/tasks"> <MenuLink title=" Tasks" icon={boardIcon}> </MenuLink> </Link>
-      <Link to="/inbox"> <MenuLink title=" Inbox" icon={mailIcon}> </MenuLink> </Link>
-      <Link to="/settings"> <MenuLink title=" Settings" icon={settingsIcon}> </MenuLink> </Link>
+      <Link to="/dashboard"> <MenuLink title="Dashboard"icon={homeIcon}></MenuLink> </Link>
+      <Link to="/users"> <MenuLink title="Users" icon={usersIcon}> </MenuLink> </Link>
+      <Link to="/tasks"> <MenuLink title="Tasks" icon={boardIcon}> </MenuLink> </Link>
+      <Link to="/inbox"> <MenuLink title="Inbox" icon={mailIcon}> </MenuLink> </Link>
+      <Link to="/settings"> <MenuLink title="Settings" icon={settingsIcon}> </MenuLink> </Link>
     </Container>
   )
 }

@@ -10,7 +10,7 @@ import UserShow from './components/Users/UserShow'
 import SideBar from './components/Navigation/SideBar/SideBar'
 import Tasks from './components/Tasks/index'
 import TaskShow from './components/Tasks/TaskShow'
-
+import Dashboard from './components/Dashboard/Dashboard'
 
 class App extends Component {
 
@@ -23,10 +23,11 @@ class App extends Component {
           <br></br>
           <br></br>
           <Switch>
-            <Route exact path="/login" render={() => this.props.currentUser ? <Redirect to="/" /> : <LogIn />} />
+            <Route exact path="/login" render={() => JSON.parse(localStorage.getItem('token')) ? <Redirect to="/" /> : <LogIn />} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:id" component={UserShow} />
+            <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/tasks" component={Tasks} />
             <Route exact path="/tasks/:id" component={TaskShow}/>
           </Switch>

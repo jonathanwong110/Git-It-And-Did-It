@@ -17,10 +17,10 @@ class MainNav extends Component {
             <Nav className="mr-auto">
             </Nav>
             <Nav>
-              {currentUser ?
+              {JSON.parse(localStorage.getItem('token')) != null ?
                 <Link to="/" className="span" onClick={this.props.logOutStart}>Log Out</Link> :
                 <Link to="/login" className="span">Log In</Link>}
-              {currentUser ?
+              {JSON.parse(localStorage.getItem('token')) ?
                 null :
                 <Link to="/signup" className="span">
                   Sign Up
