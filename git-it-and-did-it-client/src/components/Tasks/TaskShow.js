@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../redux/Tasks/actions'
+import TaskNew from './TaskNew'
 
 class TaskShow extends Component {
 
@@ -13,12 +14,16 @@ class TaskShow extends Component {
   }
 
   render() {
-    const { tasks, match } = this.props
-    const individualTaskId = (match.url.slice(-1)[0] - 1)
-    const specificTask = tasks[individualTaskId]
+    let { tasks, match } = this.props
+    let individualTaskId = (match.url.slice(-1)[0] - 1)
+    let specificTask = tasks[individualTaskId]
 
     if (tasks.length === 0) {
       return <div>There are no tasks</div>
+    }
+    
+    if (match.url.slice(7) === "new") {
+      return <TaskNew/>
     }
 
     return (

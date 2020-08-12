@@ -3,7 +3,8 @@ import MenuLink from './MenuLink'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faClipboard, faCog, faEnvelope, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faCog, faEnvelope, faUsers } from '@fortawesome/free-solid-svg-icons'
+// import { faHome, faClipboard, faCog, faEnvelope, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
 const Container = styled.div`

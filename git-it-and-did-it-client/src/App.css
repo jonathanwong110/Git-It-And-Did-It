@@ -1,5 +1,6 @@
 html, body {
   max-width: 100%;
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -64,7 +65,7 @@ html, body {
 }
 
 #category-section, .searchForm {
-  margin-left: 200px;
+  margin-left: 130px;
   color: black;
   white-space: nowrap;
   padding-left: 0px;
@@ -87,4 +88,18 @@ html, body {
 
 #task-navbar-child {
   margin-right: 10%;
+}
+
+#task-row, #user-row {
+  margin-left: 17%;
+}
+
+#taskCardDisplay, .userCardDisplay {
+  max-width: 250px !important;
+  box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+#taskCardDisplay:hover, .userCardDisplay:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }

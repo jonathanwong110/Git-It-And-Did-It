@@ -11,6 +11,7 @@ import SideBar from './components/Navigation/SideBar/SideBar'
 import Tasks from './components/Tasks/index'
 import TaskShow from './components/Tasks/TaskShow'
 import Dashboard from './components/Dashboard/Dashboard'
+import TaskNew from './components/Tasks/TaskNew'
 
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/tasks" component={Tasks} />
             <Route exact path="/tasks/:id" component={TaskShow}/>
+            <Route exact path="/tasks/new" component={TaskNew}/>
           </Switch>
         </div>
       </BrowserRouter>
