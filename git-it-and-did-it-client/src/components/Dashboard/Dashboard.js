@@ -10,6 +10,24 @@ class Dashboard extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  categoryNameChanger = (category) => {
+    if (category === "bugs") {
+      return "Bugs"
+    } else {
+      return "New Features"
+    }
+  }
+
+  statusNameChanger = (status) => {
+    if (status === "to_do") {
+      return "To Do"
+    } else if (status === "in_progress") {
+      return "In Progress"
+    } else {
+      return "Finished"
+    }
+  }
+
   render() {
     const specificUser = (JSON.parse(localStorage.getItem('token')))
 
@@ -40,13 +58,13 @@ class Dashboard extends Component {
                         {specificUser["username"]}
                       </Card.Text>
                       <Card.Text>
-                        {this.capitalizeFirstLetter(task.category)}
+                        {this.categoryNameChanger(task.category)}
                       </Card.Text>
                       <Card.Text>
                         {this.capitalizeFirstLetter(task.priority)}
                       </Card.Text>
                       <Card.Text>
-                        {this.capitalizeFirstLetter(task.status)}
+                        {this.statusNameChanger(task.status)}
                       </Card.Text>
                       <Button variant="primary">
                         <Link to={`/tasks/${task.id}`} className="more-details">
