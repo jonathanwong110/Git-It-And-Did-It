@@ -7,7 +7,7 @@ export default function SearchTask(props) {
   const searchIcon = <FontAwesomeIcon icon={faSearch} />
 
   return (
-    <div className="searchForm">
+    <div>
       <input
         type="text"
         name="search"

@@ -52,22 +52,24 @@ class Tasks extends Component {
         <Navbar bg="light" id="task-navbar">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar id="task-navbar-child">
-            <Nav className="mr-auto">
-              <Link to="/tasks" id="category-section">
+            <Nav className="mr-auto" id="category-section">
+              <Link to="/tasks" id="category-section-link">
                 All
               </Link>
             </Nav>
-            <Nav className="mr-auto">
-              <Link to="/tasks/bugs" id="category-section">
+            <Nav className="mr-auto" id="category-section">
+              <Link to="/tasks/bugs" id="category-section-link">
                 Bugs
               </Link>
             </Nav>
-            <Nav className="mr-auto" >
-              <Link to="/tasks/new_features" id="category-section">
+            <Nav className="mr-auto" id="category-section">
+              <Link to="/tasks/new_features" id="category-section-link">
                 New Features
               </Link>
             </Nav>
-            <SearchTasks onKeyPress={this.onKeyPress} {...{ searchEntry, searchQuery }} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+            <Nav className="mr-auto" id="category-section">
+              <SearchTasks onKeyPress={this.onKeyPress} {...{ searchEntry, searchQuery }} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+            </Nav>
           </Navbar>
         </Navbar>
         <CardDeck>

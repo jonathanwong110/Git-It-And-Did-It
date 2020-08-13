@@ -71,15 +71,21 @@ html, body {
   color: white;
 }
 
-#category-section, .searchForm {
-  margin-left: 130px;
+#category-section {
+  margin-left: 20%;
+  margin-right: 20%;
   color: black;
   white-space: nowrap;
   padding-left: 0px;
   font-weight: 500;
+  text-align: none;
 }
 
-#category-section:hover {
+#category-section-link {
+  color: black;
+}
+
+#category-section-link:hover {
   text-decoration: none;
 }
 
@@ -95,7 +101,7 @@ html, body {
 }
 
 #task-navbar-child {
-  margin-right: 10%;
+  justify-content: center;
 }
 
 #task-row, #user-row {
