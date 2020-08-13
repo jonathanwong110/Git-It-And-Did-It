@@ -53,13 +53,19 @@ class Tasks extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar id="task-navbar-child">
             <Nav className="mr-auto">
-              <Link to="/tasks" id="category-section"> All </Link>
+              <Link to="/tasks" id="category-section">
+                All
+              </Link>
             </Nav>
             <Nav className="mr-auto">
-              <Link to="/tasks/bugs" id="category-section"> Bugs </Link>
+              <Link to="/tasks/bugs" id="category-section">
+                Bugs
+              </Link>
             </Nav>
-            <Nav className="mr-auto">
-              <Link to="/tasks/new_features" id="category-section"> New Features </Link>
+            <Nav className="mr-auto" >
+              <Link to="/tasks/new_features" id="category-section">
+                New Features
+              </Link>
             </Nav>
             <SearchTasks onKeyPress={this.onKeyPress} {...{ searchEntry, searchQuery }} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
           </Navbar>
@@ -69,7 +75,7 @@ class Tasks extends Component {
             <Row id="task-row">
               {tasks.map(task => {
                 return (
-                  <TaskDisplay key={task.id} task={task} match={match}></TaskDisplay>
+                  <TaskDisplay key={task.id} task={task} match={match} />
                 )
               })}
             </Row>

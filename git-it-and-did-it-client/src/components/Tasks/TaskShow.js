@@ -21,9 +21,9 @@ class TaskShow extends Component {
     if (tasks.length === 0) {
       return <div>There are no tasks</div>
     }
-    
+
     if (match.url.slice(7) === "new") {
-      return <TaskNew/>
+      return <TaskNew />
     }
 
     return (

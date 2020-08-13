@@ -30,8 +30,9 @@ class App extends Component {
             <Route exact path="/users/:id" component={UserShow} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/tasks" component={Tasks} />
-            <Route exact path="/tasks/:id" component={TaskShow}/>
-            <Route exact path="/tasks/new" component={TaskNew}/>
+            <Route exact path="/tasks/:id" component={TaskShow} />
+            <Route exact path="/tasks/new" component={TaskNew} />
+            <Route exact path="/tasks/:category" component={Tasks} />
           </Switch>
         </div>
       </BrowserRouter>

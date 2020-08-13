@@ -11,9 +11,9 @@ export default function TaskDisplay(props) {
   }
 
   return (
-    <Card style={{ width: '13rem'}} id="taskCardDisplay">
-      <Card.Body id="taskBodyDisplay">
-        <Card.Title id="task-title">
+    <Card style={{ width: '13rem' }} id="cardDisplay">
+      <Card.Body id="cardBodyDisplay">
+        <Card.Title id="cardTitle">
           {capitalizeFirstLetter(props.task.title)}
         </Card.Title>
         <Card.Text>
@@ -28,7 +28,13 @@ export default function TaskDisplay(props) {
         <Card.Text>
           {capitalizeFirstLetter(props.task.status)}
         </Card.Text>
-        <Button variant="primary"><Link to={`/tasks/${task.id}`} className="more-details">View Details</Link></Button>
+        <Button variant="primary">
+          <Link to={`/tasks/${task.id}`} className="more-details">
+            View Details
+            </Link>
+        </Button>
+        <br></br>
+        <br></br>
       </Card.Body>
     </Card>
   )

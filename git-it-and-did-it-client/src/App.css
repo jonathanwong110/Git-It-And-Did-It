@@ -6,6 +6,7 @@ html, body {
 
 .App {
   text-align: center;
+  height: 100%;
 }
 
 #main-nav {
@@ -101,13 +102,13 @@ html, body {
   margin-left: 17%;
 }
 
-#taskCardDisplay, .userCardDisplay {
+#cardDisplay {
   max-width: 250px !important;
   box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
   transition: 0.3s;
 }
 
-#taskCardDisplay:hover, .userCardDisplay:hover {
+#cardDisplay:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
@@ -122,13 +123,13 @@ html, body {
   height: calc(1.5em + .75rem + 2px)
 }
 
-#task-title {
+#cardTitle {
   background-color: #d9d9d9;
   padding: 10px;
   width: 100%;
 }
 
 .card-body {
-  height: 270px !important;
+  height: auto !important;
   padding: 0 !important;
 }

@@ -23,12 +23,12 @@ class Dashboard extends Component {
         <br></br>
         <CardDeck>
           <Container>
-          <Row id="task-row">
+            <Row id="task-row">
               {specificUser["tasks"].map(task => {
                 return (
-                  <Card style={{ width: '13rem'}} key={task.id} id="taskCardDisplay">
-                    <Card.Body key={task.id} id="taskBodyDisplay">
-                      <Card.Title id="task-title">
+                  <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
+                    <Card.Body key={task.id} id="cardBodyDisplay">
+                      <Card.Title id="cardTitle">
                         {this.capitalizeFirstLetter(task.title)}
                       </Card.Title>
                       <Card.Text>
@@ -43,7 +43,13 @@ class Dashboard extends Component {
                       <Card.Text>
                         {this.capitalizeFirstLetter(task.status)}
                       </Card.Text>
-                      <Button variant="primary"><Link to={`/tasks/${task.id}`} className="more-details">View Details</Link></Button>
+                      <Button variant="primary">
+                        <Link to={`/tasks/${task.id}`} className="more-details">
+                          View Details
+                        </Link>
+                      </Button>
+                      <br></br>
+                      <br></br>
                     </Card.Body>
                   </Card>
                 )
