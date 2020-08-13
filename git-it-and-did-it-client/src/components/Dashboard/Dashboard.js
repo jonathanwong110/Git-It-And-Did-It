@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CardDeck, Container, Row, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import LogIn from '../Auth/LogIn'
 
 class Dashboard extends Component {
 
@@ -11,6 +12,10 @@ class Dashboard extends Component {
 
   render() {
     const specificUser = (JSON.parse(localStorage.getItem('token')))
+
+    if (!specificUser) {
+      return <LogIn />
+    }
 
     return (
       <div>

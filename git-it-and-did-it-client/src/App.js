@@ -24,7 +24,8 @@ class App extends Component {
           <br></br>
           <br></br>
           <Switch>
-            <Route exact path="/login" render={() => JSON.parse(localStorage.getItem('token')) ? <Redirect to="/" /> : <LogIn />} />
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/login" render={() => JSON.parse(localStorage.getItem('token')) ? <Redirect to="/dashboard" /> : <LogIn />} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:id" component={UserShow} />

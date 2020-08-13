@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInStart } from '../../redux/Auth/actions'
 import { Button } from 'react-bootstrap'
+import Dashboard from '../Dashboard/Dashboard'
 
 class LogInForm extends Component {
   constructor() {
@@ -26,6 +27,12 @@ class LogInForm extends Component {
 
 
   render() {
+    const specificUser = (JSON.parse(localStorage.getItem('token')))
+
+    if (specificUser) {
+      return <Dashboard />
+    }
+
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
         <p>
