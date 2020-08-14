@@ -38,17 +38,16 @@ class TaskNew extends Component {
   render() {
     return (
       <>
+        <Form id="new-task-form">
         <h1 className="newTaskFormHeading">Create a New Task</h1>
         <br></br>
-        <Form id="new-task-form">
           <Form.Group>
             <Form.Label>Title</Form.Label>
-            <Form.Control type="text" placeholder="Title" />
+            <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.title} id="new-task-non-enum-field"/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Category: </Form.Label>
-            <br></br>
             <select type="select" id="new-task-enum-field">
               <option value={0}>Bugs</option>
               <option value={1}>New Feature</option>
@@ -56,13 +55,7 @@ class TaskNew extends Component {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Description</Form.Label>
-            <Form.Control type="text" placeholder="Description" />
-          </Form.Group>
-
-          <Form.Group>
             <Form.Label>Status: </Form.Label>
-            <br></br>
             <select type="select" id="new-task-enum-field">
               <option value={0}>To Do</option>
               <option value={1}>In Progress</option>
@@ -72,7 +65,6 @@ class TaskNew extends Component {
 
           <Form.Group>
             <Form.Label>Priority: </Form.Label>
-            <br></br>
             <select type="select" id="new-task-enum-field">
               <option value={0}>Low</option>
               <option value={1}>Medium</option>
@@ -80,9 +72,14 @@ class TaskNew extends Component {
             </select>
           </Form.Group>
 
+          <Form.Group>
+            <Form.Label>Description</Form.Label>
+            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.description} id="new-task-non-enum-field" />
+          </Form.Group>
+
           <Button variant="primary" type="submit">
             Submit
-        </Button>
+          </Button>
         </Form>
       </>
     );

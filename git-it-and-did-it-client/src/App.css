@@ -124,7 +124,7 @@ html, body {
   margin: 0 auto;
 }
 
-#new-task-enum-field {
+#new-task-enum-field, #new-task-non-enum-field {
   width: 100%;
   margin: 0 auto;
   height: calc(1.5em + .75rem + 2px)
@@ -213,6 +213,16 @@ html, body {
   top: 700px;
 }
 
-.dashboardUsername, .dashboardEmail.usernameShow, .usernameEmail, .user-section, .newTaskFormHeading {
+.dashboardUsername, .dashboardEmail, .usernameShow, .usernameEmail, .user-section, .newTaskFormHeading, #loginForm {
   text-align: center;
+}
+
+#searchForm, #new-task-non-enum-field, #new-task-enum-field, #loginInput {
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+#searchForm:focus, #new-task-non-enum-field:focus, #new-task-enum-field:focus, #loginInput:focus {
+  border: 1px solid #286EFA !important;
+  outline-width: 0;
 }

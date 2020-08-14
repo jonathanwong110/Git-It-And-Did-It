@@ -42,7 +42,7 @@ class Dashboard extends Component {
         <h5 className="dashboardEmail">{specificUser["email"]}</h5>
         <br></br>
         <br></br>
-        <h2 class="user-section">Tasks Reported</h2>
+        <h2 className="user-section">Tasks Reported</h2>
         <br></br>
         <br></br>
         <CardDeck>

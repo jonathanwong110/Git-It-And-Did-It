@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInStart } from '../../redux/Auth/actions'
-import { Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import Dashboard from '../Dashboard/Dashboard'
 
 class LogInForm extends Component {
@@ -34,21 +34,21 @@ class LogInForm extends Component {
     }
 
     return (
-      <form onSubmit={e => this.handleSubmit(e)}>
-        <p>
-          Username
-        </p>
-        <input id="username" name="username" type="text" onChange={e => this.handleChange(e)} value={this.username} />
-        <p>
-          Password
-        </p>
-        <input id="password" name="password" type="password" onChange={e => this.handleChange(e)} value={this.password} />
-        <br></br>
-        <br></br>
+      <Form onSubmit={e => this.handleSubmit(e)} id="loginForm">
+        <Form.Group controlId="formBasicUsername">
+          <Form.Label>Username: </Form.Label>
+          <br></br>
+          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} id="loginInput" />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password: </Form.Label>
+          <br></br>
+          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.price} id="loginInput"></input>
+        </Form.Group>
         <Button variant="success" type="submit">
           Log In
         </Button>
-      </form>
+      </Form>
     );
   }
 }

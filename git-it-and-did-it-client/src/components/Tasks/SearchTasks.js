@@ -11,6 +11,7 @@ export default function SearchTask(props) {
       <input
         type="text"
         name="search"
+        id="searchForm"
         value={props.searchEntry}
         placeholder="Search for a Task by Title"
         onKeyPress={props.onKeyPress}
