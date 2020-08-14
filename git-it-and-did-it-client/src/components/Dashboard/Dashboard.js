@@ -37,11 +37,12 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <h1>{specificUser["username"]}</h1>
-        {specificUser["email"]}
+        <h1 className="dashboardUsername">{specificUser["username"]}</h1>
+        <br></br>
+        <h5 className="dashboardEmail">{specificUser["email"]}</h5>
         <br></br>
         <br></br>
-        <h2>Tasks Created</h2>
+        <h2 class="user-section">Tasks Reported</h2>
         <br></br>
         <br></br>
         <CardDeck>

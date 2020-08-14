@@ -151,20 +151,30 @@ html, body {
   font-weight: 500;
 }
 
-.task-traits-heading, .task-people-heading, .task-description-heading, .task-comment-heading, .task-date-heading {
+.task-details-heading, .task-people-heading, .task-description-heading, .task-comment-heading, .task-date-heading {
   font-size: 25px;
   text-decoration: underline;
 }
 
-.task-details-wrapper, .task-description-wrapper {
+.task-details-section, .task-people-section {
+  position: absolute;
+  top: 175px;
+}
+
+.task-details-section, .task-description-section {
   width: 500px;
   margin: 0;
+}
+
+.task-description-section, .task-dates-section {
+  position: absolute;
+  top: 400px;
 }
 
 .task-traits-grid {
   display: inline-grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 30px;
+  grid-column-gap: 20px;
 }
 
 .task-trait {
@@ -172,16 +182,37 @@ html, body {
   padding-right: 10px;
 }
 
-.task-people-wrapper {
+.task-people-section {
   position: absolute;
-  top: 184px;
   right: 15%;
-  width: 200px;
+  width: 300px;
 }
 
-.task-dates-wrapper {
+.task-dates-section {
   position: absolute;
-  top: 400px;
   right: 15%;
-  width: 200px;
+  width: 300px;
+}
+
+#tasks-trait-second-col {
+  margin-left: 30px;
+}
+
+.task-comments {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.task-comment-heading {
+  position: absolute;
+  top: 650px;
+}
+
+.task-comments-section {
+  position: absolute;
+  top: 700px;
+}
+
+.dashboardUsername, .dashboardEmail.usernameShow, .usernameEmail, .user-section, .newTaskFormHeading {
+  text-align: center;
 }

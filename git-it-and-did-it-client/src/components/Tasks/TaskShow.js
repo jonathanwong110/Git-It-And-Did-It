@@ -32,12 +32,11 @@ class TaskShow extends Component {
   }
 
   changeDateFormat = (str) => {
-    return str.slice(5, 7) + '/' + str.slice (8, 10) + '/' + str.slice(2, 4)
+    return str.slice(5, 7) + '/' + str.slice(8, 10) + '/' + str.slice(2, 4)
   }
 
   changeTimeFormat = (str) => {
     let hoursOfTime = parseInt(str.slice(11, 13)) - 4
-    console.log(hoursOfTime)
     let minutesOfTime = str.slice(14, 16)
     if (hoursOfTime > 12) {
       let newHoursOfTime = hoursOfTime - 12
@@ -69,38 +68,44 @@ class TaskShow extends Component {
 
     return (
       <div className="individual-task">
-        <p className="task-title">{this.capitalizeFirstLetter(specificTask["title"])}</p>
-        <div className="task-details-wrapper">
-          <br></br>
-          <p className="task-traits-heading"> Details </p>
+        <div className="task-title-wrapper">
+          <p className="task-title">{this.capitalizeFirstLetter(specificTask["title"])}</p>
+        </div>
+        <div className="task-details-section">
+          <p className="task-details-heading"> Details </p>
           <div className="task-traits-grid">
             <p className="task-trait"> Category: </p>
-            <p className="task-trait"> {this.categoryNameChanger(specificTask["category"])}</p>
+            <p className="task-trait" id="tasks-trait-second-col"> {this.categoryNameChanger(specificTask["category"])}</p>
             <p className="task-trait"> Priority: </p>
-            <p className="task-trait">{this.capitalizeFirstLetter(specificTask["priority"])}</p>
+            <p className="task-trait" id="tasks-trait-second-col">{this.capitalizeFirstLetter(specificTask["priority"])}</p>
             <p className="task-trait"> Status: </p>
-            <p className="task-trait"> {this.statusNameChanger(specificTask["status"])}</p>
+            <p className="task-trait" id="tasks-trait-second-col"> {this.statusNameChanger(specificTask["status"])}</p>
           </div>
         </div>
         <br></br>
-        <div className="task-people-wrapper">
+        <div className="task-people-section">
           <p className="task-people-heading"> People </p>
-          <p className="task-created-by"> Reporter: {specificTask["user"]["username"]}</p>
+          <div className="task-traits-grid">
+            <p className="task-traits"> Reporter: </p>
+            <p className="task-traits" id="tasks-trait-second-col"> {specificTask["user"]["username"]} </p>
+            <p className="task-traits"> Assignee: </p>
+            <p className="task-traits" id="tasks-trait-second-col"> Testing </p>
+          </div>
         </div>
         <br></br>
-        <div className="task-description-wrapper">
-          <br></br>
+        <div className="task-description-section">
           <p className="task-description-heading"> Description </p>
           <div className="task-description-details">
             <p>{this.capitalizeFirstLetter(specificTask["description"])}</p>
           </div>
         </div>
-        <div className="task-dates-wrapper">
-          <br></br>
+        <div className="task-dates-section">
           <p className="task-date-heading"> Dates </p>
-          <div className="task-date-details">
-            <p>Created: {this.changeDateFormat(specificTask["created_at"])} {this.changeTimeFormat(specificTask["created_at"])}</p>
-            <p>Updated: {this.changeDateFormat(specificTask["updated_at"])} {this.changeTimeFormat(specificTask["updated_at"])}</p>
+          <div className="task-traits-grid">
+            <p className="task-traits"> Created: </p>
+            <p className="task-traits"> {this.changeDateFormat(specificTask["created_at"]) + ' ' + this.changeTimeFormat(specificTask["created_at"])}</p>
+            <p className="task-traits"> Updated: </p>
+            <p className="task-traits"> {this.changeDateFormat(specificTask["updated_at"]) + ' ' + this.changeTimeFormat(specificTask["updated_at"])}</p>
           </div>
         </div>
         <br></br>
@@ -108,8 +113,13 @@ class TaskShow extends Component {
         <p className="task-comment-heading">Comments</p>
         {specificTask["comments"].map(comment => {
           return (
-            <div key={comment.id} className="task-comments">
-              {comment.username} - {comment.content} - {this.changeDateFormat(comment.created_at)} at {this.changeTimeFormat(comment.created_at)}
+            <div key={comment.id} className="task-comments-section">
+              <div key={comment.id} className="task-comments">
+                <b className="comment-header-section"> {comment.username} </b>
+                <p className="comment-header-section"> {this.changeTimeFormat(comment.created_at)} </p>
+                <p className="comment-header-section"> {this.changeDateFormat(comment.created_at)} </p>
+              </div>
+              <div> {comment.content} </div>
             </div>
           )
         })}
