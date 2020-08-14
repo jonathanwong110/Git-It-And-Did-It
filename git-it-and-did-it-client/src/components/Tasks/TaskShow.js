@@ -13,6 +13,24 @@ class TaskShow extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  categoryNameChanger = (category) => {
+    if (category === "bugs") {
+      return "Bugs"
+    } else {
+      return "New Features"
+    }
+  }
+
+  statusNameChanger = (status) => {
+    if (status === "to_do") {
+      return "To Do"
+    } else if (status === "in_progress") {
+      return "In Progress"
+    } else {
+      return "Finished"
+    }
+  }
+
   render() {
     let { tasks, match } = this.props
     let individualTaskId = (match.url.slice(-1)[0] - 1)
@@ -29,11 +47,11 @@ class TaskShow extends Component {
     return (
       <div>
         <h1>{this.capitalizeFirstLetter(specificTask["title"])}</h1>
-        Category: {this.capitalizeFirstLetter(specificTask["category"])}
+        Category: {this.categoryNameChanger(specificTask["category"])}
         <br></br>
         {this.capitalizeFirstLetter(specificTask["description"])}
         <br></br>
-        {this.capitalizeFirstLetter(specificTask["status"])}
+        {this.statusNameChanger(specificTask["status"])}
         <br></br>
         {this.capitalizeFirstLetter(specificTask["priority"])}
         <br></br>
