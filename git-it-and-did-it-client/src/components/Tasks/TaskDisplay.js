@@ -35,9 +35,6 @@ export default function TaskDisplay(props) {
           {capitalizeFirstLetter(props.task.title)}
         </Card.Title>
         <Card.Text>
-          {capitalizeFirstLetter(props.task.user.username)}
-        </Card.Text>
-        <Card.Text>
           {categoryNameChanger(props.task.category)}
         </Card.Text>
         <Card.Text>
@@ -45,6 +42,9 @@ export default function TaskDisplay(props) {
         </Card.Text>
         <Card.Text>
           {statusNameChanger(props.task.status)}
+        </Card.Text>
+        <Card.Text>
+          Reporter: {capitalizeFirstLetter(props.task.user.username)}
         </Card.Text>
         <Button variant="primary">
           <Link to={`/tasks/${task.id}`} className="more-details">

@@ -26,11 +26,13 @@ html, body {
   color: white;
   font-size: 20px;
   margin-left: 30px;
+  text-align: center;
 }
 
 .navbar-left-side-main:hover, .navbar-left-side:hover, .span:hover {
   color: white;
   text-decoration: none;
+  text-align: center;
 }
 
 .more-details {
@@ -122,9 +124,10 @@ html, body {
 #new-task-form {
   width: 20%;
   margin: 0 auto;
+  text-align: center;
 }
 
-#new-task-enum-field, #new-task-non-enum-field {
+.new-task-enum-field, .new-task-non-enum-field {
   width: 100%;
   margin: 0 auto;
   height: calc(1.5em + .75rem + 2px)
@@ -153,7 +156,8 @@ html, body {
 
 .task-details-heading, .task-people-heading, .task-description-heading, .task-comment-heading, .task-date-heading {
   font-size: 25px;
-  text-decoration: underline;
+  border-bottom: 1px solid black;
+  color: #1a8cff;
 }
 
 .task-details-section, .task-people-section {
@@ -162,7 +166,7 @@ html, body {
 }
 
 .task-details-section, .task-description-section {
-  width: 500px;
+  width: 40%;
   margin: 0;
 }
 
@@ -185,13 +189,14 @@ html, body {
 .task-people-section {
   position: absolute;
   right: 15%;
-  width: 300px;
+  width: 20%;
 }
 
 .task-dates-section {
   position: absolute;
   right: 15%;
-  width: 300px;
+  width: 20%;
+  white-space: nowrap;
 }
 
 #tasks-trait-second-col {
@@ -206,6 +211,8 @@ html, body {
 .task-comment-heading {
   position: absolute;
   top: 650px;
+  border-bottom: 1px solid black;
+  width: 40%;
 }
 
 .task-comments-section {
@@ -217,12 +224,16 @@ html, body {
   text-align: center;
 }
 
-#searchForm, #new-task-non-enum-field, #new-task-enum-field, #loginInput {
+#searchForm, .new-task-non-enum-field, .new-task-enum-field, .loginInput {
   border: 1px solid grey;
   border-radius: 5px;
 }
 
-#searchForm:focus, #new-task-non-enum-field:focus, #new-task-enum-field:focus, #loginInput:focus {
+#searchForm:focus, .new-task-non-enum-field:focus, .new-task-enum-field:focus, .loginInput:focus {
   border: 1px solid #286EFA !important;
   outline-width: 0;
+}
+
+#lastMainNavItem {
+  margin-right: 20px;
 }

@@ -38,12 +38,12 @@ class LogInForm extends Component {
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username: </Form.Label>
           <br></br>
-          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} id="loginInput" />
+          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="loginInput" />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password: </Form.Label>
           <br></br>
-          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.price} id="loginInput"></input>
+          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.price} className="loginInput"></input>
         </Form.Group>
         <Button variant="success" type="submit">
           Log In

@@ -48,7 +48,7 @@ class UserShow extends Component {
         <h5 className="usernameEmail">{specificUser["email"]}</h5>
         <br></br>
         <br></br>
-        <h2 class="user-section">Tasks Reported</h2>
+        <h2 className="user-section">Tasks Reported</h2>
         <br></br>
         <br></br>
         <CardDeck>
@@ -62,9 +62,6 @@ class UserShow extends Component {
                         {this.capitalizeFirstLetter(task.title)}
                       </Card.Title>
                       <Card.Text>
-                        {specificUser["username"]}
-                      </Card.Text>
-                      <Card.Text>
                         {this.categoryNameChanger(task.category)}
                       </Card.Text>
                       <Card.Text>
@@ -72,6 +69,9 @@ class UserShow extends Component {
                       </Card.Text>
                       <Card.Text>
                         {this.statusNameChanger(task.status)}
+                      </Card.Text>
+                      <Card.Text>
+                        Reporter: {specificUser["username"]}
                       </Card.Text>
                       <Button variant="primary">
                         <Link to={`/tasks/${task.id}`} className="more-details">

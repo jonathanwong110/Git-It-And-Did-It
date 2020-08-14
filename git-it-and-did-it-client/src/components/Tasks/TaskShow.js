@@ -64,8 +64,6 @@ class TaskShow extends Component {
       return <TaskNew />
     }
 
-    console.log(specificTask.created_at)
-
     return (
       <div className="individual-task">
         <div className="task-title-wrapper">

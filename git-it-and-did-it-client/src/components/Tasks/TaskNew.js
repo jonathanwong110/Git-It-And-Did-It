@@ -43,12 +43,12 @@ class TaskNew extends Component {
         <br></br>
           <Form.Group>
             <Form.Label>Title</Form.Label>
-            <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.title} id="new-task-non-enum-field"/>
+            <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.title} className="new-task-non-enum-field"/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Category: </Form.Label>
-            <select type="select" id="new-task-enum-field">
+            <select type="select" className="new-task-enum-field">
               <option value={0}>Bugs</option>
               <option value={1}>New Feature</option>
             </select>
@@ -56,7 +56,7 @@ class TaskNew extends Component {
 
           <Form.Group>
             <Form.Label>Status: </Form.Label>
-            <select type="select" id="new-task-enum-field">
+            <select type="select" className="new-task-enum-field">
               <option value={0}>To Do</option>
               <option value={1}>In Progress</option>
               <option value={2}>Finished</option>
@@ -65,7 +65,7 @@ class TaskNew extends Component {
 
           <Form.Group>
             <Form.Label>Priority: </Form.Label>
-            <select type="select" id="new-task-enum-field">
+            <select type="select" className="new-task-enum-field">
               <option value={0}>Low</option>
               <option value={1}>Medium</option>
               <option value={2}>High</option>
@@ -74,10 +74,10 @@ class TaskNew extends Component {
 
           <Form.Group>
             <Form.Label>Description</Form.Label>
-            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.description} id="new-task-non-enum-field" />
+            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.description} className="new-task-non-enum-field" />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="formSubmit">
             Submit
           </Button>
         </Form>
