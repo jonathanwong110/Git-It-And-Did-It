@@ -1,7 +1,7 @@
 import UsersActionTypes from "./types";
 import axios from 'axios'
 
-let usersBaseURL = 'http://localhost:3000/api/v1/users/'
+let usersBaseURL = 'http://localhost:3000/api/v1/users'
 
 export const loadUsers = () => {
   return (dispatch) => {

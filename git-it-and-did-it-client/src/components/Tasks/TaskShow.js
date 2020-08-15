@@ -53,7 +53,10 @@ class TaskShow extends Component {
   }
 
   setMostCurrentlySeenTask = () => {
-    localStorage.setItem('setMostCurrentlySeenTask', this.props.match.url.slice(7))
+    let { tasks, match} = this.props
+    let individualTaskId = (match.url.slice(7)[0] - 1)
+    let specificTask = tasks[individualTaskId]
+    localStorage.setItem('setMostCurrentlySeenTask', JSON.stringify(specificTask))
   }
 
   render() {

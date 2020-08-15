@@ -9,8 +9,8 @@ class CommentNew extends Component {
     super()
     this.state = {
       content: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
-      task_id: localStorage.getItem('setMostCurrentlySeenTask')
+      user: JSON.parse(localStorage.getItem('token')),
+      task: JSON.parse(localStorage.getItem('setMostCurrentlySeenTask'))
     }
   }
 
@@ -25,17 +25,17 @@ class CommentNew extends Component {
     const newComment = { ...this.state }
     this.setState({
       content: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
-      task_id: '',
+      user: JSON.parse(localStorage.getItem('token')),
+      task: JSON.parse(localStorage.getItem('setMostCurrentlySeenTask'))
     });
     this.props.addComment(newComment)
   }
 
   render() {
     return (
-      <Form id="newCommentForm">
+      <Form id="newCommentForm" onSubmit={e => this.handleSubmit(e)}>
         <Form.Group>
-          <input type="text" name="comment" placeholder="Comment" onChange={e => this.handleChange(e)} value={this.content}></input>
+          <input type="text" name="content" placeholder="Comment" onChange={e => this.handleChange(e)} value={this.state.content}></input>
         </Form.Group>
         <Button variant="primary" type="submit" id="newCommentSubmit">
           Submit
@@ -45,10 +45,16 @@ class CommentNew extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    comments: state.comments.comments
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addComment: (comment) => dispatch(addComment(comment))
   }
 }
 
-export default connect(null, mapDispatchToProps)(CommentNew)
+export default connect(mapStateToProps, mapDispatchToProps)(CommentNew)

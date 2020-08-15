@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
+import { connect } from 'react-redux';
+import { addTask } from '../../redux/Tasks/actions.js'
 
 class TaskNew extends Component {
 
@@ -11,7 +13,7 @@ class TaskNew extends Component {
       description: '',
       status: '',
       priority: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
+      user: JSON.parse(localStorage.getItem('token')),
     }
   }
 
@@ -30,7 +32,7 @@ class TaskNew extends Component {
       description: '',
       status: '',
       priority: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
+      user: JSON.parse(localStorage.getItem('token')),
     });
     this.props.addTask(newTask)
   }
@@ -86,4 +88,10 @@ class TaskNew extends Component {
   }
 }
 
-export default TaskNew
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTask: (task) => dispatch(addTask(task))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(TaskNew)

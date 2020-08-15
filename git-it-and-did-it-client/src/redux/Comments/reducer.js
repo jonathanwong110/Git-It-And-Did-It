@@ -9,7 +9,7 @@ const commentsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CommentsActionType.ADD_COMMENT:
       return {
-        ...state, comments: [...state.comments, action.comments]
+        ...state, comments: [...state.comments, action.comment]
       }
     case CommentsActionType.DELETE_COMMENT:
       return {
