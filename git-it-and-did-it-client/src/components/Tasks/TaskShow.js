@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../redux/Tasks/actions'
 import TaskNew from './TaskNew'
+import CommentNew from '../../components/Comments/CommentNew'
 
 class TaskShow extends Component {
 
@@ -51,10 +52,16 @@ class TaskShow extends Component {
     }
   }
 
+  setMostCurrentlySeenTask = () => {
+    localStorage.setItem('setMostCurrentlySeenTask', this.props.match.url.slice(7))
+  }
+
   render() {
     let { tasks, match } = this.props
-    let individualTaskId = (match.url.slice(-1)[0] - 1)
+    let individualTaskId = (match.url.slice(7)[0] - 1)
     let specificTask = tasks[individualTaskId]
+
+    this.setMostCurrentlySeenTask()
 
     if (tasks.length === 0) {
       return <div>There are no tasks</div>
@@ -109,18 +116,21 @@ class TaskShow extends Component {
         <br></br>
         <br></br>
         <p className="task-comment-heading">Comments</p>
-        {specificTask["comments"].map(comment => {
-          return (
-            <div key={comment.id} className="task-comments-section">
-              <div key={comment.id} className="task-comments">
-                <b className="comment-header-section"> {comment.username} </b>
-                <p className="comment-header-section"> {this.changeTimeFormat(comment.created_at)} </p>
-                <p className="comment-header-section"> {this.changeDateFormat(comment.created_at)} </p>
+        <CommentNew task={specificTask}/>
+        <div className="task-comments-section">
+          {specificTask["comments"].map(comment => {
+            return (
+              <div key={comment.id} >
+                <div key={comment.id} className="task-comments">
+                  <b className="comment-header-section"> {comment.username} </b>
+                  <p className="comment-header-section"> {this.changeTimeFormat(comment.created_at)} </p>
+                  <p className="comment-header-section"> {this.changeDateFormat(comment.created_at)} </p>
+                </div>
+                <div> {comment.content} </div>
               </div>
-              <div> {comment.content} </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     )
   }

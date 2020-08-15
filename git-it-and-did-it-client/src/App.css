@@ -217,7 +217,7 @@ html, body {
 
 .task-comments-section {
   position: absolute;
-  top: 700px;
+  top: 825px;
 }
 
 .dashboardUsername, .dashboardEmail, .usernameShow, .usernameEmail, .user-section, .newTaskFormHeading, #loginForm {
@@ -236,4 +236,15 @@ html, body {
 
 #lastMainNavItem {
   margin-right: 20px;
+}
+
+#newCommentForm {
+  position: absolute;
+  top: 700px;
+}
+
+#newCommentSubmit {
+  position: absolute;
+  top: 0px;
+  left: 500px;
 }
