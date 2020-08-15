@@ -1,7 +1,7 @@
 import AuthActionTypes from "./types";
 import axios from 'axios'
 
-let baseUrl = 'http://localhost:3000/api/v1/login'
+let logInBaseURL = 'http://localhost:3000/api/v1/login'
 
 export const logInProcess = (usernameAndPassword) => ({
   type: AuthActionTypes.LOG_IN_START,
@@ -10,7 +10,7 @@ export const logInProcess = (usernameAndPassword) => ({
 
 export const logInStart = (usernameAndPassword) => {
   return dispatch => {
-    return axios.post(baseUrl,
+    return axios.post(logInBaseURL,
       usernameAndPassword
     )
     .then(function (response) {

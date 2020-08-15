@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap'
+import { addComment } from '../../redux/Comments/actions.js'
 
 class CommentNew extends Component {
 
@@ -44,4 +45,10 @@ class CommentNew extends Component {
   }
 }
 
-export default CommentNew
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addComment: (comment) => dispatch(addComment(comment)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CommentNew)
