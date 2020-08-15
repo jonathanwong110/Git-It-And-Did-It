@@ -12,7 +12,9 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @task = Task.find_by(id: @comment.task_id)
     if @comment.save
+      @task.comments << @comment
       render json: @comment, status: 200
     end
   end
@@ -34,6 +36,6 @@ class Api::V1::CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:content, :user, :task)
+      params.require(:comment).permit(:content, :user_id, :task_id)
     end
 end

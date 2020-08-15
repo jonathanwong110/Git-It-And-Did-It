@@ -1,7 +1,7 @@
 import CommentsActionTypes from "./types";
 import axios from 'axios'
 
-const commentsBaseURL = 'http://localhost:3000/api/v1/comments'
+let commentsBaseURL = 'http://localhost:3000/api/v1/comments'
 
 export const addComment = (comment) => {
   return (dispatch) => {

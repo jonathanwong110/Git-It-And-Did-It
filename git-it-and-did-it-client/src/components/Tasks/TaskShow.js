@@ -124,12 +124,13 @@ class TaskShow extends Component {
           {specificTask["comments"].map(comment => {
             return (
               <div key={comment.id} >
-                <div key={comment.id} className="task-comments">
+                <div key={comment.id} className="task-individual-comment">
                   <b className="comment-header-section"> {comment.username} </b>
                   <p className="comment-header-section"> {this.changeTimeFormat(comment.created_at)} </p>
                   <p className="comment-header-section"> {this.changeDateFormat(comment.created_at)} </p>
                 </div>
                 <div> {comment.content} </div>
+                <br></br>
               </div>
             )
           })}

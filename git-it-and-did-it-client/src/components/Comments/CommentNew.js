@@ -9,8 +9,8 @@ class CommentNew extends Component {
     super()
     this.state = {
       content: '',
-      user: JSON.parse(localStorage.getItem('token')),
-      task: JSON.parse(localStorage.getItem('setMostCurrentlySeenTask'))
+      user_id: JSON.parse(localStorage.getItem('token')).id,
+      task_id: JSON.parse(localStorage.getItem('setMostCurrentlySeenTask')).id
     }
   }
 
@@ -25,8 +25,8 @@ class CommentNew extends Component {
     const newComment = { ...this.state }
     this.setState({
       content: '',
-      user: JSON.parse(localStorage.getItem('token')),
-      task: JSON.parse(localStorage.getItem('setMostCurrentlySeenTask'))
+      user_id: JSON.parse(localStorage.getItem('token')).id,
+      task_id: JSON.parse(localStorage.getItem('setMostCurrentlySeenTask')).id
     });
     this.props.addComment(newComment)
   }
@@ -45,16 +45,10 @@ class CommentNew extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    comments: state.comments.comments
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addComment: (comment) => dispatch(addComment(comment))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentNew)
+export default connect(null, mapDispatchToProps)(CommentNew)

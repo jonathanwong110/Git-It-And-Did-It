@@ -13,7 +13,7 @@ class TaskNew extends Component {
       description: '',
       status: '',
       priority: '',
-      user: JSON.parse(localStorage.getItem('token')),
+      user_id: JSON.parse(localStorage.getItem('token')).id,
     }
   }
 
@@ -32,7 +32,7 @@ class TaskNew extends Component {
       description: '',
       status: '',
       priority: '',
-      user: JSON.parse(localStorage.getItem('token')),
+      user_id: JSON.parse(localStorage.getItem('token')).id,
     });
     this.props.addTask(newTask)
   }
