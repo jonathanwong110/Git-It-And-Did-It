@@ -240,7 +240,7 @@ html, body {
   padding-bottom: 30px;
 }
 
-.dashboardUsername, .dashboardEmail, .usernameShow, .usernameEmail, .user-section, .newTaskFormHeading, #loginForm {
+.specificUserEmail, .specificUserEmail, .usernameShow, .usernameEmail, .user-section, .newTaskFormHeading, #loginForm {
   text-align: center;
 }
 
@@ -278,7 +278,7 @@ html, body {
   min-width: 100px;
 }
 
-#dashboard-profile-image {
+#specificUserProfileIcon {
   height: 200px;
   width: 200px;
   display: block;

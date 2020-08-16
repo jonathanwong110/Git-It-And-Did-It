@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../redux/Users/actions'
-import { CardDeck, Container, Row, Card, Button } from 'react-bootstrap'
+import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 class UserShow extends Component {
 
@@ -41,15 +42,23 @@ class UserShow extends Component {
       return <div>There are no tasks</div>
     }
 
+    console.log(specificUser)
+    console.log(individualUserId+1)
+
+    if (specificUser.id === individualUserId+1) {
+      return <Redirect to="/dashboard"/>
+    }
+
     return (
       <div>
-        <h1 className="usernameShow">{specificUser["username"]}</h1>
+        <Image src={specificUser["profile_icon"]} id="specificUserProfileIcon" />
         <br></br>
-        <h5 className="usernameEmail">{specificUser["email"]}</h5>
+        <h1 className="specificUserUsername">{specificUser["username"]}</h1>
+        <br></br>
+        <h5 className="specificUserEmail">{specificUser["email"]}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
-        <br></br>
         <br></br>
         <CardDeck>
           <Container>

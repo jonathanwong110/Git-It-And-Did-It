@@ -18,6 +18,9 @@ const Menu = () => {
   const usersIcon = <FontAwesomeIcon icon={faUsers} />
   const mailIcon = <FontAwesomeIcon icon={faEnvelope} />
   const settingsIcon = <FontAwesomeIcon icon={faCog} />
+
+  let userId = JSON.parse(localStorage.getItem('token')).id
+
   return (
     <Container className="more-details">
       <Link to="/dashboard"> <MenuLink title="Dashboard" icon={homeIcon}></MenuLink> </Link>
@@ -32,7 +35,9 @@ const Menu = () => {
         </Nav>
       </Navbar>
       <Link to="/inbox"> <MenuLink title="Inbox" icon={mailIcon}> </MenuLink> </Link>
-      <Link to="/settings"> <MenuLink title="Settings" icon={settingsIcon}> </MenuLink> </Link>
+      {localStorage.getItem('token') !== null ?
+        <Link to={`/users/${userId}/edit`}> <MenuLink title="Settings" icon={settingsIcon}> </MenuLink> </Link> :
+        <Link to="/settings"> <MenuLink title="Settings" icon={settingsIcon}> </MenuLink> </Link> }
     </Container>
   )
 }

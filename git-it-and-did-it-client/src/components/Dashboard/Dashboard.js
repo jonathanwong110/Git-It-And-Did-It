@@ -35,15 +35,13 @@ class Dashboard extends Component {
       return <LogIn />
     }
 
-    console.log({specificUser})
-
     return (
       <div>
-        <Image src={specificUser["profile_icon"]} id="dashboard-profile-image" />
+        <Image src={specificUser["profile_icon"]} id="specificUserProfileIcon" />
         <br></br>
-        <h1 className="dashboardUsername">{specificUser["username"]}</h1>
+        <h1 className="specificUserUsername">{specificUser["username"]}</h1>
         <br></br>
-        <h5 className="dashboardEmail">{specificUser["email"]}</h5>
+        <h5 className="specificUserEmail">{specificUser["email"]}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
