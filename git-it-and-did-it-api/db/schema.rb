@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_031514) do
     t.string "description"
     t.integer "status"
     t.integer "priority"
-    t.integer "assignee"
+    t.string "assignee"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

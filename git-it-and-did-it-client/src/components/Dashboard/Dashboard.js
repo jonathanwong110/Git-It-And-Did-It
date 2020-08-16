@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { CardDeck, Container, Row, Card, Button } from 'react-bootstrap'
+import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import LogIn from '../Auth/LogIn'
 
@@ -35,15 +35,18 @@ class Dashboard extends Component {
       return <LogIn />
     }
 
+    console.log({specificUser})
+
     return (
       <div>
+        <Image src={specificUser["profile_icon"]} id="dashboard-profile-image" />
+        <br></br>
         <h1 className="dashboardUsername">{specificUser["username"]}</h1>
         <br></br>
         <h5 className="dashboardEmail">{specificUser["email"]}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
-        <br></br>
         <br></br>
         <CardDeck>
           <Container>

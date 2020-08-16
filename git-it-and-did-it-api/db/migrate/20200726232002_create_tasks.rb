@@ -6,7 +6,7 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.string :description
       t.integer :status
       t.integer :priority
-      t.integer :assignee
+      t.string :assignee
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

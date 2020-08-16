@@ -108,7 +108,7 @@ html, body {
 }
 
 #task-row, #user-row {
-  margin-left: 17%;
+  margin-left: 17.5%;
 }
 
 #cardDisplay {
@@ -116,6 +116,7 @@ html, body {
   box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
   transition: 0.3s;
   text-align: center;
+  margin: 20px;
 }
 
 #cardDisplay:hover {
@@ -268,4 +269,19 @@ html, body {
   position: absolute;
   top: 0px;
   right: 0;
+}
+
+#profile-image {
+  height: 40%;
+  min-height: 100px;
+  width: 40%;
+  min-width: 100px;
+}
+
+#dashboard-profile-image {
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

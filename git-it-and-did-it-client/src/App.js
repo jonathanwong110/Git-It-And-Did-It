@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
 import MainNav from './components/Navigation/MainNav'
 import './App.css';
 import LogIn from './components/Auth/LogIn'
@@ -40,10 +39,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.auth.currentUser,
-  }
-}
-
-export default connect(mapStateToProps)(App)
+export default App
