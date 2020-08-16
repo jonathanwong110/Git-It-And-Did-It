@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create([
-  { email: 'JW@testing.com', username: 'JW', password: '12345' },
-  { email: 'OM@testing.com', username: 'OM', password: '12345' },
-  { email: 'KL@testing.com', username: 'KL', password: '12345' }
+  { email: 'JW@testing.com', profile_icon: 'https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png', username: 'JW', password: '12345' },
+  { email: 'OM@testing.com', profile_icon: 'https://cdn3.iconfinder.com/data/icons/shipping-and-delivery-2-1/512/54-512.png', username: 'OM', password: '12345' },
+  { email: 'KL@testing.com', profile_icon: 'https://f1.pngfuel.com/png/726/597/190/graphic-design-icon-customer-service-avatar-icon-design-call-centre-yellow-smile-forehead-png-clip-art.png', username: 'KL', password: '12345' }
 ])
 
 Task.create([

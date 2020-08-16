@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_031514) do
     t.string "description"
     t.integer "status"
     t.integer "priority"
+    t.integer "assignee"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_031514) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
+    t.string "profile_icon"
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
