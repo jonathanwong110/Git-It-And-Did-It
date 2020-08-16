@@ -56,9 +56,6 @@ class Dashboard extends Component {
                         {this.capitalizeFirstLetter(task.title)}
                       </Card.Title>
                       <Card.Text>
-                        {specificUser["username"]}
-                      </Card.Text>
-                      <Card.Text>
                         {this.categoryNameChanger(task.category)}
                       </Card.Text>
                       <Card.Text>
@@ -66,6 +63,9 @@ class Dashboard extends Component {
                       </Card.Text>
                       <Card.Text>
                         {this.statusNameChanger(task.status)}
+                      </Card.Text>
+                      <Card.Text>
+                        Reporter: {specificUser["username"]}
                       </Card.Text>
                       <Button variant="primary">
                         <Link to={`/tasks/${task.id}`} className="more-details">

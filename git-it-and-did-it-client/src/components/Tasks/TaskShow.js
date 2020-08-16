@@ -84,12 +84,12 @@ class TaskShow extends Component {
         <div className="task-details-section">
           <p className="task-details-heading"> Details </p>
           <div className="task-traits-grid">
-            <p className="task-trait"> Category: </p>
-            <p className="task-trait" id="tasks-trait-second-col"> {this.categoryNameChanger(specificTask["category"])}</p>
-            <p className="task-trait"> Priority: </p>
-            <p className="task-trait" id="tasks-trait-second-col">{this.capitalizeFirstLetter(specificTask["priority"])}</p>
-            <p className="task-trait"> Status: </p>
-            <p className="task-trait" id="tasks-trait-second-col"> {this.statusNameChanger(specificTask["status"])}</p>
+            <p className="task-traits"> Category: </p>
+            <p className="task-traits" id="tasks-trait-second-col"> {this.categoryNameChanger(specificTask["category"])}</p>
+            <p className="task-traits"> Priority: </p>
+            <p className="task-traits" id="tasks-trait-second-col">{this.capitalizeFirstLetter(specificTask["priority"])}</p>
+            <p className="task-traits"> Status: </p>
+            <p className="task-traits" id="tasks-trait-second-col"> {this.statusNameChanger(specificTask["status"])}</p>
           </div>
         </div>
         <br></br>
@@ -106,7 +106,7 @@ class TaskShow extends Component {
         <div className="task-description-section">
           <p className="task-description-heading"> Description </p>
           <div className="task-description-details">
-            <p>{this.capitalizeFirstLetter(specificTask["description"])}</p>
+            <p className="task-traits"> {this.capitalizeFirstLetter(specificTask["description"])}</p>
           </div>
         </div>
         <div className="task-dates-section">
@@ -127,10 +127,10 @@ class TaskShow extends Component {
             return (
               <div key={comment.id}>
                 <div key={comment.id} className="task-individual-comment">
-                  <b className="task-comment-header-section"> {comment.username} </b>
+                  <p className="task-comment-header-section"> {comment.username} </p>
                   <p className="task-comment-header-section"> {this.changeDateFormat(comment.created_at)} </p>
                   <p className="task-comment-header-section"> {this.changeTimeFormat(comment.created_at)} </p>
-                  {JSON.parse(localStorage.getItem('token')).id === specificTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="danger" className="task-comment-header-section" id="task-comment-delete-button" onClick={() => deleteComment(comment.id)}>X</Button> : null}
+                  {JSON.parse(localStorage.getItem('token')).id === specificTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" className="task-comment-header-section" id="task-comment-delete-button" onClick={() => deleteComment(comment.id)}>X</Button> : null}
                 </div>
                 <div> {comment.content} </div>
                 <br></br>

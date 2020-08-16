@@ -1,7 +1,7 @@
 import TasksActionTypes from "./types";
 import axios from 'axios'
 
-let tasksBaseURL = 'http://localhost:3000/api/v1/tasks'
+let tasksBaseURL = 'http://localhost:3000/api/v1/tasks/'
 
 export const loadTasks = () => {
   return (dispatch) => {
