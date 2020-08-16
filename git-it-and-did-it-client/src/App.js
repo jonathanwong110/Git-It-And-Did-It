@@ -21,7 +21,7 @@ class App extends Component {
         <div className="App">
           <MainNav />
           <SideBar />
-          <br></br>
+          <br></br><br></br><br></br><br></br>
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/login" render={() => JSON.parse(localStorage.getItem('token')) ? <Redirect to="/dashboard" /> : <LogIn />} />

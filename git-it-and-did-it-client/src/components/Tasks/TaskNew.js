@@ -45,12 +45,12 @@ class TaskNew extends Component {
         <br></br>
           <Form.Group>
             <Form.Label>Title</Form.Label>
-            <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.title} className="new-task-non-enum-field"/>
+            <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.title} className="form-input-field"/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Category: </Form.Label>
-            <select type="select" className="new-task-enum-field">
+            <select type="select" className="form-input-field">
               <option value={0}>Bugs</option>
               <option value={1}>New Feature</option>
             </select>
@@ -58,7 +58,7 @@ class TaskNew extends Component {
 
           <Form.Group>
             <Form.Label>Status: </Form.Label>
-            <select type="select" className="new-task-enum-field">
+            <select type="select" className="form-input-field">
               <option value={0}>To Do</option>
               <option value={1}>In Progress</option>
               <option value={2}>Finished</option>
@@ -67,7 +67,7 @@ class TaskNew extends Component {
 
           <Form.Group>
             <Form.Label>Priority: </Form.Label>
-            <select type="select" className="new-task-enum-field">
+            <select type="select" className="form-input-field">
               <option value={0}>Low</option>
               <option value={1}>Medium</option>
               <option value={2}>High</option>
@@ -76,7 +76,7 @@ class TaskNew extends Component {
 
           <Form.Group>
             <Form.Label>Description</Form.Label>
-            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.description} className="new-task-non-enum-field" />
+            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.description} className="form-input-field" />
           </Form.Group>
 
           <Button variant="primary" type="submit" className="formSubmit">

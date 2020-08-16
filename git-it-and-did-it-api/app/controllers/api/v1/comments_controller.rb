@@ -26,7 +26,9 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
+    @task = Task.find_by(id: @comment.task_id)
+    @specifictaskcomment = @task.task_comments.find_by(id: @comment.id)
+    @specifictaskcomment.destroy && @comment.destroy
     render json: {commentId: @comment.id}
   end
 

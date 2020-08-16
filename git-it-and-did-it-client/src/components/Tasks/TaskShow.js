@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../redux/Tasks/actions'
+import { deleteComment } from '../../redux/Comments/actions'
 import TaskNew from './TaskNew'
 import CommentNew from '../../components/Comments/CommentNew'
+import { Button } from 'react-bootstrap'
 
 class TaskShow extends Component {
 
@@ -37,7 +39,7 @@ class TaskShow extends Component {
   }
 
   changeTimeFormat = (str) => {
-    let hoursOfTime = parseInt(str.slice(11, 13)) - 4
+    let hoursOfTime = parseInt(str.slice(11, 13))
     let minutesOfTime = str.slice(14, 16)
     if (hoursOfTime > 12) {
       let newHoursOfTime = hoursOfTime - 12
@@ -60,7 +62,7 @@ class TaskShow extends Component {
   }
 
   render() {
-    let { tasks, match } = this.props
+    let { tasks, match, deleteComment } = this.props
     let individualTaskId = (match.url.slice(7)[0] - 1)
     let specificTask = tasks[individualTaskId]
 
@@ -123,11 +125,12 @@ class TaskShow extends Component {
         <div className="task-comments-section">
           {specificTask["comments"].map(comment => {
             return (
-              <div key={comment.id} >
+              <div key={comment.id}>
                 <div key={comment.id} className="task-individual-comment">
-                  <b className="comment-header-section"> {comment.username} </b>
-                  <p className="comment-header-section"> {this.changeTimeFormat(comment.created_at)} </p>
-                  <p className="comment-header-section"> {this.changeDateFormat(comment.created_at)} </p>
+                  <b className="task-comment-header-section"> {comment.username} </b>
+                  <p className="task-comment-header-section"> {this.changeDateFormat(comment.created_at)} </p>
+                  <p className="task-comment-header-section"> {this.changeTimeFormat(comment.created_at)} </p>
+                  {JSON.parse(localStorage.getItem('token')).id === specificTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="danger" className="task-comment-header-section" id="task-comment-delete-button" onClick={() => deleteComment(comment.id)}>X</Button> : null}
                 </div>
                 <div> {comment.content} </div>
                 <br></br>
@@ -142,14 +145,14 @@ class TaskShow extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.auth.currentUser,
     tasks: state.tasks.tasks,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadTasks: () => dispatch(loadTasks())
+    loadTasks: () => dispatch(loadTasks()),
+    deleteComment: (id) => dispatch(deleteComment(id))
   }
 }
 
