@@ -13,9 +13,9 @@ User.create([
 ])
 
 Task.create([
-  { title: 'task 1', category: 0, description: 'task description 1', status: 0, priority: 0, user_id: 1 },
-  { title: 'task 2', category: 0, description: 'task description 2', status: 1, priority: 1, user_id: 2 },
-  { title: 'task 3', category: 1, description: 'task description 3', status: 2, priority: 2, user_id: 3 }
+  { title: 'task 1', category: 0, description: 'task description 1', status: 0, priority: 0, assignee: 3, user_id: 1 },
+  { title: 'task 2', category: 0, description: 'task description 2', status: 1, priority: 1, assignee: 1, user_id: 2 },
+  { title: 'task 3', category: 1, description: 'task description 3', status: 2, priority: 2, assignee: 2, user_id: 3 }
 ])
 
 Comment.create([

@@ -41,7 +41,7 @@ class TaskNew extends Component {
     return (
       <>
         <Form id="new-task-form">
-        <h1 className="newTaskFormHeading">Create a New Task</h1>
+        <h1 className="newTaskFormHeading">Report a New Task</h1>
         <br></br>
           <Form.Group>
             <Form.Label>Title</Form.Label>
