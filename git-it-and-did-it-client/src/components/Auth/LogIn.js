@@ -25,7 +25,6 @@ class LogInForm extends Component {
     this.props.logInStart(newLogIn)
   }
 
-
   render() {
     const specificUser = (JSON.parse(localStorage.getItem('token')))
 
@@ -43,7 +42,7 @@ class LogInForm extends Component {
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password: </Form.Label>
           <br></br>
-          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.price} className="form-input-field"></input>
+          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="form-input-field"></input>
         </Form.Group>
         <Button variant="primary" type="submit">
           Log In

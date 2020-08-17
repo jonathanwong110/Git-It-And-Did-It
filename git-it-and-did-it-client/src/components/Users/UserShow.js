@@ -42,9 +42,6 @@ class UserShow extends Component {
       return <div>There are no tasks</div>
     }
 
-    console.log(specificUser)
-    console.log(individualUserId+1)
-
     if (specificUser.id === individualUserId+1) {
       return <Redirect to="/dashboard"/>
     }

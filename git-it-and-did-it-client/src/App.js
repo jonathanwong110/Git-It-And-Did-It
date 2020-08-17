@@ -7,6 +7,7 @@ import LogIn from './components/Auth/LogIn'
 import SignUp from './components/Auth/SignUp'
 import Users from './components/Users/index'
 import UserShow from './components/Users/UserShow'
+import UserEdit from './components/Users/UserEdit'
 import SideBar from './components/Navigation/SideBar/SideBar'
 import Tasks from './components/Tasks/index'
 import TaskShow from './components/Tasks/TaskShow'
@@ -28,11 +29,13 @@ class App extends Component {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:id" component={UserShow} />
+            <Route exact path="/users/:id/edit" component={UserShow} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/tasks" component={Tasks} />
             {/* <Route exact path="/tasks/:category" component={Tasks} /> */}
             <Route exact path="/tasks/:id" component={TaskShow} />
             <Route exact path="/tasks/new" component={TaskNew} />
+            <Route exact path="/settings" component={UserEdit} />
           </Switch>
         </div>
       </BrowserRouter>
