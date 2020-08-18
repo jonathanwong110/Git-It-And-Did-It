@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../redux/Tasks/actions'
-import { Nav, Navbar, CardDeck, Container, Row } from 'react-bootstrap'
+import { Nav, Navbar, CardDeck, Container, Row, Col } from 'react-bootstrap'
 import TaskDisplay from './TaskDisplay'
 import SearchTasks from './SearchTasks'
 import { Link } from 'react-router-dom'
@@ -77,7 +77,9 @@ class Tasks extends Component {
             <Row id="task-row">
               {tasks.map(task => {
                 return (
-                  <TaskDisplay key={task.id} task={task} match={match} />
+                  <Col xs={4} key={task.id}>
+                    <TaskDisplay key={task.id} task={task} match={match} />
+                  </Col>
                 )
               })}
             </Row>

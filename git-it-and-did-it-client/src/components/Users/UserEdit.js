@@ -6,8 +6,11 @@ class UserEdit extends Component {
   constructor() {
     super();
     this.state = {
-      profile_icon: '',
-      password: ''
+      id: JSON.parse(localStorage.getItem('token')).id,
+      email: JSON.parse(localStorage.getItem('token')).email,
+      profile_icon: JSON.parse(localStorage.getItem('token')).profile_icon,
+      username: JSON.parse(localStorage.getItem('token')).username,
+      password: '',
     }
   }
 
@@ -19,8 +22,15 @@ class UserEdit extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newLogIn = { ...this.state }
-    this.props.logInStart(newLogIn)
+    const newUserInformation = { ...this.state }
+    this.setState({
+      id: JSON.parse(localStorage.getItem('token')).id,
+      email: JSON.parse(localStorage.getItem('token')).email,
+      profile_icon: JSON.parse(localStorage.getItem('token')).profile_icon,
+      username: JSON.parse(localStorage.getItem('token')).username,
+      password: '',
+    })
+    this.props.editUser(newUserInformation)
   }
   render() {
     return (

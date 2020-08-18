@@ -63,8 +63,8 @@ class TaskShow extends Component {
 
   render() {
     let { tasks, match, deleteComment } = this.props
-    let individualTaskId = (match.url.slice(7)[0] - 1)
-    let specificTask = tasks[individualTaskId]
+    let individualTaskId = parseInt((match.url.slice(7)))
+    let specificTask = tasks[individualTaskId-1]
 
     this.setMostCurrentlySeenTask()
 

@@ -29,7 +29,7 @@ export default function TaskDisplay(props) {
   }
 
   return (
-    <Card style={{ width: '13rem' }} id="cardDisplay">
+    <Card style={{ width: '13rem', margin: '20px' }} id="cardDisplay">
       <Card.Body id="cardBodyDisplay">
         <Card.Title id="cardTitle">
           {capitalizeFirstLetter(props.task.title)}
@@ -46,10 +46,13 @@ export default function TaskDisplay(props) {
         <Card.Text>
           Reporter: {capitalizeFirstLetter(props.task.user.username)}
         </Card.Text>
+        <Card.Text>
+          Assignee: {capitalizeFirstLetter(props.task.assignee)}
+        </Card.Text>
         <Button variant="primary">
           <Link to={`/tasks/${task.id}`} className="more-details">
             View Details
-            </Link>
+          </Link>
         </Button>
         <br></br>
         <br></br>

@@ -35,14 +35,15 @@ class UserShow extends Component {
 
   render() {
     const { users, match } = this.props
-    const individualUserId = (match.url.slice(-1)[0] - 1)
-    const specificUser = users[individualUserId]
+    const individualUserId = parseInt((match.url.slice(7)))
+    const specificUser = users[individualUserId-1]
+    const currentUser = JSON.parse(localStorage.getItem('token'))
 
     if (users.length === 0) {
       return <div>There are no tasks</div>
     }
 
-    if (specificUser.id === individualUserId+1) {
+    if (currentUser.id === individualUserId) {
       return <Redirect to="/dashboard"/>
     }
 
@@ -78,6 +79,9 @@ class UserShow extends Component {
                       </Card.Text>
                       <Card.Text>
                         Reporter: {specificUser["username"]}
+                      </Card.Text>
+                      <Card.Text>
+                        Assignee: {this.capitalizeFirstLetter(task.assignee)}
                       </Card.Text>
                       <Button variant="primary">
                         <Link to={`/tasks/${task.id}`} className="more-details">

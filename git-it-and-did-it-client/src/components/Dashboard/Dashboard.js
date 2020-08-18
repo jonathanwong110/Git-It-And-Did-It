@@ -29,22 +29,22 @@ class Dashboard extends Component {
   }
 
   render() {
-    const specificUser = (JSON.parse(localStorage.getItem('token')))
+    const currentUser = (JSON.parse(localStorage.getItem('token')))
 
-    if (!specificUser) {
+    if (!currentUser) {
       return <LogIn />
     }
 
     return (
       <div>
-        <Image src={specificUser["profile_icon"]} id="specificUserProfileIcon" />
+        <Image src={currentUser["profile_icon"]} id="specificUserProfileIcon" />
         <br></br>
         <p className="specificUserProfileEdit"><Link to='/settings' className="specificUserProfileEdit">
           Edit Profile
         </Link></p>
-        <h1 className="specificUserUsername">{specificUser["username"]}</h1>
+        <h1 className="specificUserUsername">{currentUser["username"]}</h1>
         <br></br>
-        <h5 className="specificUserEmail">{specificUser["email"]}</h5>
+        <h5 className="specificUserEmail">{currentUser["email"]}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
@@ -52,7 +52,7 @@ class Dashboard extends Component {
         <CardDeck>
           <Container>
             <Row id="task-row">
-              {specificUser["tasks"].map(task => {
+              {currentUser["tasks"].map(task => {
                 return (
                   <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
                     <Card.Body key={task.id} id="cardBodyDisplay">
@@ -69,7 +69,10 @@ class Dashboard extends Component {
                         {this.statusNameChanger(task.status)}
                       </Card.Text>
                       <Card.Text>
-                        Reporter: {specificUser["username"]}
+                        Assignee: {this.capitalizeFirstLetter(task.assignee)}
+                      </Card.Text>
+                      <Card.Text>
+                        Reporter: {currentUser["username"]}
                       </Card.Text>
                       <Button variant="primary">
                         <Link to={`/tasks/${task.id}`} className="more-details">

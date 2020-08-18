@@ -14,6 +14,7 @@ class Api::V1::TasksController < ApplicationController
     @task = Task.new(task_params)
     @user = User.find_by(id: @task.user_id)
     if @task.save
+      @user.tasks << @task
       render json: @task, status: 200
     end
   end
