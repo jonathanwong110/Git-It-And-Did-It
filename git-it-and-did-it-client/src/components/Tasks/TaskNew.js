@@ -10,11 +10,11 @@ class TaskNew extends Component {
     super()
     this.state = {
       title: '',
-      category: 0,
-      description: '',
-      status: 0,
-      priority: 0,
+      category: "bugs",
+      status: 'to_do',
+      priority: 'low',
       assignee: "JW",
+      description: '',
       user_id: JSON.parse(localStorage.getItem('token')).id,
     }
   }
@@ -58,11 +58,11 @@ class TaskNew extends Component {
     const newTask = { ...this.state }
     this.setState({
       title: '',
-      category: 0,
-      description: '',
-      status: 0,
-      priority: 0,
+      category: "bugs",
+      status: 'to_do',
+      priority: 'low',
       assignee: "JW",
+      description: '',
       user_id: JSON.parse(localStorage.getItem('token')).id,
     });
     this.props.addTask(newTask)
@@ -83,26 +83,26 @@ class TaskNew extends Component {
           <Form.Group>
             <Form.Label>Category: </Form.Label>
             <select type="select" onChange={e => this.handleCategoryChange(e)} className="form-input-field" value={this.state.category}>
-              <option type="number" value="0"> Bugs </option>
-              <option type="number" value="1"> New Feature </option>
+              <option value="bugs"> Bugs </option>
+              <option value="new_features"> New Feature </option>
             </select>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Status: </Form.Label>
             <select type="select" onChange={e => this.handleStatusChange(e)} className="form-input-field" value={this.state.status}>
-              <option type="number" value="0"> To Do </option>
-              <option type="number" value="1"> In Progress </option>
-              <option type="number" value="2"> Finished </option>
+              <option value="to_do"> To Do </option>
+              <option value="in_progress"> In Progress </option>
+              <option value="finished"> Finished </option>
             </select>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Priority: </Form.Label>
             <select type="select" onChange={e => this.handlePriorityChange(e)} className="form-input-field" value={this.state.priority}>
-              <option type="number" value="0"> Low </option>
-              <option type="number" value="1"> Medium </option>
-              <option type="number" value="2"> High </option>
+              <option value="low"> Low </option>
+              <option value="medium"> Medium </option>
+              <option value="high"> High </option>
             </select>
           </Form.Group>
 
@@ -110,14 +110,14 @@ class TaskNew extends Component {
             <Form.Label>Assignee: </Form.Label>
             <select type="select" className="form-input-field" onChange={e => this.handleAssigneeChange(e)} value={this.state.assignee} >
               {users.map(user => {
-                return <option key={user.id} type="number" value={user.username}>{user.username}</option>
+                return <option key={user.id} value={user.username}>{user.username}</option>
               })}
             </select>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Description</Form.Label>
-            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.description} className="form-input-field" />
+            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.state.description} className="form-input-field" />
           </Form.Group>
 
           <Button variant="primary" type="submit" className="formSubmit">

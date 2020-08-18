@@ -13,7 +13,6 @@ class Api::V1::TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @user = User.find_by(id: @task.user_id)
-    byebug
     if @task.save
       render json: @task, status: 200
     end
