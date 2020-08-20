@@ -20,7 +20,8 @@ const Title = styled.h1`
   font-size: 20px;
   color: white;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  margin-bottom: 5px;
+  padding-top: 3px;
+  padding-bottom: 2px;
 `
 
 const MenuLink = ({ title, icon }) => {

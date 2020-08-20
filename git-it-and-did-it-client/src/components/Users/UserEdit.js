@@ -6,7 +6,6 @@ class UserEdit extends Component {
   constructor() {
     super();
     this.state = {
-      id: JSON.parse(localStorage.getItem('token')).id,
       email: JSON.parse(localStorage.getItem('token')).email,
       profile_icon: JSON.parse(localStorage.getItem('token')).profile_icon,
       username: JSON.parse(localStorage.getItem('token')).username,
@@ -24,7 +23,6 @@ class UserEdit extends Component {
     e.preventDefault();
     const newUserInformation = { ...this.state }
     this.setState({
-      id: JSON.parse(localStorage.getItem('token')).id,
       email: JSON.parse(localStorage.getItem('token')).email,
       profile_icon: JSON.parse(localStorage.getItem('token')).profile_icon,
       username: JSON.parse(localStorage.getItem('token')).username,
