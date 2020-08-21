@@ -1,6 +1,7 @@
 import React from 'react'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button } from 'react-bootstrap'
 
 export default function SearchTask(props) {
 
@@ -16,9 +17,9 @@ export default function SearchTask(props) {
         placeholder="Search for a Task by Title"
         onKeyPress={props.onKeyPress}
         onChange={e => props.handleChange(e)} />
-      <button id="search-tasks" type="submit" onClick={e => props.handleSubmit(e)}>
+      <Button variant="primary" id="search-tasks" type="submit" onClick={e => props.handleSubmit(e)}>
         {searchIcon}
-      </button>
+      </Button>
     </div>
   );
 }

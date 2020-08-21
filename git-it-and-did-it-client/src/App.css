@@ -5,7 +5,6 @@ html, body {
 }
 
 .App {
-  /* text-align: center; */
   height: 100vh;
 }
 
@@ -70,8 +69,9 @@ html, body {
 }
 
 #search-tasks {
-  background-color: #999999;
   color: white;
+  height: 36px;
+  margin-bottom: 5px;
 }
 
 #category-section {
@@ -165,7 +165,7 @@ html, body {
 
 .task-details-section, .task-people-section {
   position: absolute;
-  top: 175px;
+  top: 235px;
   width: 30%;
 }
 
@@ -177,7 +177,7 @@ html, body {
 
 .task-description-section, .task-dates-section {
   position: absolute;
-  top: 400px;
+  top: 430px;
   font-weight: 500;
 }
 

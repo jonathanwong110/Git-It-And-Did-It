@@ -5,6 +5,7 @@ import { deleteComment } from '../../redux/Comments/actions'
 import TaskNew from './TaskNew'
 import CommentNew from '../../components/Comments/CommentNew'
 import { Button } from 'react-bootstrap'
+import TaskEdit from './TaskEdit'
 
 class TaskShow extends Component {
 
@@ -64,7 +65,8 @@ class TaskShow extends Component {
   render() {
     let { tasks, match, deleteComment } = this.props
     let individualTaskId = parseInt((match.url.slice(7)))
-    let specificTask = tasks[individualTaskId-1]
+    let specificTask = tasks[individualTaskId - 1]
+    const currentUser = JSON.parse(localStorage.getItem('token'))
 
     this.setMostCurrentlySeenTask()
 
@@ -78,11 +80,11 @@ class TaskShow extends Component {
 
     return (
       <div className="individual-task">
-        <div className="task-title-wrapper">
-          <p className="task-title">
-            {this.capitalizeFirstLetter(specificTask["title"])}
-          </p>
-        </div>
+        <p className="task-title">
+          {this.capitalizeFirstLetter(specificTask["title"])}
+        </p>
+        {currentUser.id === individualTaskId ?
+          <TaskEdit task={specificTask} capitalizeFirstLetter={this.capitalizeFirstLetter}>Edit</TaskEdit> : null}
         <div className="task-details-section">
           <p className="task-details-heading"> Details </p>
           <div className="task-traits-grid">
@@ -110,7 +112,7 @@ class TaskShow extends Component {
             </p>
             <p className="task-traits"> Assignee: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-            {specificTask["assignee"]}
+              {specificTask["assignee"]}
             </p>
           </div>
         </div>
