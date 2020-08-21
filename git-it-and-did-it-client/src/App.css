@@ -316,3 +316,7 @@ html, body {
 #sidebar-tasks-dropdown.element.style {
   margin-left: -35px;
 }
+
+.task-options {
+  margin-right: 10px;
+}

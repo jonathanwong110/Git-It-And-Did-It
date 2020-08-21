@@ -29,3 +29,7 @@ export const deleteTask = (id) => {
     })
   }
 }
+
+export const editTask = (updatedTask) => {
+  console.log('Editing Task')
+}

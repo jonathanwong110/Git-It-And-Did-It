@@ -26,7 +26,8 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    @user = User.find_by(id: @task.user_id)
+    @user.user_tasks.find_by(task_id: @task.id).destroy && @task.destroy
     render json: {taskId: @task.id}
   end
 

@@ -13,6 +13,7 @@ import Tasks from './components/Tasks/index'
 import TaskShow from './components/Tasks/TaskShow'
 import Dashboard from './components/Dashboard/Dashboard'
 import TaskNew from './components/Tasks/TaskNew'
+import TaskEdit from './components/Tasks/TaskEdit'
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ class App extends Component {
             {/* <Route exact path="/tasks/:category" component={Tasks} /> */}
             <Route exact path="/tasks/:id" component={TaskShow} />
             <Route exact path="/tasks/new" component={TaskNew} />
+            <Route exact path="/tasks/:id/edit" component={TaskEdit} />
             <Route exact path="/settings" component={UserEdit} />
           </Switch>
         </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadTasks } from '../../redux/Tasks/actions'
+import { loadTasks, deleteTask } from '../../redux/Tasks/actions'
 import { deleteComment } from '../../redux/Comments/actions'
 import TaskNew from './TaskNew'
 import CommentNew from '../../components/Comments/CommentNew'
@@ -62,6 +62,17 @@ class TaskShow extends Component {
     localStorage.setItem('setMostCurrentlySeenTask', JSON.stringify(specificTask))
   }
 
+  editRedirect = () => {
+    let specificTask = JSON.parse(localStorage.getItem('setMostCurrentlySeenTask'))
+    this.props.history.push(`/tasks/${specificTask.id}/edit`)
+    return <TaskEdit />
+  }
+
+  deleteSpecificTask = (specificTaskId) => {
+    let specificTask = JSON.parse(localStorage.getItem('setMostCurrentlySeenTask'))
+    this.props.deleteTask(specificTask.id)
+  }
+
   render() {
     let { tasks, match, deleteComment } = this.props
     let individualTaskId = parseInt((match.url.slice(7)))
@@ -83,8 +94,12 @@ class TaskShow extends Component {
         <p className="task-title">
           {this.capitalizeFirstLetter(specificTask["title"])}
         </p>
-        {currentUser.id === individualTaskId ?
-          <TaskEdit task={specificTask} capitalizeFirstLetter={this.capitalizeFirstLetter}>Edit</TaskEdit> : null}
+        {/* {currentUser.id === specificTask.user_id ?
+          <TaskEdit task={specificTask} capitalizeFirstLetter={this.capitalizeFirstLetter}>Edit</TaskEdit> : null} */}
+        {currentUser.id === specificTask.user_id ?
+          <Button onClick={this.editRedirect} className="task-options">Edit</Button> : null}
+        {currentUser.id === specificTask.user_id ?
+          <Button onClick={this.deleteSpecificTask} className="task-options">Delete</Button> : null}
         <div className="task-details-section">
           <p className="task-details-heading"> Details </p>
           <div className="task-traits-grid">
@@ -178,6 +193,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadTasks: () => dispatch(loadTasks()),
+    deleteTask: (id) => dispatch(deleteTask(id)),
     deleteComment: (id) => dispatch(deleteComment(id)),
   }
 }
