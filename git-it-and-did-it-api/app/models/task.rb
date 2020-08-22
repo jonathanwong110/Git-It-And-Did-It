@@ -1,8 +1,6 @@
 class Task < ApplicationRecord
-  has_many :user_tasks
   belongs_to :user
-  has_many :task_comments
-  has_many :comments, through: :task_comments
+  has_many :comments, dependent: :destroy
   validates_presence_of :title, :category, :description, :status, :priority, :assignee, :user
 
   enum category: { bugs: 0, new_features: 1 }

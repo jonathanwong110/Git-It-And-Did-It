@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { loadUsers } from '../../redux/Users/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router-dom';
 
 class UserShow extends Component {
 
@@ -44,7 +43,7 @@ class UserShow extends Component {
     }
 
     if (currentUser.id === individualUserId) {
-      return <Redirect to="/dashboard"/>
+      return this.props.history.push('/dashboard')
     }
 
     return (

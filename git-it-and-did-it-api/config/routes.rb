@@ -5,7 +5,11 @@ Rails.application.routes.draw do
       post '/login' => 'auth#login'
       resources :users
       resources :tasks
-      resources :comments
+      resources :comments do 
+        collection do
+          get '/taskcomments/:task_id' => 'comments#task_comments'
+        end
+      end
     end
   end
 end

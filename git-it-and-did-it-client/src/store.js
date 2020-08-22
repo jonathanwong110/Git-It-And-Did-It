@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import authReducer from './redux/Auth/reducer'
 import usersReducer from './redux/Users/reducer';
 import tasksReducer from './redux/Tasks/reducer';
-import commentsReducer from './redux/Tasks/reducer';
+import commentsReducer from './redux/Comments/reducer';
 
 const reducer = combineReducers({
   auth: authReducer,

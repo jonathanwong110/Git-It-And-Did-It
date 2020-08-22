@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
-import { editTask } from '../../redux/Tasks/actions.js'
+import { editTask, setCurrentTask } from '../../redux/Tasks/actions.js'
 import { loadUsers } from '../../redux/Users/actions.js'
 
 class TaskEdit extends Component {
@@ -10,17 +10,28 @@ class TaskEdit extends Component {
     super()
     this.state = {
       title: '',
-      category: "bugs",
-      status: 'to_do',
-      priority: 'low',
-      assignee: "JW",
+      category: '',
+      status: '',
+      priority: '',
+      assignee: '',
       description: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
     }
   }
 
   componentDidMount() {
     this.props.loadUsers()
+    if (this.props.tasks === 0) {
+      this.props.loadTasks()
+    }
+    let { match } = this.props
+    let taskId = match.params.id
+    this.props.setCurrentTask(taskId)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentTask) {
+      this.setState(nextProps.currentTask)
+    }
   }
 
   handleChange = (e) => {
@@ -58,18 +69,22 @@ class TaskEdit extends Component {
     const updatedTask = { ...this.state }
     this.setState({
       title: '',
-      category: "bugs",
-      status: 'to_do',
-      priority: 'low',
-      assignee: "JW",
+      category: '',
+      status: '',
+      priority: '',
+      assignee: '',
       description: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
     });
-    this.props.editTask(updatedTask)
+    this.props.editTask(updatedTask).then(_ => this.props.history.push(`/tasks/${updatedTask.id}`) )
   }
 
   render() {
     const { users } = this.props
+
+    if (this.props.currentTask === null ) {
+      return <div>No Task Here</div>
+    }
+
     return (
       <>
         <Form id="new-task-form" onSubmit={e => this.handleSubmit(e)}>
@@ -131,14 +146,9 @@ class TaskEdit extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users
-  }
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-    editTask: (updatedTask) => dispatch(editTask(updatedTask)),
-    loadUsers: () => dispatch(loadUsers())
+    users: state.users.users,
+    currentTask: state.tasks.currentTask
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskEdit)
+export default connect(mapStateToProps, {editTask, loadUsers, setCurrentTask} )(TaskEdit)

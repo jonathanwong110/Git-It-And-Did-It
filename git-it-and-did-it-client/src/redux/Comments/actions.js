@@ -11,6 +11,14 @@ export const addComment = (comment) => {
   }
 }
 
+export const getTaskComments = (taskId) => {
+  return (dispatch) => {
+    axios.get(commentsBaseURL + 'taskcomments/' + taskId).then(res => {
+      dispatch({ type: CommentsActionTypes.GET_TASK_COMMENTS, comments: res.data })
+    })
+  }
+}
+
 export const deleteComment = (id) => {
   return (dispatch) => {
     axios.delete(commentsBaseURL + id).then(res => {

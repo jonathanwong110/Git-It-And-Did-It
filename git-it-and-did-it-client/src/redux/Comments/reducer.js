@@ -11,6 +11,10 @@ const commentsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state, comments: [...state.comments, action.comment]
       }
+    case CommentsActionType.GET_TASK_COMMENTS:
+      return {
+        ...state, comments: action.comments
+      }
     case CommentsActionType.DELETE_COMMENT:
       return {
         ...state, comments: state.comments.filter(comment => comment.id !== action.id)

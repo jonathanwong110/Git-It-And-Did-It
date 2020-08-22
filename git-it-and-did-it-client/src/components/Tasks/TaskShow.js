@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadTasks, deleteTask } from '../../redux/Tasks/actions'
-import { deleteComment } from '../../redux/Comments/actions'
-import TaskNew from './TaskNew'
+import { loadTasks, deleteTask, setCurrentTask } from '../../redux/Tasks/actions'
+import { getTaskComments, deleteComment } from '../../redux/Comments/actions'
 import CommentNew from '../../components/Comments/CommentNew'
 import { Button } from 'react-bootstrap'
-import TaskEdit from './TaskEdit'
+import { Link } from 'react-router-dom'
 
 class TaskShow extends Component {
 
   componentDidMount() {
-    this.props.loadTasks()
+    if (this.props.tasks.length === 0) {
+      this.props.loadTasks()
+    } else {
+      let { match } = this.props
+      let taskId = match.params.id
+      this.props.setCurrentTask(taskId)
+      this.props.getTaskComments(taskId)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let { match } = this.props
+    let taskId = match.params.id
+    if (nextProps.currentTask === null && nextProps.tasks.length) {
+      this.props.setCurrentTask(taskId)
+      this.props.getTaskComments(taskId)
+    }
   }
 
   capitalizeFirstLetter = (string) => {
@@ -55,65 +70,47 @@ class TaskShow extends Component {
     }
   }
 
-  setMostCurrentlySeenTask = () => {
-    let { tasks, match } = this.props
-    let individualTaskId = (match.url.slice(7)[0] - 1)
-    let specificTask = tasks[individualTaskId]
-    localStorage.setItem('setMostCurrentlySeenTask', JSON.stringify(specificTask))
-  }
-
-  editRedirect = () => {
-    let specificTask = JSON.parse(localStorage.getItem('setMostCurrentlySeenTask'))
-    this.props.history.push(`/tasks/${specificTask.id}/edit`)
-    return <TaskEdit />
-  }
-
-  deleteSpecificTask = (specificTaskId) => {
-    let specificTask = JSON.parse(localStorage.getItem('setMostCurrentlySeenTask'))
-    this.props.deleteTask(specificTask.id)
+  deleteCurrentTask = () => {
+    this.props.deleteTask(this.props.currentTask.id)
   }
 
   render() {
-    let { tasks, match, deleteComment } = this.props
-    let individualTaskId = parseInt((match.url.slice(7)))
-    let specificTask = tasks[individualTaskId - 1]
+    let { tasks, match, deleteComment, currentTask } = this.props
     const currentUser = JSON.parse(localStorage.getItem('token'))
 
-    this.setMostCurrentlySeenTask()
-
-    if (tasks.length === 0) {
+    if (tasks.length === 0 || !currentTask) {
       return <div>There are no tasks</div>
     }
 
     if (match.url.slice(7) === "new") {
-      return <TaskNew />
+      this.props.history.push('/tasks/new')
     }
 
     return (
       <div className="individual-task">
         <p className="task-title">
-          {this.capitalizeFirstLetter(specificTask["title"])}
+          {this.capitalizeFirstLetter(currentTask["title"])}
         </p>
-        {/* {currentUser.id === specificTask.user_id ?
-          <TaskEdit task={specificTask} capitalizeFirstLetter={this.capitalizeFirstLetter}>Edit</TaskEdit> : null} */}
-        {currentUser.id === specificTask.user_id ?
-          <Button onClick={this.editRedirect} className="task-options">Edit</Button> : null}
-        {currentUser.id === specificTask.user_id ?
-          <Button onClick={this.deleteSpecificTask} className="task-options">Delete</Button> : null}
+        {/* {currentUser.id === currentTask.user_id ?
+          <TaskEdit task={currentTask} capitalizeFirstLetter={this.capitalizeFirstLetter}>Edit</TaskEdit> : null} */}
+        {currentUser.id === currentTask.user_id ?
+          <Link to={`/tasks/${currentTask.id}/edit`} className="task-options">Edit</Link> : null}
+        {currentUser.id === currentTask.user_id ?
+          <Button onClick={this.deleteCurrentTask} className="task-options">Delete</Button> : null}
         <div className="task-details-section">
           <p className="task-details-heading"> Details </p>
           <div className="task-traits-grid">
             <p className="task-traits"> Category: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-              {this.categoryNameChanger(specificTask["category"])}
+              {this.categoryNameChanger(currentTask["category"])}
             </p>
             <p className="task-traits"> Priority: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-              {this.capitalizeFirstLetter(specificTask["priority"])}
+              {this.capitalizeFirstLetter(currentTask["priority"])}
             </p>
             <p className="task-traits"> Status: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-              {this.statusNameChanger(specificTask["status"])}
+              {this.statusNameChanger(currentTask["status"])}
             </p>
           </div>
         </div>
@@ -123,11 +120,11 @@ class TaskShow extends Component {
           <div className="task-traits-grid">
             <p className="task-traits"> Reporter: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-              {specificTask["user"]["username"]}
+              {currentTask["user"]["username"]}
             </p>
             <p className="task-traits"> Assignee: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-              {specificTask["assignee"]}
+              {currentTask["assignee"]}
             </p>
           </div>
         </div>
@@ -136,7 +133,7 @@ class TaskShow extends Component {
           <p className="task-description-heading"> Description </p>
           <div className="task-description-details">
             <p className="task-traits">
-              {this.capitalizeFirstLetter(specificTask["description"])}
+              {this.capitalizeFirstLetter(currentTask["description"])}
             </p>
           </div>
         </div>
@@ -145,20 +142,20 @@ class TaskShow extends Component {
           <div className="task-traits-grid">
             <p className="task-traits"> Created: </p>
             <p className="task-traits">
-              {this.changeDateFormat(specificTask["created_at"]) + ' ' + this.changeTimeFormat(specificTask["created_at"])}
+              {this.changeDateFormat(currentTask["created_at"]) + ' ' + this.changeTimeFormat(currentTask["created_at"])}
             </p>
             <p className="task-traits"> Updated: </p>
             <p className="task-traits">
-              {this.changeDateFormat(specificTask["updated_at"]) + ' ' + this.changeTimeFormat(specificTask["updated_at"])}
+              {this.changeDateFormat(currentTask["updated_at"]) + ' ' + this.changeTimeFormat(currentTask["updated_at"])}
             </p>
           </div>
         </div>
         <br></br>
         <br></br>
         <p className="task-comment-heading">Comments</p>
-        <CommentNew task={specificTask} />
+        <CommentNew task={currentTask} />
         <div className="task-comments-section">
-          {specificTask["comments"].map(comment => {
+          {this.props.comments.map(comment => {
             return (
               <div key={comment.id}>
                 <div key={comment.id} className="task-individual-comment">
@@ -171,7 +168,7 @@ class TaskShow extends Component {
                   <p className="task-comment-header-section">
                     {this.changeTimeFormat(comment.created_at)}
                   </p>
-                  {JSON.parse(localStorage.getItem('token')).id === specificTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" className="task-comment-header-section" id="task-comment-delete-button" onClick={() => deleteComment(comment.id)}>X</Button> : null}
+                  {JSON.parse(localStorage.getItem('token')).id === currentTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" className="task-comment-header-section" id="task-comment-delete-button" onClick={() => deleteComment(comment.id)}>X</Button> : null}
                 </div>
                 <div> {comment.content} </div>
                 <br></br>
@@ -187,15 +184,9 @@ class TaskShow extends Component {
 const mapStateToProps = (state) => {
   return {
     tasks: state.tasks.tasks,
+    currentTask: state.tasks.currentTask,
+    comments: state.comments.comments
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadTasks: () => dispatch(loadTasks()),
-    deleteTask: (id) => dispatch(deleteTask(id)),
-    deleteComment: (id) => dispatch(deleteComment(id)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskShow)
+export default connect(mapStateToProps, { loadTasks, deleteTask, deleteComment, setCurrentTask, getTaskComments })(TaskShow)

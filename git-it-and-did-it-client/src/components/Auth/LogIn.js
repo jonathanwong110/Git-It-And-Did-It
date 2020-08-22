@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInStart } from '../../redux/Auth/actions'
 import { Form, Button } from 'react-bootstrap'
-import Dashboard from '../Dashboard/Dashboard'
 
 class LogInForm extends Component {
   constructor() {
@@ -29,7 +28,7 @@ class LogInForm extends Component {
     const specificUser = (JSON.parse(localStorage.getItem('token')))
 
     if (specificUser) {
-      return <Dashboard />
+      return this.props.history.push('/dashboard')
     }
 
     return (

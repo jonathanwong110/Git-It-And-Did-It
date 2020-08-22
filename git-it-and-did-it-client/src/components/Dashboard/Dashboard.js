@@ -2,9 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import LogIn from '../Auth/LogIn'
 
 class Dashboard extends Component {
+
+  state = {"id":null,"created_at":"","updated_at":"","email":"JW@company.com","profile_icon":"","username":"","password":null,"tasks":[]}
+
+  componentDidMount() {
+    const currentUser = (JSON.parse(localStorage.getItem('token')))
+    if (!currentUser) {
+      return this.props.history.push('/login')
+    } else {
+      this.setState(currentUser)
+    }
+  }
 
   capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -29,12 +39,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const currentUser = (JSON.parse(localStorage.getItem('token')))
-
-    if (!currentUser) {
-      return <LogIn />
-    }
-
+    let currentUser = this.state
     return (
       <div>
         <Image src={currentUser["profile_icon"]} id="specificUserProfileIcon" />

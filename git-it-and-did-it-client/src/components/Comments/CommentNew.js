@@ -9,9 +9,16 @@ class CommentNew extends Component {
     super()
     this.state = {
       content: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
-      task_id: JSON.parse(localStorage.getItem('setMostCurrentlySeenTask')).id
+      user_id: '',
+      task_id: ''
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      user_id: this.props.task.user_id,
+      task_id: this.props.task.id,
+    })
   }
 
   handleChange = (e) => {
@@ -25,8 +32,8 @@ class CommentNew extends Component {
     const newComment = { ...this.state }
     this.setState({
       content: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
-      task_id: JSON.parse(localStorage.getItem('setMostCurrentlySeenTask')).id
+      user_id: this.props.task.user_id,
+      task_id: this.props.task.id,
     });
     this.props.addComment(newComment)
   }

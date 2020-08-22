@@ -10,11 +10,14 @@ class Api::V1::CommentsController < ApplicationController
     render json: @comment, status: 200
   end
 
+  def task_comments
+    @comments = Comment.where(task_id: params[:task_id])
+    render json: @comments, status: 200
+  end
+
   def create
     @comment = Comment.new(comment_params)
-    @task = Task.find_by(id: @comment.task_id)
     if @comment.save
-      @task.comments << @comment
       render json: @comment, status: 200
     end
   end
@@ -26,10 +29,8 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def destroy
-    @task = Task.find_by(id: @comment.task_id)
-    @specifictaskcomment = @task.task_comments.find_by(id: @comment.id)
-    @specifictaskcomment.destroy && @comment.destroy
-    render json: {commentId: @comment.id}
+    @comment.destroy
+    render status: 200
   end
 
   private

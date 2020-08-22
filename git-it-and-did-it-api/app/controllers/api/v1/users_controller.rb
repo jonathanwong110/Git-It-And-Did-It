@@ -25,7 +25,6 @@ class Api::V1::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    render json: {userId: @user.id}
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_031514) do
+ActiveRecord::Schema.define(version: 2020_07_28_024626) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -20,15 +20,6 @@ ActiveRecord::Schema.define(version: 2020_07_28_031514) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_comments_on_task_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "task_comments", force: :cascade do |t|
-    t.integer "task_id", null: false
-    t.integer "comment_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_task_comments_on_comment_id"
-    t.index ["task_id"], name: "index_task_comments_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -44,24 +35,6 @@ ActiveRecord::Schema.define(version: 2020_07_28_031514) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
-  create_table "user_comments", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "comment_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_user_comments_on_comment_id"
-    t.index ["user_id"], name: "index_user_comments_on_user_id"
-  end
-
-  create_table "user_tasks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "task_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["task_id"], name: "index_user_tasks_on_task_id"
-    t.index ["user_id"], name: "index_user_tasks_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "profile_icon"
@@ -73,11 +46,5 @@ ActiveRecord::Schema.define(version: 2020_07_28_031514) do
 
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
-  add_foreign_key "task_comments", "comments"
-  add_foreign_key "task_comments", "tasks"
   add_foreign_key "tasks", "users"
-  add_foreign_key "user_comments", "comments"
-  add_foreign_key "user_comments", "users"
-  add_foreign_key "user_tasks", "tasks"
-  add_foreign_key "user_tasks", "users"
 end

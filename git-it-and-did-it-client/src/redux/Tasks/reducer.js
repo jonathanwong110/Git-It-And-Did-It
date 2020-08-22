@@ -2,6 +2,8 @@ import TasksActionTypes from "./types";
 
 const INITIAL_STATE = {
   tasks: [],
+  status: null,
+  currentTask: null,
 };
 
 const tasksReducer = (state = INITIAL_STATE, action) => {
@@ -9,12 +11,43 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
     case TasksActionTypes.LOADING_TASKS:
       return {
         ...state,
-        tasks: [...state.tasks]
+        status: 'LOADING'
       }
     case TasksActionTypes.TASKS_LOADED:
       return {
         ...state,
+        status: 'LOADING_COMPLETE',
         tasks: action.tasks
+      }
+    case TasksActionTypes.SET_CURRENT_TASK:
+      return {
+        ...state,
+        currentTask: state.tasks.find(task => task.id === Number(action.taskId))
+      }
+    case TasksActionTypes.REMOVE_CURRENT_TASK:
+      return {
+        ...state,
+        currentTask: null
+      }
+    case TasksActionTypes.ADD_TASK:
+      return {
+        ...state,
+        tasks: [...state.tasks, action.task]
+      }
+    case TasksActionTypes.DELETE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter(task => task.id !== action.taskId)
+      }
+    case TasksActionTypes.EDIT_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map(task => {
+          if (task.id === action.task.id) {
+            return action.task
+          }
+          return task
+        })
       }
     default:
       return state
