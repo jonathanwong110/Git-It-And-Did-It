@@ -6,7 +6,7 @@ class UserEdit extends Component {
   constructor() {
     super();
     this.state = {
-      profile_icon: JSON.parse(localStorage.getItem('token')).profile_icon,
+      profile_icon: '',
       password: '',
     }
   }
@@ -21,9 +21,7 @@ class UserEdit extends Component {
     e.preventDefault();
     const newUserInformation = { ...this.state }
     this.setState({
-      email: JSON.parse(localStorage.getItem('token')).email,
-      profile_icon: JSON.parse(localStorage.getItem('token')).profile_icon,
-      username: JSON.parse(localStorage.getItem('token')).username,
+      profile_icon: '',
       password: '',
     })
     this.props.editUser(newUserInformation)

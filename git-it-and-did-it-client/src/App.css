@@ -321,3 +321,14 @@ html, body {
   margin-right: 10px;
   color: white;
 }
+
+.dropdown-menu.show {
+  background: #618685;
+}
+
+#logoutoption {
+  margin-left: 5px;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+}
