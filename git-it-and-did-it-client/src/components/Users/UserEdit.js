@@ -6,9 +6,7 @@ class UserEdit extends Component {
   constructor() {
     super();
     this.state = {
-      email: JSON.parse(localStorage.getItem('token')).email,
       profile_icon: JSON.parse(localStorage.getItem('token')).profile_icon,
-      username: JSON.parse(localStorage.getItem('token')).username,
       password: '',
     }
   }

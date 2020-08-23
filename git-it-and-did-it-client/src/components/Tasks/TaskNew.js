@@ -134,11 +134,5 @@ const mapStateToProps = (state) => {
     users: state.users.users
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTask: (task) => dispatch(addTask(task)),
-    loadUsers: () => dispatch(loadUsers())
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskNew)
+export default connect(mapStateToProps, { addTask, loadUsers })(TaskNew)

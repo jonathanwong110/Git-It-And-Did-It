@@ -97,10 +97,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadTasks: () => dispatch(loadTasks())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Tasks)
+export default connect(mapStateToProps, { loadTasks })(Tasks)

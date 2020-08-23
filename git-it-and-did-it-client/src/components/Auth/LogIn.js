@@ -51,10 +51,4 @@ class LogInForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    logInStart: (newLogIn) => dispatch(logInStart(newLogIn))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(LogInForm)
+export default connect(null, {logInStart})(LogInForm)

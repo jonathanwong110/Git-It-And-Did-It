@@ -35,10 +35,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    logOutStart: () => dispatch(logOutStart())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainNav);
+export default connect(mapStateToProps, { logOutStart })(MainNav);

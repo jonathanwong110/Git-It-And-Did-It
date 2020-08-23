@@ -20,7 +20,7 @@ const Menu = () => {
   const settingsIcon = <FontAwesomeIcon icon={faCog} />
 
   return (
-    <Container className="more-details">
+    <Container>
       <Link to="/dashboard"> <MenuLink title="Dashboard" icon={homeIcon}></MenuLink> </Link>
       <Link to="/users"> <MenuLink title="Users" icon={usersIcon}> </MenuLink> </Link>
       {/* <Link to="/tasks"> <MenuLink title="Tasks" icon={boardIcon}> </MenuLink> </Link> */}

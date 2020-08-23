@@ -52,10 +52,4 @@ class CommentNew extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addComment: (comment) => dispatch(addComment(comment))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(CommentNew)
+export default connect(null, {addComment})(CommentNew)

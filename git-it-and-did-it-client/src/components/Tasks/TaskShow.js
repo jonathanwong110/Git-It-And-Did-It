@@ -94,7 +94,7 @@ class TaskShow extends Component {
         {/* {currentUser.id === currentTask.user_id ?
           <TaskEdit task={currentTask} capitalizeFirstLetter={this.capitalizeFirstLetter}>Edit</TaskEdit> : null} */}
         {currentUser.id === currentTask.user_id ?
-          <Link to={`/tasks/${currentTask.id}/edit`} className="task-options">Edit</Link> : null}
+          <Button><Link to={`/tasks/${currentTask.id}/edit`} className="task-options">Edit</Link></Button> : null}
         {currentUser.id === currentTask.user_id ?
           <Button onClick={this.deleteCurrentTask} className="task-options">Delete</Button> : null}
         <div className="task-details-section">

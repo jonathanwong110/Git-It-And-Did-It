@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 class Dashboard extends Component {
 
-  state = {"id":null,"created_at":"","updated_at":"","email":"JW@company.com","profile_icon":"","username":"","password":null,"tasks":[]}
+  state = {"id":null,"created_at":"","updated_at":"","email":"","profile_icon":"","username":"","password":null,"tasks":[]}
 
   componentDidMount() {
     const currentUser = (JSON.parse(localStorage.getItem('token')))
@@ -74,10 +74,10 @@ class Dashboard extends Component {
                         {this.statusNameChanger(task.status)}
                       </Card.Text>
                       <Card.Text>
-                        Assignee: {this.capitalizeFirstLetter(task.assignee)}
+                        Reporter: {currentUser["username"]}
                       </Card.Text>
                       <Card.Text>
-                        Reporter: {currentUser["username"]}
+                        Assignee: {this.capitalizeFirstLetter(task.assignee)}
                       </Card.Text>
                       <Button variant="primary">
                         <Link to={`/tasks/${task.id}`} className="more-details">

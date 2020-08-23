@@ -108,10 +108,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadUsers: () => dispatch(loadUsers())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserShow)
+export default connect(mapStateToProps, { loadUsers })(UserShow)
