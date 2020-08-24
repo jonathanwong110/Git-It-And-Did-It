@@ -75,7 +75,7 @@ class TaskEdit extends Component {
       assignee: '',
       description: '',
     });
-    this.props.editTask(updatedTask).then(_ => this.props.history.push(`/tasks/${updatedTask.id}`) )
+    this.props.editTask(updatedTask).then(_ => this.props.history.push(`/tasks/${updatedTask.id}`))
   }
 
   render() {

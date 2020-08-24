@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadUsers } from '../../redux/Users/actions'
+import { loadUsers, setCurrentUser } from '../../redux/Users/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class UserShow extends Component {
 
   componentDidMount() {
-    this.props.loadUsers()
+    if (this.props.users.length === 0) {
+      this.props.loadUsers()
+    } else {
+      let { match } = this.props
+      let userId = match.params.id
+      this.props.setCurrentUser(userId)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let { match } = this.props
+    let userId = match.params.id
+    if (nextProps.currentUser === null && nextProps.users.length) {
+      this.props.setCurrentUser(userId)
+    }
   }
 
   capitalizeFirstLetter = (string) => {
@@ -108,4 +122,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadUsers })(UserShow)
+export default connect(mapStateToProps, { loadUsers, setCurrentUser })(UserShow)

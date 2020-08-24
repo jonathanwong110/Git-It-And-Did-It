@@ -29,14 +29,14 @@ class App extends Component {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:id" component={UserShow} />
-            <Route exact path="/users/:id/edit" component={UserShow} />
+            <Route exact path="/users/:id/edit" component={UserEdit} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/tasks" component={Tasks} />
             {/* <Route exact path="/tasks/:category" component={Tasks} /> */}
             <Route exact path="/tasks/:id" component={TaskShow} />
             <Route exact path="/tasks/new" component={TaskNew} />
             <Route exact path="/tasks/:id/edit" component={TaskEdit} />
-            <Route exact path="/settings" component={UserEdit} />
+            {/* <Route exact path="/settings" component={UserEdit} /> */}
           </Switch>
         </div>
       </BrowserRouter>

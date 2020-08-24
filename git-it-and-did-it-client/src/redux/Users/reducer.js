@@ -2,6 +2,8 @@ import UsersActionTypes from "./types";
 
 const INITIAL_STATE = {
   users: [],
+  status: null,
+  currentUser: null,
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -9,12 +11,29 @@ const usersReducer = (state = INITIAL_STATE, action) => {
     case UsersActionTypes.LOADING_USERS:
       return {
         ...state,
+        status: 'LOADING_USERS',
         users: [...state.users]
       }
     case UsersActionTypes.USERS_LOADED:
       return {
         ...state,
+        status: 'LOADING_USERS_COMPLETED',
         users: action.users
+      }
+    case UsersActionTypes.SET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: state.users.find(user => user.id === Number(action.userId))
+      }
+    case UsersActionTypes.EDIT_USER:
+      return {
+        ...state,
+        users: state.users.map(user => {
+          if (user.id === action.user.id) {
+            return action.user
+          }
+          return user
+        })
       }
     default:
       return state

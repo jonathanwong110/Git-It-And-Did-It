@@ -318,12 +318,21 @@ html, body {
 }
 
 .task-options {
-  margin-right: 10px;
   color: white;
+}
+
+.task-options:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.task-options-button {
+  margin-right: 10px;
 }
 
 .dropdown-menu.show {
   background: #618685;
+  border: 1px solid white;
 }
 
 #logoutoption {
