@@ -21,20 +21,37 @@ const Menu = () => {
 
   return (
     <Container>
-      <Link to="/dashboard"> <MenuLink title="Dashboard" icon={homeIcon}></MenuLink> </Link>
-      <Link to="/users"> <MenuLink title="Users" icon={usersIcon}> </MenuLink> </Link>
-      {/* <Link to="/tasks"> <MenuLink title="Tasks" icon={boardIcon}> </MenuLink> </Link> */}
-      <MenuLink icon={boardIcon}> </MenuLink>
-      <Navbar id="sidebar-menu-tasks">
-        <Nav>
-          <NavDropdown title="Tasks" id="sidebar-tasks-dropdown">
-            <Link to="/tasks" className="menu-task-link">View All Tasks</Link><br></br>
-            <Link to="/tasks/new" className="menu-task-link">New Task</Link>
-          </NavDropdown>
-        </Nav>
-      </Navbar>
-      <Link to="/inbox"> <MenuLink title="Inbox" icon={mailIcon}> </MenuLink> </Link>
-      <Link to="/settings"> <MenuLink title="Settings" icon={settingsIcon}> </MenuLink> </Link>
+      <div className="sidebar-option">
+        <Link to="/dashboard">
+          <MenuLink title="Dashboard" icon={homeIcon} />
+        </Link>
+      </div>
+      <div className="sidebar-option">
+        <Link to="/users">
+          <MenuLink title="Users" icon={usersIcon} />
+        </Link>
+      </div>
+      <div className="sidebar-option">
+        <MenuLink icon={boardIcon} />
+        <Navbar id="sidebar-menu-tasks">
+          <Nav>
+            <NavDropdown title="Tasks" id="sidebar-tasks-dropdown">
+              <Link to="/tasks" className="menu-task-link">View All Tasks</Link><br></br>
+              <Link to="/tasks/new" className="menu-task-link">New Task</Link>
+            </NavDropdown>
+          </Nav>
+        </Navbar>
+      </div>
+      <div className="sidebar-option">
+        <Link to="/inbox">
+          <MenuLink title="Inbox" icon={mailIcon} />
+        </Link>
+      </div>
+      <div className="sidebar-option">
+        <Link to="/settings">
+          <MenuLink title="Settings" icon={settingsIcon} />
+        </Link>
+      </div>
     </Container>
   )
 }

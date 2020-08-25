@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInStart } from '../../redux/Auth/actions'
 import { Form, Button } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 
 class LogInForm extends Component {
   constructor() {
@@ -22,12 +23,12 @@ class LogInForm extends Component {
     e.preventDefault();
     const newLogIn = { ...this.state }
     this.props.logInStart(newLogIn)
+    return <Redirect to='/' />
   }
 
   render() {
-    const specificUser = (JSON.parse(localStorage.getItem('token')))
 
-    if (specificUser) {
+    if (localStorage.getItem('token')) {
       return this.props.history.push('/dashboard')
     }
 

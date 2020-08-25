@@ -19,7 +19,7 @@ class MainNav extends Component {
           </Nav>
           <Nav>
             {JSON.parse(localStorage.getItem('token')) !== null ?
-              <NavDropdown title={<Image src={profileIcon} alt={null} width="40px" height="40px"/>} id="basic-nav-dropdown" className="span" id="lastMainNavItem">
+              <NavDropdown title={<Image src={profileIcon} alt={null} width="40px" height="40px"/>} className="span" id="lastMainNavItem">
                 <Link to="/" onClick={this.props.logOutStart} id="logoutoption">Log Out</Link>
               </NavDropdown> :
               <Link to="/login" className="span">Log In</Link>}

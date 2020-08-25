@@ -11,9 +11,6 @@ const Container = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   transition: 0.2s all ease-in-out;
-  &:hover {
-    background-color: rgba(0,0,0,0.1);
-  }
 `
 
 const Title = styled.h1`
