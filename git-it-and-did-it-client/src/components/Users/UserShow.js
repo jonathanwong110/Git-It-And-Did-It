@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loadUsers, setCurrentUser } from '../../redux/Users/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
 
 class UserShow extends Component {
 
@@ -21,28 +22,6 @@ class UserShow extends Component {
     let userId = match.params.id
     if (nextProps.currentUser === null && nextProps.users.length) {
       this.props.setCurrentUser(userId)
-    }
-  }
-
-  capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  categoryNameChanger = (category) => {
-    if (category === "bugs") {
-      return "Bugs"
-    } else {
-      return "New Features"
-    }
-  }
-
-  statusNameChanger = (status) => {
-    if (status === "to_do") {
-      return "To Do"
-    } else if (status === "in_progress") {
-      return "In Progress"
-    } else {
-      return "Finished"
     }
   }
 
@@ -79,22 +58,22 @@ class UserShow extends Component {
                   <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
                     <Card.Body key={task.id} id="cardBodyDisplay">
                       <Card.Title id="cardTitle">
-                        {this.capitalizeFirstLetter(task.title)}
+                        {capitalizeFirstLetter(task.title)}
                       </Card.Title>
                       <Card.Text>
-                        {this.categoryNameChanger(task.category)}
+                        {categoryNameChanger(task.category)}
                       </Card.Text>
                       <Card.Text>
-                        {this.capitalizeFirstLetter(task.priority)}
+                        {capitalizeFirstLetter(task.priority)}
                       </Card.Text>
                       <Card.Text>
-                        {this.statusNameChanger(task.status)}
+                        {statusNameChanger(task.status)}
                       </Card.Text>
                       <Card.Text>
                         Reporter: {specificUser["username"]}
                       </Card.Text>
                       <Card.Text>
-                        Assignee: {this.capitalizeFirstLetter(task.assignee)}
+                        Assignee: {capitalizeFirstLetter(task.assignee)}
                       </Card.Text>
                       <Button variant="primary">
                         <Link to={`/tasks/${task.id}`} className="more-details">
@@ -122,4 +101,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadUsers, setCurrentUser })(UserShow)
+export default connect(mapStateToProps, { loadUsers, setCurrentUser, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(UserShow)

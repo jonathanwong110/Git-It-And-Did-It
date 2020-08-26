@@ -262,10 +262,8 @@ html, body {
 #main-nav > div > div > div.dropdown-menu.show {
   background-color: #618685 !important;
   border: 2px solid white;
-  position: fixed;
-  top: 60px;
-  left: 83%;
-  width: 50px;
+  top: 30px;
+  left: -190px;
 }
 
 #lastMainNavItem {
@@ -357,6 +355,9 @@ html, body {
 #sidebar-menu-tasks .dropdown-menu.show {
   background: #618685;
   border: 2px solid white;
+  position: relative;
+  top: 0px;
+  left: -30px;
 }
 
 #logoutoption {

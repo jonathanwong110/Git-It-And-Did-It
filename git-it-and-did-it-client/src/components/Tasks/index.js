@@ -84,9 +84,9 @@ class Tasks extends Component {
           <Container>
             <Row id="task-row">
               {tasks.map(task => {
-                return this.props.filterBy === "" || task.category === this.props.filterBy ?
+                return (
                   <TaskDisplay key={task.id} task={task} match={match} />
-                  : null
+                )
               })}
             </Row>
           </Container>

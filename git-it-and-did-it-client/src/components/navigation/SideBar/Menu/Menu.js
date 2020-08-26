@@ -13,6 +13,7 @@ const Container = styled.div`
 `
 
 const Menu = () => {
+  
   const homeIcon = <FontAwesomeIcon icon={faHome} />
   const boardIcon = <FontAwesomeIcon icon={faClipboard} />
   const usersIcon = <FontAwesomeIcon icon={faUsers} />
@@ -36,8 +37,13 @@ const Menu = () => {
         <Navbar id="sidebar-menu-tasks">
           <Nav>
             <NavDropdown title="Tasks" id="sidebar-tasks-dropdown">
-              <Link to="/tasks" className="menu-task-link">View All Tasks</Link><br></br>
-              <Link to="/tasks/new" className="menu-task-link">New Task</Link>
+              <Link to="/tasks" className="menu-task-link">
+                View All Tasks
+                </Link>
+              <br></br>
+              <Link to="/tasks/new" className="menu-task-link">
+                New Task
+                </Link>
             </NavDropdown>
           </Nav>
         </Navbar>

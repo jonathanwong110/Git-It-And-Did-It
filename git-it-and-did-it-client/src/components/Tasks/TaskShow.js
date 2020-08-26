@@ -5,6 +5,7 @@ import { getTaskComments, deleteComment } from '../../redux/Comments/actions'
 import CommentNew from '../../components/Comments/CommentNew'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat } from '../../appearance/appearanceFunctions'
 
 class TaskShow extends Component {
 
@@ -28,48 +29,6 @@ class TaskShow extends Component {
     }
   }
 
-  capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  categoryNameChanger = (category) => {
-    if (category === "bugs") {
-      return "Bugs"
-    } else {
-      return "New Features"
-    }
-  }
-
-  statusNameChanger = (status) => {
-    if (status === "to_do") {
-      return "To Do"
-    } else if (status === "in_progress") {
-      return "In Progress"
-    } else {
-      return "Finished"
-    }
-  }
-
-  changeDateFormat = (str) => {
-    return str.slice(5, 7) + '/' + str.slice(8, 10) + '/' + str.slice(2, 4)
-  }
-
-  changeTimeFormat = (str) => {
-    let hoursOfTime = parseInt(str.slice(11, 13))
-    let minutesOfTime = str.slice(14, 16)
-    if (hoursOfTime > 12) {
-      let newHoursOfTime = hoursOfTime - 12
-      let finalHoursOfTime = newHoursOfTime.toString()
-      let finalTime = finalHoursOfTime + ':' + minutesOfTime + 'PM'
-      return finalTime
-    } else {
-      let hoursOfTime = parseInt(str.slice(12, 13))
-      let finalHoursOfTime = hoursOfTime.toString()
-      let finalTime = finalHoursOfTime + ':' + minutesOfTime + 'AM'
-      return finalTime
-    }
-  }
-
   deleteCurrentTask = () => {
     this.props.deleteTask(this.props.currentTask.id)
   }
@@ -89,7 +48,7 @@ class TaskShow extends Component {
     return (
       <div className="individual-task">
         <p className="task-title">
-          {this.capitalizeFirstLetter(currentTask["title"])}
+          {capitalizeFirstLetter(currentTask["title"])}
         </p>
         {currentUser.id === currentTask.user_id ?
           <Button className="task-options-button"><Link to={`/tasks/${currentTask.id}/edit`} className="task-options">Edit</Link></Button> : null}
@@ -100,15 +59,15 @@ class TaskShow extends Component {
           <div className="task-traits-grid">
             <p className="task-traits"> Category: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-              {this.categoryNameChanger(currentTask["category"])}
+              {categoryNameChanger(currentTask["category"])}
             </p>
             <p className="task-traits"> Priority: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-              {this.capitalizeFirstLetter(currentTask["priority"])}
+              {capitalizeFirstLetter(currentTask["priority"])}
             </p>
             <p className="task-traits"> Status: </p>
             <p className="task-traits" id="tasks-trait-second-col">
-              {this.statusNameChanger(currentTask["status"])}
+              {statusNameChanger(currentTask["status"])}
             </p>
           </div>
         </div>
@@ -131,7 +90,7 @@ class TaskShow extends Component {
           <p className="task-description-heading"> Description </p>
           <div className="task-description-details">
             <p className="task-traits">
-              {this.capitalizeFirstLetter(currentTask["description"])}
+              {capitalizeFirstLetter(currentTask["description"])}
             </p>
           </div>
         </div>
@@ -140,11 +99,11 @@ class TaskShow extends Component {
           <div className="task-traits-grid">
             <p className="task-traits"> Created: </p>
             <p className="task-traits">
-              {this.changeDateFormat(currentTask["created_at"]) + ' ' + this.changeTimeFormat(currentTask["created_at"])}
+              {changeDateFormat(currentTask["created_at"]) + ' ' + changeTimeFormat(currentTask["created_at"])}
             </p>
             <p className="task-traits"> Updated: </p>
             <p className="task-traits">
-              {this.changeDateFormat(currentTask["updated_at"]) + ' ' + this.changeTimeFormat(currentTask["updated_at"])}
+              {changeDateFormat(currentTask["updated_at"]) + ' ' + changeTimeFormat(currentTask["updated_at"])}
             </p>
           </div>
         </div>
@@ -161,10 +120,10 @@ class TaskShow extends Component {
                     {comment.username}
                   </p>
                   <p className="task-comment-header-section">
-                    {this.changeDateFormat(comment.created_at)}
+                    {changeDateFormat(comment.created_at)}
                   </p>
                   <p className="task-comment-header-section">
-                    {this.changeTimeFormat(comment.created_at)}
+                    {changeTimeFormat(comment.created_at)}
                   </p>
                   {JSON.parse(localStorage.getItem('token')).id === currentTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" className="task-comment-header-section" id="task-comment-delete-button" onClick={() => deleteComment(comment.id)}>X</Button> : null}
                 </div>
@@ -187,4 +146,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadTasks, deleteTask, deleteComment, setCurrentTask, getTaskComments })(TaskShow)
+export default connect(mapStateToProps, { loadTasks, deleteTask, deleteComment, setCurrentTask, getTaskComments, capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat })(TaskShow)
