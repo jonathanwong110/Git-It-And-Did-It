@@ -1,32 +1,23 @@
 import React, { Component } from "react";
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
-import { loadUsers, editUser, setCurrentUser } from '../../redux/Users/actions.js'
+import { editUser } from '../../redux/Users/actions.js'
 
 class UserEdit extends Component {
 
   constructor() {
     super();
     this.state = {
-      email: '',
-      profile_icon: '',
-      username: '',
-      password: '',
+      id: "", email: "", profile_icon: "", username: "", password: "", tasks: []
     }
   }
 
   componentDidMount() {
-    this.props.loadUsers()
-    let { match } = this.props
-    let userId = match.params.id
-    this.props.setCurrentUser(userId)
-    console.log(this.props)
+    this.setState(this.props.currentUser)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser) {
-      this.setState(nextProps.currentUser)
-    }
+    this.setState(nextProps.currentUser)
   }
 
   handleChange = (e) => {
@@ -37,14 +28,7 @@ class UserEdit extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const updatedUser = { ...this.state }
-    this.setState({
-      email: '',
-      profile_icon: '',
-      username: '',
-      password: '',
-    })
-    this.props.editUser(updatedUser).then(_ => this.props.history.push(`/dashboard`))
+    this.props.editUser(this.state).then(_ => this.props.history.push(`/dashboard`))
   }
 
   render() {
@@ -74,9 +58,8 @@ class UserEdit extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users,
-    currentUser: state.users.currentUser
+    currentUser: state.auth.currentUser,
   }
 }
 
-export default connect(mapStateToProps, { loadUsers, editUser, setCurrentUser })(UserEdit)
+export default connect(mapStateToProps, { editUser })(UserEdit)

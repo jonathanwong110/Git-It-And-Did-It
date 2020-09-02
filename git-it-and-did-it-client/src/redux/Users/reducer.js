@@ -20,11 +20,6 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         status: 'LOADING_USERS_COMPLETED',
         users: action.users
       }
-    case UsersActionTypes.SET_CURRENT_USER:
-      return {
-        ...state,
-        currentUser: state.users.find(user => user.id === Number(action.userId))
-      }
     case UsersActionTypes.EDIT_USER:
       return {
         ...state,

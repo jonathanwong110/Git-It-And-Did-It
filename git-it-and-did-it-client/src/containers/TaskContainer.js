@@ -13,6 +13,7 @@ class TaskContainer extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     const { category } = this.props.match.params
     if (this.props.match.params.category !== undefined) {
       this.filterBy(category)
@@ -21,15 +22,21 @@ class TaskContainer extends Component {
     }
   }
 
-  filterBy = category => {
-    this.setState({
-      filterBy: category === this.state.filterBy ? "" : category
+  filterBy = (category) => {
+    this.props.tasks.map(task => {
+      if (task.category === category) {
+        console.log(category, task)
+      } else if (category === "") {
+        console.log('all', task)
+      } else {
+        return null
+      }
     })
   }
 
   render() {
     return (
-      <Tasks filterBy={this.state.filterBy} loadTasks={this.props.loadTasks} tasks={this.props.tasks} />
+      <Tasks filterBy={this.filterBy} loadTasks={this.props.loadTasks} tasks={this.props.tasks} />
     )
   }
 }

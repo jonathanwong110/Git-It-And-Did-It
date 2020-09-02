@@ -13,12 +13,6 @@ export const loadUsers = () => {
   }
 }
 
-export const setCurrentUser = (userId) => {
-  return (dispatch) => {
-    dispatch({ type: UsersActionTypes.SET_CURRENT_USER, userId })
-  }
-}
-
 export const editUser = (updatedUser) => {
   return (dispatch) => {
     return axios.patch(usersBaseURL + updatedUser.id, updatedUser).then(res => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadUsers, setCurrentUser } from '../../redux/Users/actions'
+import { loadUsers } from '../../redux/Users/actions'
+import { setCurrentUser } from '../../redux/Auth/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
@@ -8,12 +9,16 @@ import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '.
 class UserShow extends Component {
 
   componentDidMount() {
+    const currentUser = JSON.parse(localStorage.getItem('token'))
     if (this.props.users.length === 0) {
       this.props.loadUsers()
     } else {
       let { match } = this.props
       let userId = match.params.id
       this.props.setCurrentUser(userId)
+      if (currentUser.id === userId) {
+        return this.props.history.push('/dashboard')
+      }
     }
   }
 
@@ -29,15 +34,11 @@ class UserShow extends Component {
     const { users, match } = this.props
     const individualUserId = parseInt((match.url.slice(7)))
     const specificUser = users[individualUserId-1]
-    const currentUser = JSON.parse(localStorage.getItem('token'))
+    // const currentUser = JSON.parse(localStorage.getItem('token'))
 
-    if (users.length === 0) {
-      return <div>There are no tasks</div>
-    }
-
-    if (currentUser.id === individualUserId) {
-      return this.props.history.push('/dashboard')
-    }
+    // if (currentUser.id === individualUserId) {
+    //   return this.props.history.push('/dashboard')
+    // }
 
     return (
       <div>

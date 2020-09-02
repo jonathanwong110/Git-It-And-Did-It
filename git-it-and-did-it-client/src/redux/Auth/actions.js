@@ -3,9 +3,9 @@ import axios from 'axios'
 
 let logInBaseURL = 'http://localhost:3000/api/v1/login'
 
-export const logInProcess = (usernameAndPassword) => ({
+export const logInProcess = (currentUser) => ({
   type: AuthActionTypes.LOG_IN_START,
-  payload: usernameAndPassword,
+  payload: currentUser,
 });
 
 export const logInStart = (usernameAndPassword) => {
@@ -16,7 +16,8 @@ export const logInStart = (usernameAndPassword) => {
     .then(function (response) {
       const token = response.data
       localStorage.setItem('token', JSON.stringify(token))
-      return dispatch(logInProcess(usernameAndPassword))
+      dispatch(logInProcess(token))
+      return
     })
     .catch(function (error) {
       console.log(error);
@@ -37,6 +38,17 @@ export const logOutProcess = () => ({
 export const logOutStart = () => {
   localStorage.removeItem('token')
   return dispatch => {
-    return dispatch(logOutProcess())
+    dispatch(logOutProcess())
+  }
+}
+
+export const setCurrentUser = () => {
+  return (dispatch) => {
+    if (localStorage.getItem('token')) {
+      const currentUser = JSON.parse(localStorage.getItem('token'))
+      dispatch({ type: AuthActionTypes.SET_CURRENT_USER, currentUser })
+    } else {
+      return dispatch(logOutProcess())
+    }
   }
 }

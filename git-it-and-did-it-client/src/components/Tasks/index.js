@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../redux/Tasks/actions'
-import { Nav, Navbar, NavDropdown, CardDeck, Container, Row } from 'react-bootstrap'
+import { Nav, Navbar, NavDropdown, CardDeck, Container, Row, Button } from 'react-bootstrap'
 import TaskDisplay from './TaskDisplay'
 import SearchTasks from './SearchTasks'
 import { Link } from 'react-router-dom'
@@ -42,6 +42,18 @@ class Tasks extends Component {
     })
   }
 
+  filterBy = (category) => {
+    this.props.tasks.map(task => {
+      if (task.category === category) {
+        return console.log(category, task)
+      } else if (category === "") {
+        return console.log('all', task)
+      } else {
+        return null
+      }
+    })
+  }
+
   render() {
     const { searchEntry, searchQuery } = this.state
     let { tasks, match } = this.props
@@ -54,9 +66,9 @@ class Tasks extends Component {
           <Navbar id="task-navbar-child">
             <Nav className="mr-auto" id="category-section">
               <NavDropdown title="Category" className="category-section-title">
-                <Link to="/tasks" id="category-section-link">All</Link><br></br>
-                <Link to="/tasks/bugs" id="category-section-link">Bugs</Link><br></br>
-                <Link to="/tasks/new_features" id="category-section-link">New Features</Link>
+                <Button variant="link" onClick={() => this.filterBy('')} id="category-section-link">All</Button><br></br>
+                <Button variant="link" onClick={() => this.filterBy('bugs')} id="category-section-link">Bugs</Button><br></br>
+                <Button variant="link" onClick={() => this.filterBy('new_features')} id="category-section-link">New Features</Button>
               </NavDropdown>
             </Nav>
             <Nav className="mr-auto" id="category-section">

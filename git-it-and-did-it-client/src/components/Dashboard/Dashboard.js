@@ -6,22 +6,12 @@ import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '.
 
 class Dashboard extends Component {
 
-  state = {"id":null,"created_at":"","updated_at":"","email":"","profile_icon":"","username":"","password":null,"tasks":[]}
-
-  componentDidMount() {
-    const currentUser = (JSON.parse(localStorage.getItem('token')))
-    if (!currentUser) {
-      return this.props.history.push('/login')
-    } else {
-      this.setState(currentUser)
-    }
-  }
-
   render() {
 
-    let currentUser = this.state
+    let { currentUser } = this.props
     
     return (
+      // <div>Testing</div>
       <div>
         <Image src={currentUser["profile_icon"]} id="specificUserProfileIcon" />
         <br></br>
@@ -82,7 +72,6 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    users: state.users.users
   }
 }
 

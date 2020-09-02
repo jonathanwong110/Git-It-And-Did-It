@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MainNav from './components/Navigation/MainNav'
 import './App.css';
 import LogIn from './components/Auth/LogIn'
@@ -14,8 +14,14 @@ import Dashboard from './components/Dashboard/Dashboard'
 import TaskNew from './components/Tasks/TaskNew'
 import TaskEdit from './components/Tasks/TaskEdit'
 // import TaskContainer from './containers/TaskContainer'
+import { setCurrentUser } from './redux/Auth/actions'
+import { connect } from 'react-redux'
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.setCurrentUser()
+  }
 
   render() {
     return (
@@ -25,8 +31,8 @@ class App extends Component {
           <SideBar />
           <br></br><br></br><br></br><br></br>
           <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route exact path="/login" render={() => JSON.parse(localStorage.getItem('token')) ? <Redirect to="/dashboard" /> : <LogIn />} />
+            <Route exact path="/" component={LogIn} />
+            <Route exact path="/login" component={LogIn}/>
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:id" component={UserShow} />
@@ -44,4 +50,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect(null, {setCurrentUser})(App)
