@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getUserTasks } from '../../redux/Tasks/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
 
 class Dashboard extends Component {
 
+  componentDidMount() {
+    let currentUserId = this.props.currentUser.id
+    this.props.getUserTasks(currentUserId)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let userId = this.props.currentUser.id
+    if (nextProps.currentUser === null && nextProps.users.length) {
+      this.props.getUserTasks(userId)
+    }
+  }
+
   render() {
 
     let { currentUser } = this.props
-    
+
     return (
       <div>
         <Image src={currentUser["profile_icon"]} id="specificUserProfileIcon" />
@@ -27,7 +40,7 @@ class Dashboard extends Component {
         <CardDeck>
           <Container>
             <Row id="task-row">
-              {currentUser["tasks"].map(task => {
+              {this.props.tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
                     <Card.Body key={task.id} id="cardBodyDisplay">
@@ -75,4 +88,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)
+export default connect(mapStateToProps, { getUserTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)

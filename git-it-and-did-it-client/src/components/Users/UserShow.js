@@ -15,7 +15,7 @@ class UserShow extends Component {
       this.props.loadUsers()
     } else {
       let { match } = this.props
-      let userId = match.params.id
+      let userId = Number(match.params.id)
       this.props.setCurrentUser(userId)
       this.props.getUserTasks(userId)
       if (currentUser.id === userId) {
@@ -46,11 +46,11 @@ class UserShow extends Component {
     return (
       // <div>{console.log(specificUser)}</div>
       <div>
-        <Image src={specificUser["profile_icon"]} id="specificUserProfileIcon" />
+        <Image src={specificUser.profile_icon} id="specificUserProfileIcon" />
         <br></br>
-        <h1 className="specificUserUsername">{specificUser["username"]}</h1>
+        <h1 className="specificUserUsername">{specificUser.username}</h1>
         <br></br>
-        <h5 className="specificUserEmail">{specificUser["email"]}</h5>
+        <h5 className="specificUserEmail">{specificUser.email}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
