@@ -6,6 +6,7 @@ const TasksActionTypes = {
   EDIT_TASK: 'EDIT_TASK',
   SET_CURRENT_TASK: 'SET_CURRENT_TASK',
   REMOVE_CURRENT_TASK: 'REMOVE_CURRENT_TASK',
+  GET_USER_TASKS: 'GET_USER_TASKS',
 };
 
 export default TasksActionTypes;

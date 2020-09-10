@@ -10,6 +10,11 @@ class Api::V1::TasksController < ApplicationController
     render json: @task, status: 200
   end
 
+  def user_tasks
+    @tasks = Task.where(user_id: params[:user_id])
+    render json: @tasks, status: 200
+  end
+
   def create
     @task = Task.new(task_params)
     if @task.save

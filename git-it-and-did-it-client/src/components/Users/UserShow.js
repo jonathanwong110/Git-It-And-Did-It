@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../redux/Users/actions'
+import { getUserTasks } from '../../redux/Tasks/actions'
 import { setCurrentUser } from '../../redux/Auth/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -16,6 +17,7 @@ class UserShow extends Component {
       let { match } = this.props
       let userId = match.params.id
       this.props.setCurrentUser(userId)
+      this.props.getUserTasks(userId)
       if (currentUser.id === userId) {
         return this.props.history.push('/dashboard')
       }
@@ -27,13 +29,14 @@ class UserShow extends Component {
     let userId = match.params.id
     if (nextProps.currentUser === null && nextProps.users.length) {
       this.props.setCurrentUser(userId)
+      this.props.getUserTasks(userId)
     }
   }
 
   render() {
     const { users, match } = this.props
     const individualUserId = parseInt((match.url.slice(7)))
-    const specificUser = users[individualUserId-1]
+    const specificUser = users[individualUserId - 1]
     // const currentUser = JSON.parse(localStorage.getItem('token'))
 
     // if (currentUser.id === individualUserId) {
@@ -41,6 +44,7 @@ class UserShow extends Component {
     // }
 
     return (
+      // <div>{console.log(specificUser)}</div>
       <div>
         <Image src={specificUser["profile_icon"]} id="specificUserProfileIcon" />
         <br></br>
@@ -54,7 +58,7 @@ class UserShow extends Component {
         <CardDeck>
           <Container>
             <Row id="task-row">
-              {specificUser["tasks"].map(task => {
+              {this.props.tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
                     <Card.Body key={task.id} id="cardBodyDisplay">
@@ -98,8 +102,9 @@ class UserShow extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    users: state.users.users
+    users: state.users.users,
+    tasks: state.tasks.tasks,
   }
 }
 
-export default connect(mapStateToProps, { loadUsers, setCurrentUser, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(UserShow)
+export default connect(mapStateToProps, { loadUsers, getUserTasks, setCurrentUser, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(UserShow)

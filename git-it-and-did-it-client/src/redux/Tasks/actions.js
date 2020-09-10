@@ -44,3 +44,11 @@ export const editTask = (updatedTask) => {
     )
   }
 }
+
+export const getUserTasks = (userId) => {
+  return (dispatch) => {
+    axios.get(tasksBaseURL + 'usertasks/' + userId).then(res => {
+      dispatch({ type: TasksActionTypes.GET_USER_TASKS, tasks: res.data })
+    })
+  }
+}

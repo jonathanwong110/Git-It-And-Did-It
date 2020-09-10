@@ -11,7 +11,6 @@ class Dashboard extends Component {
     let { currentUser } = this.props
     
     return (
-      // <div>Testing</div>
       <div>
         <Image src={currentUser["profile_icon"]} id="specificUserProfileIcon" />
         <br></br>
@@ -72,6 +71,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
+    tasks: state.tasks.tasks
   }
 }
 

@@ -19,6 +19,10 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
         status: 'LOADING_COMPLETE',
         tasks: action.tasks
       }
+    case TasksActionTypes.GET_USER_TASKS:
+      return {
+        ...state, tasks: action.tasks
+      }
     case TasksActionTypes.SET_CURRENT_TASK:
       return {
         ...state,
