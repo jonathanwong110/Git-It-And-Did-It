@@ -10,13 +10,12 @@ import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '.
 class UserShow extends Component {
 
   componentDidMount() {
-    const currentUser = JSON.parse(localStorage.getItem('token'))
+    const { currentUser } = this.props
     if (this.props.users.length === 0) {
       this.props.loadUsers()
     } else {
       let { match } = this.props
       let userId = Number(match.params.id)
-      this.props.setCurrentUser(userId)
       this.props.getUserTasks(userId)
       if (currentUser.id === userId) {
         return this.props.history.push('/dashboard')
@@ -24,11 +23,10 @@ class UserShow extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     let { match } = this.props
     let userId = match.params.id
     if (nextProps.currentUser === null && nextProps.users.length) {
-      this.props.setCurrentUser(userId)
       this.props.getUserTasks(userId)
     }
   }
@@ -37,11 +35,6 @@ class UserShow extends Component {
     const { users, match } = this.props
     const individualUserId = parseInt((match.url.slice(7)))
     const specificUser = users[individualUserId - 1]
-    // const currentUser = JSON.parse(localStorage.getItem('token'))
-
-    // if (currentUser.id === individualUserId) {
-    //   return this.props.history.push('/dashboard')
-    // }
 
     return (
       // <div>{console.log(specificUser)}</div>

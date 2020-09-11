@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserTasks } from '../../redux/Tasks/actions'
+import { getUserTasks, loadTasks } from '../../redux/Tasks/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
@@ -8,15 +8,9 @@ import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '.
 class Dashboard extends Component {
 
   componentDidMount() {
-    let currentUserId = this.props.currentUser.id
+    const currentUser = JSON.parse(localStorage.getItem('token'))
+    const currentUserId = currentUser.id
     this.props.getUserTasks(currentUserId)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let userId = this.props.currentUser.id
-    if (nextProps.currentUser === null && nextProps.users.length) {
-      this.props.getUserTasks(userId)
-    }
   }
 
   render() {
@@ -88,4 +82,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getUserTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)
+export default connect(mapStateToProps, { getUserTasks, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)
