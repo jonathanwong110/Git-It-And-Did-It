@@ -8,8 +8,8 @@ import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '.
 class Dashboard extends Component {
 
   componentDidMount() {
-    const currentUser = JSON.parse(localStorage.getItem('token'))
-    const currentUserId = currentUser.id
+    let currentUser = JSON.parse(localStorage.getItem('token'))
+    let currentUserId = currentUser.id
     this.props.getUserTasks(currentUserId)
   }
 
