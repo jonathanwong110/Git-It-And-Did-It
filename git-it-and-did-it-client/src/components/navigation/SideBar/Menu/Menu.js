@@ -3,8 +3,8 @@ import MenuLink from './MenuLink'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faHome, faCog, faInbox, faUsers } from '@fortawesome/free-solid-svg-icons'
-import { faHome, faClipboard, faCog, faInbox, faUsers } from '@fortawesome/free-solid-svg-icons'
+// import { faHome, faClipboard, faCog, faInbox, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faClipboard, faCog, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
 const Container = styled.div`
@@ -17,7 +17,7 @@ const Menu = () => {
   const homeIcon = <FontAwesomeIcon icon={faHome} />
   const boardIcon = <FontAwesomeIcon icon={faClipboard} />
   const usersIcon = <FontAwesomeIcon icon={faUsers} />
-  const mailIcon = <FontAwesomeIcon icon={faInbox} />
+  // const mailIcon = <FontAwesomeIcon icon={faInbox} />
   const settingsIcon = <FontAwesomeIcon icon={faCog} />
 
   return (
@@ -48,11 +48,11 @@ const Menu = () => {
           </Nav>
         </Navbar>
       </div>
-      <div className="sidebar-option">
+      {/* <div className="sidebar-option">
         <Link to="/inbox">
           <MenuLink title="Inbox" icon={mailIcon} />
         </Link>
-      </div>
+      </div> */}
       <div className="sidebar-option">
         <Link to="/settings">
           <MenuLink title="Settings" icon={settingsIcon} />
