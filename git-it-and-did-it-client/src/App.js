@@ -43,6 +43,10 @@ class App extends Component {
             <Route exact path="/tasks" component={Tasks} />
             <Route exact path="/tasks/new" component={TaskNew} />
             <Route exact path="/tasks/:id" component={TaskShow} />
+            <Route exact path="/tasks/category/:category" component={Tasks} />
+            <Route exact path="/tasks/priority/:priority" component={Tasks} />
+            <Route exact path="/tasks/status/:status" component={Tasks} />
+            <Route exact path="/tasks/assignee/:assignee" component={Tasks} />
             {/* <Route exact path="/tasks/:category" component={TaskContainer} /> */}
             <Route exact path="/tasks/:id/edit" component={TaskEdit} />
           </Switch>

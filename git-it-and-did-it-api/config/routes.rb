@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       resources :tasks do 
         collection do
           get '/usertasks/:user_id' => 'tasks#user_tasks'
+          get '/category/:category' => 'tasks#category'
+          get '/priority/:priority' => 'tasks#priority'
+          get '/status/:status' => 'tasks#status'
+          get '/assignee/:assignee' => 'tasks#assignee'
         end
       end
       resources :comments do 

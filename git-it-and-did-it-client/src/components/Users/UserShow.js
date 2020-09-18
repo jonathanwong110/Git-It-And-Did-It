@@ -23,10 +23,10 @@ class UserShow extends Component {
     }
   }
 
-  componentDidUpdate(nextProps) {
+  componentDidUpdate(prevProps) {
     let { match } = this.props
     let userId = match.params.id
-    if (nextProps.currentUser === null && nextProps.users.length) {
+    if (prevProps.currentUser === null && prevProps.users.length) {
       this.props.getUserTasks(userId)
     }
   }

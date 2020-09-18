@@ -3,10 +3,14 @@ import axios from 'axios'
 
 let tasksBaseURL = 'http://localhost:3000/api/v1/tasks/'
 
-export const loadTasks = () => {
+export const loadTasks = (type, value) => {
   return (dispatch) => {
     dispatch({ type: TasksActionTypes.LOADING_TASKS})
-    axios.get(tasksBaseURL).then(res => {
+    let url = tasksBaseURL
+    if (type && value) {
+      url = url + '/' + type + '/' + value
+    }
+    axios.get(url).then(res => {
       dispatch({ type: TasksActionTypes.TASKS_LOADED, tasks: res.data })
       }
     )

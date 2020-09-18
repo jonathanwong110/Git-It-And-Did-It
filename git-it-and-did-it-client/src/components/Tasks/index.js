@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../redux/Tasks/actions'
-import { Nav, Navbar, NavDropdown, CardDeck, Container, Row, Button } from 'react-bootstrap'
+import { Nav, Navbar, NavDropdown, CardDeck, Container, Row } from 'react-bootstrap'
 import TaskDisplay from './TaskDisplay'
 import SearchTasks from './SearchTasks'
 import { Link } from 'react-router-dom'
@@ -18,7 +18,25 @@ class Tasks extends Component {
   }
 
   componentDidMount() {
-    this.props.loadTasks()
+    this.fetchTasks()
+  }
+
+  fetchTasks = () => {
+    const { params } = this.props.match
+    let type
+    let value
+    console.log(params)
+    if (params) {
+      type = Object.keys(params)[0]
+      value = Object.values(params)[0]
+    }
+    this.props.loadTasks(type, value)
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (Object.keys(prevProps.match.params)[0] !== Object.keys(this.props.match.params)[0]) {
+      this.fetchTasks()
+    }
   }
 
   handleChange = (e) => {
@@ -42,18 +60,6 @@ class Tasks extends Component {
     })
   }
 
-  filterBy = (category) => {
-    this.props.tasks.map(task => {
-      if (task.category === category) {
-        return console.log(category, task)
-      } else if (category === "") {
-        return console.log('all', task)
-      } else {
-        return null
-      }
-    })
-  }
-
   render() {
     const { searchEntry, searchQuery } = this.state
     let { tasks, match } = this.props
@@ -64,37 +70,42 @@ class Tasks extends Component {
         <Navbar id="task-navbar">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar id="task-navbar-child">
-            <Nav className="mr-auto" id="category-section">
+            <Nav className="mr-auto category-section">
               <NavDropdown title="Category" className="category-section-title">
-                <Button variant="link" onClick={() => this.filterBy('')} id="category-section-link">All</Button><br></br>
-                <Button variant="link" onClick={() => this.filterBy('bugs')} id="category-section-link">Bugs</Button><br></br>
-                <Button variant="link" onClick={() => this.filterBy('new_features')} id="category-section-link">New Features</Button>
+                <Link to="/tasks" className="category-section-link">All</Link><br></br>
+                <Link to="/tasks/category/bugs" className="category-section-link">Bugs</Link><br></br>
+                <Link to="/tasks/category/new_features" className="category-section-link">New Features</Link>
               </NavDropdown>
             </Nav>
-            <Nav className="mr-auto" id="category-section">
+            <Nav className="mr-auto category-section">
               <NavDropdown title="Priority" className="category-section-title">
-                <Link to="/tasks" id="category-section-link">All</Link><br></br>
-                <Link to="/tasks/low" id="category-section-link">Low</Link><br></br>
-                <Link to="/tasks/medium" id="category-section-link">Medium</Link><br></br>
-                <Link to="/tasks/high" id="category-section-link">High</Link>
+                <Link to="/tasks" className="category-section-link">All</Link><br></br>
+                <Link to="/tasks/priority/low" className="category-section-link">Low</Link><br></br>
+                <Link to="/tasks/priority/medium" className="category-section-link">Medium</Link><br></br>
+                <Link to="/tasks/priority/high" className="category-section-link">High</Link>
               </NavDropdown>
             </Nav>
-            <Nav className="mr-auto" id="category-section">
+            <Nav className="mr-auto category-section">
               <NavDropdown title="Status" className="category-section-title">
-                <Link to="/tasks" id="category-section-link">All</Link><br></br>
-                <Link to="/tasks/to_do" id="category-section-link">To Do</Link><br></br>
-                <Link to="/tasks/in_progress" id="category-section-link">In Progress</Link><br></br>
-                <Link to="/tasks/finished" id="category-section-link">Finished</Link>
+                <Link to="/tasks" className="category-section-link">All</Link><br></br>
+                <Link to="/tasks/status/to_do" className="category-section-link">To Do</Link><br></br>
+                <Link to="/tasks/status/in_progress" className="category-section-link">In Progress</Link><br></br>
+                <Link to="/tasks/status/finished" className="category-section-link">Finished</Link>
               </NavDropdown>
             </Nav>
-            <Nav className="mr-auto" id="category-section">
+            <Nav className="mr-auto category-section" >
+              <NavDropdown title="Assignee" className="category-section-title">
+                <Link to="/tasks" className="category-section-link">All</Link><br></br>
+              </NavDropdown>
+            </Nav>
+            <Nav className="mr-auto category-section">
               <SearchTasks onKeyPress={this.onKeyPress} {...{ searchEntry, searchQuery }} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
             </Nav>
           </Navbar>
         </Navbar>
         <CardDeck>
           <Container>
-            <Row id="task-row">
+            <Row style={{ marginLeft: "17.5%" }}>
               {tasks.map(task => {
                 return (
                   <TaskDisplay key={task.id} task={task} match={match} />
