@@ -5,6 +5,7 @@ import { Nav, Navbar, NavDropdown, CardDeck, Container, Row } from 'react-bootst
 import TaskDisplay from './TaskDisplay'
 import SearchTasks from './SearchTasks'
 import { Link } from 'react-router-dom'
+import SearchAssignee from './SearchAssignee'
 
 class Tasks extends Component {
 
@@ -18,11 +19,12 @@ class Tasks extends Component {
   }
 
   componentDidMount() {
-    this.fetchTasks()
+    const {type, value} = this.getParamVal(this.props.match)
+    this.fetchTasks(type, value)
   }
 
-  fetchTasks = () => {
-    const { params } = this.props.match
+  getParamVal = (match) => {
+    const { params } = match
     let type
     let value
     console.log(params)
@@ -30,12 +32,21 @@ class Tasks extends Component {
       type = Object.keys(params)[0]
       value = Object.values(params)[0]
     }
+    return {type, value}
+  }
+
+  fetchTasks = (type, value) => {
     this.props.loadTasks(type, value)
+    this.setState({
+      type, value
+    })
   }
   
   componentDidUpdate(prevProps) {
-    if (Object.keys(prevProps.match.params)[0] !== Object.keys(this.props.match.params)[0]) {
-      this.fetchTasks()
+    const prevParams = this.getParamVal(prevProps.match)
+    const currentParams = this.getParamVal(this.props.match)
+    if (prevParams.type !== currentParams.type || prevParams.value !== currentParams.value) {
+      this.fetchTasks(currentParams.type, currentParams.value)
     }
   }
 
@@ -96,6 +107,7 @@ class Tasks extends Component {
             <Nav className="mr-auto category-section" >
               <NavDropdown title="Assignee" className="category-section-title">
                 <Link to="/tasks" className="category-section-link">All</Link><br></br>
+                <SearchAssignee/>
               </NavDropdown>
             </Nav>
             <Nav className="mr-auto category-section">

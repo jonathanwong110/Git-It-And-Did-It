@@ -13,8 +13,6 @@ import TaskShow from './components/Tasks/TaskShow'
 import Dashboard from './components/Dashboard/Dashboard'
 import TaskNew from './components/Tasks/TaskNew'
 import TaskEdit from './components/Tasks/TaskEdit'
-// import Settings from './components/Settings/Settings'
-// import TaskContainer from './containers/TaskContainer'
 import { setCurrentUser } from './redux/Auth/actions'
 import { connect } from 'react-redux'
 
@@ -36,7 +34,6 @@ class App extends Component {
             <Route exact path="/login" component={LogIn}/>
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
-            {/* <Route exact path="/settings" component={Settings} /> */}
             <Route exact path="/users/:id" component={UserShow} />
             <Route exact path="/users/:id/edit" component={UserEdit} />
             <Route exact path="/dashboard" component={Dashboard} />
@@ -47,7 +44,6 @@ class App extends Component {
             <Route exact path="/tasks/priority/:priority" component={Tasks} />
             <Route exact path="/tasks/status/:status" component={Tasks} />
             <Route exact path="/tasks/assignee/:assignee" component={Tasks} />
-            {/* <Route exact path="/tasks/:category" component={TaskContainer} /> */}
             <Route exact path="/tasks/:id/edit" component={TaskEdit} />
           </Switch>
         </div>

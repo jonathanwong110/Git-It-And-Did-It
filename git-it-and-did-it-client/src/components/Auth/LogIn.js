@@ -13,12 +13,6 @@ class LogInForm extends Component {
     }
   }
 
-  componentWillReceiveProps() {
-    if (localStorage.getItem('token')) {
-      return <Redirect to="/dashboard" /> 
-    }
-  }
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -32,6 +26,10 @@ class LogInForm extends Component {
   }
 
   render() {
+
+    if (localStorage.getItem('token')) {
+      return <Redirect to="/dashboard" /> 
+    }
 
     return (
       <Form onSubmit={e => this.handleSubmit(e)} id="loginForm">
