@@ -27,7 +27,6 @@ class Tasks extends Component {
     const { params } = match
     let type
     let value
-    console.log(params)
     if (params) {
       type = Object.keys(params)[0]
       value = Object.values(params)[0]

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserTasks, loadTasks } from '../../redux/Tasks/actions'
+import { getUserTasks, loadTasks, getTasksAssigned } from '../../redux/Tasks/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
@@ -10,7 +10,9 @@ class Dashboard extends Component {
   componentDidMount() {
     let currentUser = JSON.parse(localStorage.getItem('token'))
     let currentUserId = currentUser.id
+    let currentUserName = currentUser.username
     this.props.getUserTasks(currentUserId)
+    this.props.getTasksAssigned(currentUserName)
   }
 
   render() {
@@ -33,7 +35,7 @@ class Dashboard extends Component {
         <br></br>
         <CardDeck>
           <Container>
-            <Row style={{ marginLeft: "17.5%", marginTop: "20px"}}>
+            <Row style={{ marginLeft: "17.5%" }}>
               {this.props.tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
@@ -51,7 +53,7 @@ class Dashboard extends Component {
                         {statusNameChanger(task.status)}
                       </Card.Text>
                       <Card.Text>
-                        Reporter: {currentUser["username"]}
+                        Reporter: {task.user.username}
                       </Card.Text>
                       <Card.Text>
                         Assignee: {capitalizeFirstLetter(task.assignee)}
@@ -70,6 +72,50 @@ class Dashboard extends Component {
             </Row>
           </Container>
         </CardDeck>
+        <br></br>
+        <br></br>
+        <h2 className="user-section">Tasks Assigned</h2>
+        <br></br>
+        <CardDeck>
+          <Container>
+            <Row style={{ marginLeft: "17.5%" }}>
+              {this.props.assigned_tasks.map(task => {
+                return (
+                  <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
+                    <Card.Body key={task.id} id="cardBodyDisplay">
+                      <Card.Title id="cardTitle">
+                        {capitalizeFirstLetter(task.title)}
+                      </Card.Title>
+                      <Card.Text>
+                        {categoryNameChanger(task.category)}
+                      </Card.Text>
+                      <Card.Text>
+                        {capitalizeFirstLetter(task.priority)}
+                      </Card.Text>
+                      <Card.Text>
+                        {statusNameChanger(task.status)}
+                      </Card.Text>
+                      <Card.Text>
+                        Reporter: {task.user.username}
+                      </Card.Text>
+                      <Card.Text>
+                        Assignee: {capitalizeFirstLetter(task.assignee)}
+                      </Card.Text>
+                      <Button variant="primary">
+                        <Link to={`/tasks/${task.id}`} className="more-details">
+                          View Details
+                        </Link>
+                      </Button>
+                      <br></br>
+                      <br></br>
+                    </Card.Body>
+                  </Card>
+                )
+              })}
+            </Row>
+          </Container>
+        </CardDeck>
+        <br></br>
       </div>
     )
   }
@@ -78,8 +124,9 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    tasks: state.tasks.tasks
+    tasks: state.tasks.tasks,
+    assigned_tasks: state.tasks.assigned_tasks
   }
 }
 
-export default connect(mapStateToProps, { getUserTasks, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)
+export default connect(mapStateToProps, { getUserTasks, getTasksAssigned, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)
