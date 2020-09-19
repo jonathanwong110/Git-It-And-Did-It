@@ -12,8 +12,7 @@ class Api::V1::TasksController < ApplicationController
 
   def user_tasks
     @tasks = Task.where(user_id: params[:user_id])
-    @tasks1 = Task.where.select { |task| task.user.id == task.user_id }
-    render json: @tasks1, status: 200
+    render json: @tasks, status: 200
   end
 
   def category

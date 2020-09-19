@@ -33,7 +33,7 @@ class Dashboard extends Component {
         <br></br>
         <CardDeck>
           <Container>
-            <Row id="task-row">
+            <Row style={{ marginLeft: "17.5%", marginTop: "20px"}}>
               {this.props.tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">

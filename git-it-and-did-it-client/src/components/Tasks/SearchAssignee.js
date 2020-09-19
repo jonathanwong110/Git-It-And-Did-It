@@ -24,8 +24,10 @@ class SearchAssignee extends Component {
     return (
       <>
       <input type="text" name="Assignee" placeholder="Assignee" onChange={e => this.handleChange(e)} />
-      <Button variant="primary">
-        <Link to={`/tasks/assignee/${this.state.assignee}`}><FontAwesomeIcon icon={faSearch} /></Link>
+      <Button variant="primary" id="assignee-search">
+        <Link to={`/tasks/assignee/${this.state.assignee}`}>
+          <FontAwesomeIcon icon={faSearch} />
+          </Link>
       </Button>
       </>
     )
