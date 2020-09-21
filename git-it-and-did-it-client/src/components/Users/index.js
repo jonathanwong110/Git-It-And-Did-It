@@ -11,7 +11,11 @@ class Users extends Component {
   }
 
   render() {
-    const { users, match } = this.props
+
+    let { users, match } = this.props
+
+    console.log(users)
+
     return (
       <CardDeck>
         <Container>

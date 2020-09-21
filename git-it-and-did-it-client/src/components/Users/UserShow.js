@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadUsers } from '../../redux/Users/actions'
+import { loadUsers, getSpecificUser } from '../../redux/Users/actions'
 import { getUserTasks, getTasksAssigned } from '../../redux/Tasks/actions'
 import { setCurrentUser } from '../../redux/Auth/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
@@ -10,41 +10,47 @@ import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '.
 class UserShow extends Component {
 
   componentDidMount() {
-    const { currentUser } = this.props
-    if (this.props.users.length === 0) {
-      this.props.loadUsers()
+    const currentUser = JSON.parse(localStorage.getItem('token'))
+    const currentUserId = currentUser.id
+    let { users, match } = this.props
+    let userId = Number(match.params.id)
+    let specificUser = users[userId - 1]
+    if (currentUserId === userId) {
+      return this.props.history.push('/dashboard')
+    }
+    if (users.length === 0) {
+      this.props.getSpecificUser(userId)
+      this.props.getUserTasks(userId)
     } else {
-      let { users, match } = this.props
-      let userId = Number(match.params.id)
-      let specificUser = users[userId - 1]
+      this.props.getSpecificUser(userId)
       this.props.getUserTasks(userId)
       this.props.getTasksAssigned(specificUser.username)
-      if (currentUser.id === userId) {
-        return this.props.history.push('/dashboard')
-      }
     }
   }
 
-  componentDidUpdate(prevProps) {
-    let { match } = this.props
-    let userId = match.params.id
-    if (prevProps.currentUser === null && prevProps.users.length) {
-      this.props.getUserTasks(userId)
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   let { match } = this.props
+  //   let userId = match.params.id
+  //   if (prevProps.currentUser === null && prevProps.users.length) {
+  //     this.props.getUserTasks(userId)
+  //   }
+  // }
 
   render() {
-    let { users, match } = this.props
-    let individualUserId = parseInt((match.url.slice(7)))
-    let specificUser = users[individualUserId - 1]
+
+    let { users, assigned_tasks } = this.props
+
+    if (assigned_tasks === 0 ) {
+      console.log('There are no assigned tasks')
+    }
 
     return (
       <div>
-        <Image src={specificUser.profile_icon} id="specificUserProfileIcon" />
+        <Image src={users.profile_icon} id="specificUserProfileIcon" />
         <br></br>
-        <h1 className="specificUserUsername">{specificUser.username}</h1>
+        <h1 className="specificUserUsername">{users.username}</h1>
         <br></br>
-        <h5 className="specificUserEmail">{specificUser.email}</h5>
+        <h5 className="specificUserEmail">{users.email}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
@@ -95,7 +101,7 @@ class UserShow extends Component {
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "17.5%" }}>
-              {this.props.assigned_tasks.map(task => {
+              {assigned_tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
                     <Card.Body key={task.id} id="cardBodyDisplay">
@@ -146,4 +152,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadUsers, getUserTasks, getTasksAssigned, setCurrentUser, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(UserShow)
+export default connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getTasksAssigned, setCurrentUser, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(UserShow)

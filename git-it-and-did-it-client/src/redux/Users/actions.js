@@ -13,6 +13,14 @@ export const loadUsers = () => {
   }
 }
 
+export const getSpecificUser = (userId) => {
+  return (dispatch) => {
+    axios.get(usersBaseURL + userId).then(res => {
+      dispatch({ type: UsersActionTypes.GET_SPECIFIC_USER, users: res.data })
+    })
+  }
+}
+
 export const editUser = (updatedUser) => {
   return (dispatch) => {
     return axios.patch(usersBaseURL + updatedUser.id, updatedUser).then(res => {

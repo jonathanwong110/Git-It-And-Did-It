@@ -3,7 +3,6 @@ import UsersActionTypes from "./types";
 const INITIAL_STATE = {
   users: [],
   status: null,
-  currentUser: null,
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -18,6 +17,11 @@ const usersReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         status: 'LOADING_USERS_COMPLETED',
+        users: action.users
+      }
+    case UsersActionTypes.GET_SPECIFIC_USER:
+      return {
+        ...state,
         users: action.users
       }
     case UsersActionTypes.EDIT_USER:
