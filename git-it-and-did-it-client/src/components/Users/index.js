@@ -12,9 +12,7 @@ class Users extends Component {
 
   render() {
 
-    let { users, match } = this.props
-
-    console.log(users)
+    const { users, match } = this.props
 
     return (
       <CardDeck>

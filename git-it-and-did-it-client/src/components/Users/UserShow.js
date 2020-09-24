@@ -12,45 +12,35 @@ class UserShow extends Component {
   componentDidMount() {
     const currentUser = JSON.parse(localStorage.getItem('token'))
     const currentUserId = currentUser.id
-    let { users, match } = this.props
+    let { specific_user, match } = this.props
     let userId = Number(match.params.id)
-    let specificUser = users[userId - 1]
+    console.log(userId)
     if (currentUserId === userId) {
       return this.props.history.push('/dashboard')
     }
-    if (users.length === 0) {
+    if (specific_user.length === 0) {
       this.props.getSpecificUser(userId)
       this.props.getUserTasks(userId)
     } else {
       this.props.getSpecificUser(userId)
       this.props.getUserTasks(userId)
-      this.props.getTasksAssigned(specificUser.username)
+      console.log(specific_user)
+      this.props.getTasksAssigned(specific_user.username)
+      console.log('not working')
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   let { match } = this.props
-  //   let userId = match.params.id
-  //   if (prevProps.currentUser === null && prevProps.users.length) {
-  //     this.props.getUserTasks(userId)
-  //   }
-  // }
-
   render() {
 
-    let { users, assigned_tasks } = this.props
-
-    if (assigned_tasks === 0 ) {
-      console.log('There are no assigned tasks')
-    }
+    let { specific_user, assigned_tasks } = this.props
 
     return (
       <div>
-        <Image src={users.profile_icon} id="specificUserProfileIcon" />
+        <Image src={specific_user.profile_icon} id="specificUserProfileIcon" />
         <br></br>
-        <h1 className="specificUserUsername">{users.username}</h1>
+        <h1 className="specificUserUsername">{specific_user.username}</h1>
         <br></br>
-        <h5 className="specificUserEmail">{users.email}</h5>
+        <h5 className="specificUserEmail">{specific_user.email}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
@@ -146,7 +136,7 @@ class UserShow extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    users: state.users.users,
+    specific_user: state.users.specific_user,
     tasks: state.tasks.tasks,
     assigned_tasks: state.tasks.assigned_tasks
   }

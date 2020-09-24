@@ -3,6 +3,7 @@ import UsersActionTypes from "./types";
 const INITIAL_STATE = {
   users: [],
   status: null,
+  specific_user: []
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -22,7 +23,7 @@ const usersReducer = (state = INITIAL_STATE, action) => {
     case UsersActionTypes.GET_SPECIFIC_USER:
       return {
         ...state,
-        users: action.users
+        specific_user: action.specific_user
       }
     case UsersActionTypes.EDIT_USER:
       return {
