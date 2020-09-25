@@ -1,32 +1,11 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
 
 export default function TaskDisplay(props) {
 
   const { task } = props
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  function categoryNameChanger(category) {
-    if (category === "bugs") {
-      return "Bugs"
-    } else {
-      return "New Features"
-    }
-  }
-
-  function statusNameChanger(status) {
-    if (status === "to_do") {
-      return "To Do"
-    } else if (status === "in_progress") {
-      return "In Progress"
-    } else {
-      return "Finished"
-    }
-  }
 
   return (
     <Card style={{ width: '13rem', margin: '20px' }} id="cardDisplay">

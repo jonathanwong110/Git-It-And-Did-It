@@ -16,8 +16,8 @@ class UserEdit extends Component {
     this.setState(this.props.currentUser)
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.currentUser)
+  componentDidUpdate(prevProps) {
+    this.setState(prevProps.currentUser)
   }
 
   handleChange = (e) => {

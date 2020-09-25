@@ -12,28 +12,34 @@ class UserShow extends Component {
   componentDidMount() {
     const currentUser = JSON.parse(localStorage.getItem('token'))
     const currentUserId = currentUser.id
-    let { specific_user, match } = this.props
-    let userId = Number(match.params.id)
-    console.log(userId)
+    let userId = Number(this.props.match.params.id)
+    this.props.getSpecificUser(userId)
+    let { specific_user } = this.props
+    console.log(this.props)
     if (currentUserId === userId) {
       return this.props.history.push('/dashboard')
     }
     if (specific_user.length === 0) {
-      this.props.getSpecificUser(userId)
       this.props.getUserTasks(userId)
     } else {
+      this.props.getUserTasks(userId)
+      this.props.getTasksAssigned(specific_user.username)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    let { match } = this.props
+    let userId = Number(match.params.id)
+    if (prevProps.specific_user === null && prevProps.specific_user.length) {
       this.props.getSpecificUser(userId)
       this.props.getUserTasks(userId)
-      console.log(specific_user)
-      this.props.getTasksAssigned(specific_user.username)
-      console.log('not working')
     }
   }
 
   render() {
 
     let { specific_user, assigned_tasks } = this.props
-
+    
     return (
       <div>
         <Image src={specific_user.profile_icon} id="specificUserProfileIcon" />

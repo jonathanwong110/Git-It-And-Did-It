@@ -20,10 +20,10 @@ class TaskShow extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     let { match } = this.props
     let taskId = match.params.id
-    if (nextProps.currentTask === null && nextProps.tasks.length) {
+    if (prevProps.currentTask === null && prevProps.tasks.length) {
       this.props.setCurrentTask(taskId)
       this.props.getTaskComments(taskId)
     }

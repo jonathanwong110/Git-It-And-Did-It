@@ -28,9 +28,9 @@ class TaskEdit extends Component {
     this.props.setCurrentTask(taskId)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentTask) {
-      this.setState(nextProps.currentTask)
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentTask) {
+      this.setState(prevProps.currentTask)
     }
   }
 
