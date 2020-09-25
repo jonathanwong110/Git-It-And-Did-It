@@ -35,10 +35,10 @@ class Dashboard extends Component {
         <br></br>
         <CardDeck>
           <Container>
-            <Row style={{ marginLeft: "17.5%" }}>
+            <Row style={{ marginLeft: "17.5%"}}>
               {this.props.tasks.map(task => {
                 return (
-                  <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
+                  <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} id="cardDisplay">
                     <Card.Body key={task.id} id="cardBodyDisplay">
                       <Card.Title id="cardTitle">
                         {capitalizeFirstLetter(task.title)}
@@ -81,7 +81,7 @@ class Dashboard extends Component {
             <Row style={{ marginLeft: "17.5%" }}>
               {this.props.assigned_tasks.map(task => {
                 return (
-                  <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
+                  <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} id="cardDisplay">
                     <Card.Body key={task.id} id="cardBodyDisplay">
                       <Card.Title id="cardTitle">
                         {capitalizeFirstLetter(task.title)}
