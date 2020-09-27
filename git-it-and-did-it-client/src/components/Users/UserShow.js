@@ -15,31 +15,17 @@ class UserShow extends Component {
     let userId = Number(this.props.match.params.id)
     this.props.getSpecificUser(userId)
     let { specific_user } = this.props
-    console.log(this.props)
     if (currentUserId === userId) {
       return this.props.history.push('/dashboard')
     }
-    if (specific_user.length === 0) {
-      this.props.getUserTasks(userId)
-    } else {
-      this.props.getUserTasks(userId)
-      this.props.getTasksAssigned(specific_user.username)
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    let { match } = this.props
-    let userId = Number(match.params.id)
-    if (prevProps.specific_user === null && prevProps.specific_user.length) {
-      this.props.getSpecificUser(userId)
-      this.props.getUserTasks(userId)
-    }
+    this.props.getUserTasks(userId)
+    this.props.getTasksAssigned(specific_user.username)
   }
 
   render() {
 
     let { specific_user, assigned_tasks } = this.props
-    
+
     return (
       <div>
         <Image src={specific_user.profile_icon} id="specificUserProfileIcon" />
@@ -51,12 +37,13 @@ class UserShow extends Component {
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
         <br></br>
+        <br></br>
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "17.5%" }}>
               {this.props.tasks.map(task => {
                 return (
-                  <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
+                  <Card style={{ width: '13rem' }} key={task.id} className="card-display">
                     <Card.Body key={task.id} id="cardBodyDisplay">
                       <Card.Title id="cardTitle">
                         {capitalizeFirstLetter(task.title)}
@@ -94,12 +81,13 @@ class UserShow extends Component {
         <br></br>
         <h2 className="user-section">Tasks Assigned</h2>
         <br></br>
+        <br></br>
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "17.5%" }}>
               {assigned_tasks.map(task => {
                 return (
-                  <Card style={{ width: '13rem' }} key={task.id} id="cardDisplay">
+                  <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id} id="cardBodyDisplay">
                       <Card.Title id="cardTitle">
                         {capitalizeFirstLetter(task.title)}

@@ -8,7 +8,7 @@ export default function TaskDisplay(props) {
   const { task } = props
 
   return (
-    <Card style={{ width: '13rem', margin: '20px' }} id="cardDisplay">
+    <Card style={{ width: '13rem', margin: '20px' }} className="card-display">
       <Card.Body id="cardBodyDisplay">
         <Card.Title id="cardTitle">
           {capitalizeFirstLetter(props.task.title)}
