@@ -21,17 +21,22 @@ html, body {
   font-weight: 500;
 }
 
-.navbar-left-side, .span {
+.navbar-left-side, #log-in-link, #sign-up-link {
   color: white;
   font-size: 20px;
   margin-left: 30px;
   text-align: center;
 }
 
-.navbar-left-side-main:hover, .navbar-left-side:hover, .span:hover {
+.navbar-left-side-main:hover, .navbar-left-side:hover, #log-in-link:hover, #sign-up-link:hover {
   color: white;
   text-decoration: none;
   text-align: center;
+}
+
+#log-in-link {
+  position: absolute;
+  right: 100px;
 }
 
 .more-details {
