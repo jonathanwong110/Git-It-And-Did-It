@@ -44,7 +44,7 @@ class UserShow extends Component {
               {this.props.tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem' }} key={task.id} className="card-display">
-                    <Card.Body key={task.id} id="cardBodyDisplay">
+                    <Card.Body key={task.id}>
                       <Card.Title id="cardTitle">
                         {capitalizeFirstLetter(task.title)}
                       </Card.Title>
@@ -88,7 +88,7 @@ class UserShow extends Component {
               {assigned_tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
-                    <Card.Body key={task.id} id="cardBodyDisplay">
+                    <Card.Body key={task.id}>
                       <Card.Title id="cardTitle">
                         {capitalizeFirstLetter(task.title)}
                       </Card.Title>
