@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../redux/Users/actions'
 import { CardDeck, Container, Row } from 'react-bootstrap'
-import UserShow from './UserDisplay'
+import UserDisplay from './UserDisplay'
 
 class Users extends Component {
 
@@ -20,7 +20,7 @@ class Users extends Component {
           <Row style={{ marginLeft: "17.5%" }}>
             {users.map(user => {
               return (
-                <UserShow key={user.id} user={user} match={match}/>
+                <UserDisplay key={user.id} user={user} match={match}/>
               )
             })}
           </Row>

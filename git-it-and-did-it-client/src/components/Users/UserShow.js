@@ -45,7 +45,7 @@ class UserShow extends Component {
                 return (
                   <Card style={{ width: '13rem' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>
-                      <Card.Title id="cardTitle">
+                      <Card.Title className="cardTitle">
                         {capitalizeFirstLetter(task.title)}
                       </Card.Title>
                       <Card.Text>
@@ -89,7 +89,7 @@ class UserShow extends Component {
                 return (
                   <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>
-                      <Card.Title id="cardTitle">
+                      <Card.Title className="cardTitle">
                         {capitalizeFirstLetter(task.title)}
                       </Card.Title>
                       <Card.Text>
