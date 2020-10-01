@@ -374,11 +374,17 @@ html, body {
   border: 2px solid black;
 }
 
-#assignee-search {
+#assignee-search-input {
   height: 33px;
-  margin-bottom: 5px;
+  margin-left: 5px;
 }
 
-#assignee-search a {
+#assignee-search-button {
+  height: 33px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+#assignee-search-button a {
   color: white !important;
 }

@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
-
 class SearchAssignee extends Component {
 
   constructor() {
@@ -23,8 +22,8 @@ class SearchAssignee extends Component {
   render() {
     return (
       <>
-      <input type="text" name="Assignee" placeholder="Assignee" onChange={e => this.handleChange(e)} />
-      <Button variant="primary" id="assignee-search">
+      <input type="text" name="Assignee" placeholder="Assignee (case-sensitive)" id="assignee-search-input" onChange={e => this.handleChange(e)} />
+      <Button variant="primary" id="assignee-search-button">
         <Link to={`/tasks/assignee/${this.state.assignee}`}>
           <FontAwesomeIcon icon={faSearch} />
           </Link>
