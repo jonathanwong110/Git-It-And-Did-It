@@ -385,6 +385,10 @@ html, body {
   margin-right: 5px;
 }
 
+#assignee-search-button a svg{
+  margin-bottom: 1.5px;
+}
+
 #assignee-search-button a {
   color: white !important;
 }
