@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Form, Button } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
+
 
 class SignUpForm extends Component {
   constructor() {
@@ -27,31 +30,32 @@ class SignUpForm extends Component {
 
 
   render() {
+
+    if (localStorage.getItem('token')) {
+      return <Redirect to="/dashboard" /> 
+    }
+
     return (
-      <form onSubmit={e => this.handleSubmit(e)}>
-        <div>
-          <h5>
-            Email
-          </h5>
-          <input id="email" name="email" type="text" onChange={e => this.handleInputChange(e)} />
-        </div>
-        <div>
-          <h5>
-            Username
-          </h5>
-          <input id="username" name="username" type="text" onChange={e => this.handleInputChange(e)} />
-        </div>
-        <div>
-          <h5>
-            Password
-          </h5>
-          <input id="password" name="password" type="password" onChange={e => this.handleInputChange(e)} />
-        </div>
-        <br></br>
-        <div>
-          <button type="submit">Log in</button>
-        </div>
-      </form>
+      <Form onSubmit={e => this.handleSubmit(e)} className="loginAndSignUpForm">
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email: </Form.Label>
+          <br></br>
+          <input name="email" type="text" placeholder="Email" onChange={e => this.handleChange(e)} value={this.email} className="form-input-field" />
+        </Form.Group>
+        <Form.Group controlId="formBasicUsername">
+          <Form.Label>Username: </Form.Label>
+          <br></br>
+          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="form-input-field" />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password: </Form.Label>
+          <br></br>
+          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="form-input-field"></input>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Log In
+        </Button>
+      </Form>
     );
   }
 }

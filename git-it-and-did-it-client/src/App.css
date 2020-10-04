@@ -129,8 +129,9 @@ html, body {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-#new-task-form, #loginForm, #editUserForm {
+#new-task-form, .loginAndSignUpForm, #editUserForm {
   min-width: 150px;
+  max-width: 200px;
   width: 20%;
   margin: 0 auto;
   text-align: center;
@@ -251,7 +252,7 @@ html, body {
   padding-bottom: 30px;
 }
 
-.specificUserUsername, .specificUserEmail, .usernameShow, .usernameEmail, .user-section, .newTaskFormHeading, #loginForm, #editUserForm, .formHeading {
+.specificUserUsername, .specificUserEmail, .usernameShow, .usernameEmail, .user-section, .newTaskFormHeading, .loginAndSignUpForm, #editUserForm, .formHeading {
   text-align: center;
 }
 

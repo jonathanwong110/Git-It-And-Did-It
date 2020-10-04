@@ -32,7 +32,7 @@ class LogInForm extends Component {
     }
 
     return (
-      <Form onSubmit={e => this.handleSubmit(e)} id="loginForm">
+      <Form onSubmit={e => this.handleSubmit(e)} className="loginAndSignUpForm">
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username: </Form.Label>
           <br></br>
