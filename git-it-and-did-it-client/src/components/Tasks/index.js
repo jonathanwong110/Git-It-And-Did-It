@@ -106,7 +106,7 @@ class Tasks extends Component {
             <Nav className="mr-auto category-section" >
               <NavDropdown title="Assignee" className="category-section-title">
                 <Link to="/tasks" className="category-section-link">All</Link><br></br>
-                <SearchAssignee/>
+                <SearchAssignee history={this.props.history}/>
               </NavDropdown>
             </Nav>
             <Nav className="mr-auto category-section">

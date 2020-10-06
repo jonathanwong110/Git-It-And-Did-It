@@ -16,7 +16,7 @@ export const loadUsers = () => {
 export const getSpecificUser = (userId) => {
   return (dispatch) => {
     axios.get(usersBaseURL + userId).then(res => {
-      dispatch({ type: UsersActionTypes.GET_SPECIFIC_USER, specific_user: res.data })
+      dispatch({ type: UsersActionTypes.GET_SPECIFIC_USER, specificUser: res.data })
     })
   }
 }

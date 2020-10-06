@@ -14,25 +14,29 @@ class UserShow extends Component {
     const currentUserId = currentUser.id
     let userId = Number(this.props.match.params.id)
     this.props.getSpecificUser(userId)
-    let { specific_user } = this.props
     if (currentUserId === userId) {
       return this.props.history.push('/dashboard')
     }
     this.props.getUserTasks(userId)
-    this.props.getTasksAssigned(specific_user.username)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.specificUser.username !== this.props.specificUser.username) {
+      this.props.getTasksAssigned(this.props.specificUser.username)
+    }
   }
 
   render() {
 
-    let { specific_user, assigned_tasks } = this.props
+    let { specificUser, assigned_tasks } = this.props
 
     return (
       <div>
-        <Image src={specific_user.profile_icon} id="specificUserProfileIcon" />
+        <Image src={specificUser.profile_icon} id="specificUserProfileIcon" />
         <br></br>
-        <h1 className="specificUserUsername">{specific_user.username}</h1>
+        <h1 className="specificUserUsername">{specificUser.username}</h1>
         <br></br>
-        <h5 className="specificUserEmail">{specific_user.email}</h5>
+        <h5 className="specificUserEmail">{specificUser.email}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
@@ -130,7 +134,7 @@ class UserShow extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    specific_user: state.users.specific_user,
+    specificUser: state.users.specificUser,
     tasks: state.tasks.tasks,
     assigned_tasks: state.tasks.assigned_tasks
   }
