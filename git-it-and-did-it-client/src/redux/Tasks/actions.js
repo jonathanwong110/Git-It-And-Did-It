@@ -57,10 +57,10 @@ export const getUserTasks = (userId) => {
   }
 }
 
-export const getTasksAssigned = (assignee) => {
+export const getAssignedTasks = (assignee) => {
   return (dispatch) => {
     axios.get(tasksBaseURL + 'assignee/' + assignee).then(res => {
-      dispatch({ type: TasksActionTypes.GET_TASKS_ASSIGNED, tasks: res.data })
+      dispatch({ type: TasksActionTypes.GET_ASSIGNED_TASKS, tasks: res.data })
     })
   }
 }

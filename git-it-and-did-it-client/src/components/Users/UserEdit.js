@@ -8,16 +8,15 @@ class UserEdit extends Component {
   constructor() {
     super();
     this.state = {
-      id: "", email: "", profile_icon: "", username: "", password: "", tasks: []
+      email: "",
+      profile_icon: "",
+      username: "",
+      password: ""
     }
   }
 
   componentDidMount() {
     this.setState(this.props.currentUser)
-  }
-
-  componentDidUpdate(prevProps) {
-    this.setState(prevProps.currentUser)
   }
 
   handleChange = (e) => {

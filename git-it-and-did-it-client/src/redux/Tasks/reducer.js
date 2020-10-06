@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   tasks: [],
   status: null,
   currentTask: null,
-  assigned_tasks: []
+  assignedTasks: []
 };
 
 const tasksReducer = (state = INITIAL_STATE, action) => {
@@ -24,9 +24,9 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state, tasks: action.tasks
       }
-    case TasksActionTypes.GET_TASKS_ASSIGNED:
+    case TasksActionTypes.GET_ASSIGNED_TASKS:
       return {
-        ...state, assigned_tasks: action.tasks
+        ...state, assignedTasks: action.tasks
       }
     case TasksActionTypes.SET_CURRENT_TASK:
       return {

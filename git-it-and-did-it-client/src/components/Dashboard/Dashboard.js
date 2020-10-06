@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserTasks, loadTasks, getTasksAssigned } from '../../redux/Tasks/actions'
+import { getUserTasks, loadTasks, getAssignedTasks } from '../../redux/Tasks/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
@@ -12,7 +12,7 @@ class Dashboard extends Component {
     let currentUserId = currentUser.id
     let currentUserName = currentUser.username
     this.props.getUserTasks(currentUserId)
-    this.props.getTasksAssigned(currentUserName)
+    this.props.getAssignedTasks(currentUserName)
   }
 
   render() {
@@ -79,7 +79,7 @@ class Dashboard extends Component {
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "20%" }}>
-              {this.props.assigned_tasks.map(task => {
+              {this.props.assignedTasks.map(task => {
                 return (
                   <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>
@@ -125,8 +125,8 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
     tasks: state.tasks.tasks,
-    assigned_tasks: state.tasks.assigned_tasks
+    assignedTasks: state.tasks.assignedTasks
   }
 }
 
-export default connect(mapStateToProps, { getUserTasks, getTasksAssigned, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)
+export default connect(mapStateToProps, { getUserTasks, getAssignedTasks, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)

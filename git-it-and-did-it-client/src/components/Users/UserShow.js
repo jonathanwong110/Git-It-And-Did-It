@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadUsers, getSpecificUser } from '../../redux/Users/actions'
-import { getUserTasks, getTasksAssigned } from '../../redux/Tasks/actions'
+import { getUserTasks, getAssignedTasks } from '../../redux/Tasks/actions'
 import { setCurrentUser } from '../../redux/Auth/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -22,13 +22,13 @@ class UserShow extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.specificUser.username !== this.props.specificUser.username) {
-      this.props.getTasksAssigned(this.props.specificUser.username)
+      this.props.getAssignedTasks(this.props.specificUser.username)
     }
   }
 
   render() {
 
-    let { specificUser, assigned_tasks } = this.props
+    let { specificUser, assignedTasks } = this.props
 
     return (
       <div>
@@ -47,7 +47,7 @@ class UserShow extends Component {
             <Row style={{ marginLeft: "17.5%" }}>
               {this.props.tasks.map(task => {
                 return (
-                  <Card style={{ width: '13rem' }} key={task.id} className="card-display">
+                  <Card style={{ width: '13rem', margin: '20px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>
                       <Card.Title className="cardTitle">
                         {capitalizeFirstLetter(task.title)}
@@ -89,9 +89,9 @@ class UserShow extends Component {
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "17.5%" }}>
-              {assigned_tasks.map(task => {
+              {assignedTasks.map(task => {
                 return (
-                  <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
+                  <Card style={{ width: '13rem', margin: '20px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>
                       <Card.Title className="cardTitle">
                         {capitalizeFirstLetter(task.title)}
@@ -136,8 +136,8 @@ const mapStateToProps = (state) => {
     currentUser: state.auth.currentUser,
     specificUser: state.users.specificUser,
     tasks: state.tasks.tasks,
-    assigned_tasks: state.tasks.assigned_tasks
+    assignedTasks: state.tasks.assignedTasks
   }
 }
 
-export default connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getTasksAssigned, setCurrentUser, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(UserShow)
+export default connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getAssignedTasks, setCurrentUser, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(UserShow)

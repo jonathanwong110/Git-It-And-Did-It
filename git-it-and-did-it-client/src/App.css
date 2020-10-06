@@ -88,7 +88,7 @@ html, body {
 
 .category-section-link {
   margin-left: 10px;
-  font-size: 17px;
+  font-size: 18px;
   color: black !important;
 }
 
@@ -265,7 +265,7 @@ html, body {
   padding-left: 5px;
 }
 
-#searchForm:focus, .form-input-field:focus {
+#searchForm:focus, .form-input-field:focus, #assignee-search-input:focus {
   border: 1px solid #286EFA !important;
   outline-width: 0;
 }
