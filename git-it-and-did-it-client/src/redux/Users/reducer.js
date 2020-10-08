@@ -1,4 +1,5 @@
 import UsersActionTypes from "./types";
+import AuthActionTypes from "../Auth/types";
 
 const INITIAL_STATE = {
   users: [],
@@ -8,6 +9,11 @@ const INITIAL_STATE = {
 
 const usersReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case AuthActionTypes.SIGN_UP:
+      return {
+        ...state,
+        users: [...state.users, action.user]
+      }
     case UsersActionTypes.LOADING_USERS:
       return {
         ...state,

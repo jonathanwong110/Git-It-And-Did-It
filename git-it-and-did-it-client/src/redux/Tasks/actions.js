@@ -5,14 +5,14 @@ let tasksBaseURL = 'http://localhost:3000/api/v1/tasks/'
 
 export const loadTasks = (type, value) => {
   return (dispatch) => {
-    dispatch({ type: TasksActionTypes.LOADING_TASKS})
+    dispatch({ type: TasksActionTypes.LOADING_TASKS })
     let url = tasksBaseURL
     if (type && value) {
       url = url + '/' + type + '/' + value
     }
     axios.get(url).then(res => {
       dispatch({ type: TasksActionTypes.TASKS_LOADED, tasks: res.data })
-      }
+    }
     )
   }
 }
@@ -26,8 +26,8 @@ export const setCurrentTask = (taskId) => {
 export const addTask = (task) => {
   return (dispatch) => {
     axios.post(tasksBaseURL, task).then(res => {
-        dispatch({ type: TasksActionTypes.ADD_TASK, task: res.data})
-      }
+      dispatch({ type: TasksActionTypes.ADD_TASK, task: res.data })
+    }
     )
   }
 }
@@ -35,7 +35,7 @@ export const addTask = (task) => {
 export const deleteTask = (id) => {
   return (dispatch) => {
     axios.delete(tasksBaseURL + id).then(res => {
-      dispatch({ type: TasksActionTypes.DELETE_TASK, taskId: id})
+      dispatch({ type: TasksActionTypes.DELETE_TASK, taskId: id })
     })
   }
 }
@@ -43,8 +43,8 @@ export const deleteTask = (id) => {
 export const editTask = (updatedTask) => {
   return (dispatch) => {
     return axios.patch(tasksBaseURL + updatedTask.id, updatedTask).then(res => {
-        dispatch({ type: TasksActionTypes.EDIT_TASK, task: res.data})
-      }
+      dispatch({ type: TasksActionTypes.EDIT_TASK, task: res.data })
+    }
     )
   }
 }

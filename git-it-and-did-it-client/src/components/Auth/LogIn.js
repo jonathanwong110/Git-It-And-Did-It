@@ -5,6 +5,7 @@ import { Form, Button } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 
 class LogInForm extends Component {
+  
   constructor() {
     super();
     this.state = {

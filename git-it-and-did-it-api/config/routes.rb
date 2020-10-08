@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post '/login' => 'auth#login'
+      post '/signup' => 'users#create'
       resources :users
       resources :tasks do 
         collection do

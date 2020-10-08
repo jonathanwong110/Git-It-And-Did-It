@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
-
+import { connect } from 'react-redux';
+import { signUp } from '../../redux/Auth/actions'
 
 class SignUpForm extends Component {
+
   constructor() {
     super();
     this.state = {
+      email: '',
+      profile_icon: '',
       username: '',
       password: ''
     };
   }
 
 
-  handleInputChange = (e) => {
+  handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -21,11 +25,9 @@ class SignUpForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      email: '',
-      username: '',
-      password: ''
-    })
+    const newUser = { ...this.state }
+    console.log(newUser)
+    this.props.signUp(newUser)
   }
 
 
@@ -42,6 +44,11 @@ class SignUpForm extends Component {
           <br></br>
           <input name="email" type="text" placeholder="Email" onChange={e => this.handleChange(e)} value={this.email} className="form-input-field" />
         </Form.Group>
+        <Form.Group controlId="formBasicProfileIcon">
+          <Form.Label>Profile Icon: </Form.Label>
+          <br></br>
+          <input name="profile_icon" type="text" placeholder="Profile Icon" onChange={e => this.handleChange(e)} value={this.profile_icon} className="form-input-field" />
+        </Form.Group>
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username: </Form.Label>
           <br></br>
@@ -53,11 +60,11 @@ class SignUpForm extends Component {
           <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="form-input-field"></input>
         </Form.Group>
         <Button variant="primary" type="submit">
-          Log In
+          Sign Up
         </Button>
       </Form>
     );
   }
 }
 
-export default SignUpForm
+export default connect(null, {signUp})(SignUpForm)

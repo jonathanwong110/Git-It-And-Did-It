@@ -2,6 +2,7 @@ import AuthActionTypes from "./types";
 import axios from 'axios'
 
 let logInBaseURL = 'http://localhost:3000/api/v1/login'
+let usersBaseURL = 'http://localhost:3000/api/v1/users/'
 
 export const logInProcess = (currentUser) => ({
   type: AuthActionTypes.LOG_IN_START,
@@ -50,5 +51,14 @@ export const setCurrentUser = () => {
     } else {
       return dispatch(logOutProcess())
     }
+  }
+}
+
+export const signUp = (user) => {
+  return (dispatch) => {
+    axios.post(usersBaseURL, user).then(res => {
+        dispatch({ type: AuthActionTypes.SIGN_UP, user: res.data})
+      }
+    )
   }
 }
