@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getSpecificUser } from '../../redux/Users/actions'
 import { getUserTasks, loadTasks, getAssignedTasks } from '../../redux/Tasks/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -11,6 +12,7 @@ class Dashboard extends Component {
     let currentUser = JSON.parse(localStorage.getItem('token'))
     let currentUserId = currentUser.id
     let currentUserName = currentUser.username
+    this.props.getSpecificUser(currentUserId)
     this.props.getUserTasks(currentUserId)
     this.props.getAssignedTasks(currentUserName)
   }
@@ -129,4 +131,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getUserTasks, getAssignedTasks, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)
+export default connect(mapStateToProps, { getSpecificUser, getUserTasks, getAssignedTasks, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)

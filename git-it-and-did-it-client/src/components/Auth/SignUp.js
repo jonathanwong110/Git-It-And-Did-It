@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { signUp } from '../../redux/Auth/actions'
+import { signUp, logInStart } from '../../redux/Auth/actions'
 
 class SignUpForm extends Component {
 
@@ -26,8 +26,8 @@ class SignUpForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newUser = { ...this.state }
-    console.log(newUser)
     this.props.signUp(newUser)
+    this.props.history.push('/login')
   }
 
 
@@ -67,4 +67,4 @@ class SignUpForm extends Component {
   }
 }
 
-export default connect(null, {signUp})(SignUpForm)
+export default connect(null, {signUp, logInStart})(SignUpForm)

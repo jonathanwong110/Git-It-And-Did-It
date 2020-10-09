@@ -21,9 +21,10 @@ export const getSpecificUser = (userId) => {
   }
 }
 
-export const editUser = (updatedUser) => {
+export const editUser = (user) => {
+  console.log(user)
   return (dispatch) => {
-    return axios.patch(usersBaseURL + updatedUser.id, updatedUser).then(res => {
+    return axios.patch(usersBaseURL + user.id, {user}).then(res => {
         dispatch({ type: UsersActionTypes.EDIT_USER, user: res.data})
       }
     )

@@ -8,15 +8,10 @@ class UserEdit extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      profile_icon: "",
-      username: "",
-      password: ""
+      email: '',
+      profile_icon: '',
+      password: ''
     }
-  }
-
-  componentDidMount() {
-    this.setState(this.props.currentUser)
   }
 
   handleChange = (e) => {
@@ -27,7 +22,8 @@ class UserEdit extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.editUser(this.state).then(_ => this.props.history.push(`/dashboard`))
+    const userToBeEdited = { ...this.props.currentUser, ...this.state }
+    this.props.editUser(userToBeEdited).then(_ => this.props.history.push(`/dashboard`))
   }
 
   render() {
@@ -36,7 +32,12 @@ class UserEdit extends Component {
         <h1 className="formHeading">Edit your Account</h1>
         <br></br>
         <Form onSubmit={e => this.handleSubmit(e)} id="editUserForm">
-          <Form.Group controlId="formBasicUsername">
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email: </Form.Label>
+            <br></br>
+            <input name="email" type="text" placeholder="Email" onChange={e => this.handleChange(e)} value={this.state.email} className="form-input-field" />
+          </Form.Group>
+          <Form.Group controlId="formBasicProfileIcon">
             <Form.Label>Profile Icon: </Form.Label>
             <br></br>
             <input name="profile_icon" type="text" placeholder="Profile Icon" onChange={e => this.handleChange(e)} value={this.state.profile_icon} className="form-input-field" />

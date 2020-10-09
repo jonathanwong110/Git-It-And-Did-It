@@ -56,7 +56,7 @@ export const setCurrentUser = () => {
 
 export const signUp = (user) => {
   return (dispatch) => {
-    axios.post(usersBaseURL, user).then(res => {
+    axios.post(usersBaseURL, {user}).then(res => {
         dispatch({ type: AuthActionTypes.SIGN_UP, user: res.data})
       }
     )
