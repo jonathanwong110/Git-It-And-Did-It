@@ -30,6 +30,7 @@ class UserEdit extends Component {
     return (
       <>
         <h1 className="formHeading">Edit your Account</h1>
+        <h2 className="formHeading">Please Enter All Fields to Submit Changes</h2>
         <br></br>
         <Form onSubmit={e => this.handleSubmit(e)} id="editUserForm">
           <Form.Group controlId="formBasicEmail">

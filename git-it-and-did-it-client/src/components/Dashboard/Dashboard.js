@@ -17,6 +17,16 @@ class Dashboard extends Component {
     this.props.getAssignedTasks(currentUserName)
   }
 
+  componentDidUpdate(prevProps) {
+    let currentUser = JSON.parse(localStorage.getItem('token'))
+    let currentUserId = currentUser.id
+    console.log('before', this.props.currentUser.profile_icon)
+    console.log('after', currentUser.profile_icon)
+    if (currentUser.profile_icon !== this.props.currentUser.profile_icon) {
+      this.props.getSpecificUser(currentUserId)
+    }
+  }
+
   render() {
 
     let { currentUser } = this.props
