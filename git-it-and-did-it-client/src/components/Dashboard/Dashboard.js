@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setCurrentUser } from '../../redux/Auth/actions'
 import { getSpecificUser } from '../../redux/Users/actions'
 import { getUserTasks, loadTasks, getAssignedTasks } from '../../redux/Tasks/actions'
 import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
@@ -19,17 +20,14 @@ class Dashboard extends Component {
 
   componentDidUpdate(prevProps) {
     let currentUser = JSON.parse(localStorage.getItem('token'))
-    let currentUserId = currentUser.id
-    console.log('before', this.props.currentUser.profile_icon)
-    console.log('after', currentUser.profile_icon)
-    if (currentUser.profile_icon !== this.props.currentUser.profile_icon) {
-      this.props.getSpecificUser(currentUserId)
+    if (currentUser.email !== this.props.currentUser.email || currentUser.profile_icon !== this.props.currentUser.profile_icon) {
+      this.props.setCurrentUser()
     }
   }
 
   render() {
 
-    let { currentUser } = this.props
+    let { currentUser, tasks, assignedTasks } = this.props
 
     return (
       <div>
@@ -48,7 +46,7 @@ class Dashboard extends Component {
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "20%"}}>
-              {this.props.tasks.map(task => {
+              {tasks.length === 0 ? <div>This user has not reported any tasks yet </div> : tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>
@@ -91,7 +89,7 @@ class Dashboard extends Component {
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "20%" }}>
-              {this.props.assignedTasks.map(task => {
+              {assignedTasks.length === 0 ? <div>This user has not been assigned tasks yet </div> : assignedTasks.map(task => {
                 return (
                   <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>
@@ -141,4 +139,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getSpecificUser, getUserTasks, getAssignedTasks, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)
+export default connect(mapStateToProps, { setCurrentUser, getSpecificUser, getUserTasks, getAssignedTasks, loadTasks, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(Dashboard)

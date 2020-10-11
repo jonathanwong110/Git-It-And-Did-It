@@ -25,7 +25,9 @@ export const editUser = (user) => {
   return (dispatch) => {
     return axios.patch(usersBaseURL + user.id, {user}).then(res => {
         dispatch({ type: UsersActionTypes.EDIT_USER, user: res.data});
-        return localStorage.setItem('token', JSON.stringify({user}.user))
+        let token = {user}.user
+        delete token.password
+        return localStorage.setItem('token', JSON.stringify(token))
       }
     )
   }

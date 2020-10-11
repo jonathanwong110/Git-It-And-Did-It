@@ -28,7 +28,7 @@ class UserShow extends Component {
 
   render() {
 
-    let { specificUser, assignedTasks } = this.props
+    let { specificUser, tasks, assignedTasks } = this.props
 
     return (
       <div>
@@ -45,7 +45,7 @@ class UserShow extends Component {
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "17.5%" }}>
-              {this.props.tasks.map(task => {
+              {tasks.length === 0 ? <div>This user has not reported any tasks yet </div> : tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem', margin: '20px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>
@@ -89,7 +89,7 @@ class UserShow extends Component {
         <CardDeck>
           <Container>
             <Row style={{ marginLeft: "17.5%" }}>
-              {assignedTasks.map(task => {
+              {assignedTasks.length === 0 ? <div>This user has not been assigned tasks yet </div> : assignedTasks.map(task => {
                 return (
                   <Card style={{ width: '13rem', margin: '20px' }} key={task.id} className="card-display">
                     <Card.Body key={task.id}>

@@ -16,6 +16,7 @@ export const logInStart = (usernameAndPassword) => {
     )
     .then(function (response) {
       const token = response.data
+      delete token.password
       localStorage.setItem('token', JSON.stringify(token))
       dispatch(logInProcess(token))
       return
