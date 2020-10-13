@@ -19,7 +19,7 @@ class Tasks extends Component {
   }
 
   componentDidMount() {
-    const {type, value} = this.getParamVal(this.props.match)
+    const { type, value } = this.getParamVal(this.props.match)
     this.fetchTasks(type, value)
   }
 
@@ -31,7 +31,7 @@ class Tasks extends Component {
       type = Object.keys(params)[0]
       value = Object.values(params)[0]
     }
-    return {type, value}
+    return { type, value }
   }
 
   fetchTasks = (type, value) => {
@@ -40,7 +40,7 @@ class Tasks extends Component {
       type, value
     })
   }
-  
+
   componentDidUpdate(prevProps) {
     const prevParams = this.getParamVal(prevProps.match)
     const currentParams = this.getParamVal(this.props.match)
@@ -106,7 +106,7 @@ class Tasks extends Component {
             <Nav className="mr-auto category-section" >
               <NavDropdown title="Assignee" className="category-section-title">
                 <Link to="/tasks" className="category-section-link">All</Link><br></br>
-                <SearchAssignee history={this.props.history}/>
+                <SearchAssignee history={this.props.history} />
               </NavDropdown>
             </Nav>
             <Nav className="mr-auto category-section">

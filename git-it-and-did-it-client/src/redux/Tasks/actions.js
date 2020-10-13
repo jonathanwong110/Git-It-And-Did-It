@@ -12,8 +12,7 @@ export const loadTasks = (type, value) => {
     }
     axios.get(url).then(res => {
       dispatch({ type: TasksActionTypes.TASKS_LOADED, tasks: res.data })
-    }
-    )
+    })
   }
 }
 
@@ -23,12 +22,16 @@ export const setCurrentTask = (taskId) => {
   }
 }
 
-export const addTask = (task) => {
+export const addTask = (task, history) => {
   return (dispatch) => {
     axios.post(tasksBaseURL, task).then(res => {
       dispatch({ type: TasksActionTypes.ADD_TASK, task: res.data })
-    }
-    )
+      axios.get(tasksBaseURL)
+      .then(function (res) {
+        let newTaskId = res.data.slice(-1).pop().id
+        history.push('/tasks/' + newTaskId)
+      })
+    })
   }
 }
 

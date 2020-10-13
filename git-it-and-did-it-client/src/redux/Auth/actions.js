@@ -19,7 +19,6 @@ export const logInStart = (usernameAndPassword) => {
       delete token.password
       localStorage.setItem('token', JSON.stringify(token))
       dispatch(logInProcess(token))
-      return
     })
     .catch(function (error) {
       console.log(error);

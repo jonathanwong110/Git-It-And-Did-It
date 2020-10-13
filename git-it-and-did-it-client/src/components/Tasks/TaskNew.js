@@ -65,7 +65,7 @@ class TaskNew extends Component {
       description: '',
       user_id: JSON.parse(localStorage.getItem('token')).id,
     });
-    this.props.addTask(newTask)
+    this.props.addTask(newTask, this.props.history)
   }
 
   render() {
