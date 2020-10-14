@@ -31,19 +31,17 @@ class TaskShow extends Component {
   }
 
   render() {
-    let { match, deleteComment, specificTask, currentUser } = this.props
+    let { match, deleteComment, specificTask, currentUser, comments } = this.props
 
     if (match.url.slice(7) === "new") {
       this.props.history.push('/tasks/new')
     }
 
-    if (specificTask.length === undefined) {
-      console.log(specificTask)
+    if (specificTask.id === undefined) {
       return <div id="testing">There are no tasks here</div>
     }
 
     return (
-      // <div>{console.log(specificTask)}</div>
       <div className="individual-task">
         <p className="task-title">
           {capitalizeFirstLetter(specificTask.title)}
@@ -110,7 +108,7 @@ class TaskShow extends Component {
         <p className="task-comment-heading">Comments</p>
         <CommentNew task={specificTask} />
         <div className="task-comments-section">
-          {this.props.comments.map(comment => {
+          {comments.map(comment => {
             return (
               <div key={comment.id}>
                 <div key={comment.id} className="task-individual-comment">
