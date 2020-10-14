@@ -16,6 +16,14 @@ export const loadTasks = (type, value) => {
   }
 }
 
+export const getSpecificTask = (taskId) => {
+  return (dispatch) => {
+    axios.get(tasksBaseURL + taskId).then(res => {
+      dispatch({ type: TasksActionTypes.GET_SPECIFIC_TASK, specificTask: res.data })
+    })
+  }
+}
+
 export const setCurrentTask = (taskId) => {
   return (dispatch) => {
     dispatch({ type: TasksActionTypes.SET_CURRENT_TASK, taskId })
@@ -35,10 +43,14 @@ export const addTask = (task, history) => {
   }
 }
 
-export const deleteTask = (id) => {
+export const deleteTask = (id, history) => {
   return (dispatch) => {
     axios.delete(tasksBaseURL + id).then(res => {
       dispatch({ type: TasksActionTypes.DELETE_TASK, taskId: id })
+      axios.get(tasksBaseURL)
+      .then(function (response) {
+        history.push('/tasks')
+      })
     })
   }
 }

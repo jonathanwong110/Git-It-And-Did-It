@@ -3,7 +3,7 @@ import TasksActionTypes from "./types";
 const INITIAL_STATE = {
   tasks: [],
   status: null,
-  currentTask: null,
+  specificTask: {},
   assignedTasks: []
 };
 
@@ -19,6 +19,11 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
         ...state,
         status: 'LOADING_COMPLETE',
         tasks: action.tasks
+      }
+    case TasksActionTypes.GET_SPECIFIC_TASK:
+      return {
+        ...state,
+        specificTask: action.specificTask
       }
     case TasksActionTypes.GET_USER_TASKS:
       return {
