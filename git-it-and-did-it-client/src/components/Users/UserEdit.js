@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
+import { setCurrentUser } from '../../redux/Auth/actions.js'
 import { editUser } from '../../redux/Users/actions.js'
 
 class UserEdit extends Component {
@@ -14,6 +15,20 @@ class UserEdit extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.setCurrentUser()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentUser !== this.props.currentUser) {
+      this.setState(this.props.currentUser)
+    }
+    const userId = this.props.match.params.id
+    if (Number(userId) !== Number(this.props.currentUser.id) ) {
+      this.props.history.push('/dashboard')
+    }
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -22,7 +37,7 @@ class UserEdit extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const userToBeEdited = { ...this.props.currentUser, ...this.state }
+    const userToBeEdited = { ...this.state }
     this.props.editUser(userToBeEdited).then(_ => this.props.history.push(`/dashboard`))
   }
 
@@ -63,4 +78,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { editUser })(UserEdit)
+export default connect(mapStateToProps, { editUser, setCurrentUser })(UserEdit)

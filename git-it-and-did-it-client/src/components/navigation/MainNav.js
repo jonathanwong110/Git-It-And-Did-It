@@ -2,9 +2,19 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavDropdown, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { logOutStart } from '../../redux/Auth/actions'
+import { logOutStart, setCurrentUser } from '../../redux/Auth/actions'
 
 class MainNav extends Component {
+
+  componentDidMount() {
+    this.props.setCurrentUser()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentUser !== this.props.currentUser) {
+      this.setState(this.props.currentUser)
+    }
+  }
 
   render() {
 
@@ -43,4 +53,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { logOutStart })(MainNav);
+export default connect(mapStateToProps, { setCurrentUser, logOutStart })(MainNav);

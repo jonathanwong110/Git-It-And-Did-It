@@ -24,12 +24,6 @@ export const getSpecificTask = (taskId) => {
   }
 }
 
-export const setCurrentTask = (taskId) => {
-  return (dispatch) => {
-    dispatch({ type: TasksActionTypes.SET_CURRENT_TASK, taskId })
-  }
-}
-
 export const addTask = (task, history) => {
   return (dispatch) => {
     axios.post(tasksBaseURL, task).then(res => {

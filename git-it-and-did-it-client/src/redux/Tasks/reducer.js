@@ -33,11 +33,6 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state, assignedTasks: action.tasks
       }
-    case TasksActionTypes.SET_CURRENT_TASK:
-      return {
-        ...state,
-        currentTask: state.tasks.find(task => task.id === Number(action.taskId))
-      }
     case TasksActionTypes.REMOVE_CURRENT_TASK:
       return {
         ...state,

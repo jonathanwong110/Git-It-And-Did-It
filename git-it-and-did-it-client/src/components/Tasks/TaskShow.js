@@ -17,25 +17,12 @@ class TaskShow extends Component {
     this.props.getTaskComments(taskId)
   }
 
-  componentDidUpdate(prevProps) {
-    let { match } = this.props
-    let taskId = match.params.id
-    if (prevProps.specificTask.length) {
-      this.props.getSpecificTask(taskId)
-      this.props.getTaskComments(taskId)
-    }
-  }
-
   deleteCurrentTask = () => {
     this.props.deleteTask(this.props.currentTask.id, this.props.history)
   }
 
   render() {
-    let { match, deleteComment, specificTask, currentUser, comments } = this.props
-
-    if (match.url.slice(7) === "new") {
-      this.props.history.push('/tasks/new')
-    }
+    let { specificTask, currentUser, deleteComment, comments } = this.props
 
     if (specificTask.id === undefined) {
       return <div id="testing">There are no tasks here</div>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
-import { editTask, setCurrentTask } from '../../redux/Tasks/actions.js'
+import { setCurrentUser } from '../../redux/Auth/actions.js'
+import { editTask, getSpecificTask } from '../../redux/Tasks/actions.js'
 import { loadUsers } from '../../redux/Users/actions.js'
 
 class TaskEdit extends Component {
@@ -19,18 +20,23 @@ class TaskEdit extends Component {
   }
 
   componentDidMount() {
+    this.props.setCurrentUser()
     this.props.loadUsers()
-    if (this.props.tasks === 0) {
-      this.props.loadTasks()
-    }
     let { match } = this.props
     let taskId = match.params.id
-    this.props.setCurrentTask(taskId)
+    this.props.getSpecificTask(taskId)
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.currentTask) {
-      this.setState(prevProps.currentTask)
+    let { specificTask } = this.props
+    if (prevProps.specificTask !== specificTask) {
+      this.setState(specificTask)
+    }
+    if (specificTask.user === undefined) {
+      return <div> No Task to be edited</div>
+    }
+    if (Number(specificTask.user.id) !== Number(this.props.currentUser.id)) {
+      this.props.history.push(`/tasks/${specificTask.id}`)
     }
   }
 
@@ -79,9 +85,9 @@ class TaskEdit extends Component {
   }
 
   render() {
-    const { users } = this.props
+    const { users, specificTask } = this.props
 
-    if (this.props.currentTask === null ) {
+    if (specificTask.id === undefined) {
       return <div>No Task Here</div>
     }
 
@@ -147,8 +153,9 @@ class TaskEdit extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.users.users,
-    currentTask: state.tasks.currentTask
+    currentUser: state.auth.currentUser,
+    specificTask: state.tasks.specificTask
   }
 }
 
-export default connect(mapStateToProps, {editTask, loadUsers, setCurrentTask} )(TaskEdit)
+export default connect(mapStateToProps, { setCurrentUser, editTask, loadUsers, getSpecificTask })(TaskEdit)
