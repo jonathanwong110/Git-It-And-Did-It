@@ -1,7 +1,7 @@
 import AuthActionTypes from "./types";
 
 const INITIAL_STATE = {
-  currentUser: { id: "", email: "", profile_icon: "", username: "", password: "", tasks: [] },
+  currentUser: { id: "", email: "", profile_icon: "", username: "", password: "" },
   error: null,
 };
 

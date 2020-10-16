@@ -18,7 +18,8 @@ class MainNav extends Component {
 
   render() {
 
-    let currentUser = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null
+    const { currentUser } = this.props
+
     let profileIcon = currentUser ? currentUser.profile_icon : null
 
     return (
@@ -28,14 +29,14 @@ class MainNav extends Component {
           <Nav className="mr-auto">
           </Nav>
           <Nav>
-            {JSON.parse(localStorage.getItem('token')) !== null ?
+            {currentUser !== null ?
               <NavDropdown title={<Image src={profileIcon} alt={null} width="40px" height="40px" />} id="lastMainNavItem">
                 <Link to="/" onClick={this.props.logOutStart} id="logoutoption">Log Out</Link>
               </NavDropdown> :
               <Link to="/login" id="log-in-link">
                 Log In
               </Link>}
-            {JSON.parse(localStorage.getItem('token')) ?
+            {currentUser !== null ?
               null :
               <Link to="/signup" id="sign-up-link">
                 Sign Up

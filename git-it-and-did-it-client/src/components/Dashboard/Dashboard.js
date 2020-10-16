@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/Auth/actions'
 import { getSpecificUser } from '../../redux/Users/actions'
@@ -31,21 +32,21 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <Image src={currentUser["profile_icon"]} id="specificUserProfileIcon" />
+        <Image src={currentUser.profile_icon} id="specificUserProfileIcon" />
         <br></br>
         <p className="specificUserProfileEdit"><Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEdit">
           Edit Profile
         </Link></p>
-        <h1 className="specificUserUsername">{currentUser["username"]}</h1>
+        <h1 className="specificUserUsername">{currentUser.username}</h1>
         <br></br>
-        <h5 className="specificUserEmail">{currentUser["email"]}</h5>
+        <h5 className="specificUserEmail">{currentUser.email}</h5>
         <br></br>
         <br></br>
         <h2 className="user-section">Tasks Reported</h2>
         <br></br>
         <CardDeck>
           <Container>
-            <Row style={{ marginLeft: "20%"}}>
+            <Row style={{ marginLeft: "20%" }}>
               {tasks.length === 0 ? <div>This user has not reported any tasks yet </div> : tasks.map(task => {
                 return (
                   <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">

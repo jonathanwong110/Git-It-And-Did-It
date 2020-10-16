@@ -35,7 +35,7 @@ class TaskEdit extends Component {
     if (specificTask.user === undefined) {
       return <div> No Task to be edited</div>
     }
-    if (Number(specificTask.user.id) !== Number(this.props.currentUser.id)) {
+    if (Number(specificTask.user_id) !== Number(this.props.currentUser.id)) {
       this.props.history.push(`/tasks/${specificTask.id}`)
     }
   }
