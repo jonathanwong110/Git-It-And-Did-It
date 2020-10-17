@@ -4,7 +4,7 @@ class Api::V1::AuthController < ApplicationController
     @user = User.find_by(username: params[:username])
     if !@user
       render json: { 
-        errors: { Username: [' is invalid!'] }
+        errors: { Username: [' does not exist'] }
       }, status: 500
     elsif @user && @user.authenticate(params[:password])
       render json: @user, status: 200

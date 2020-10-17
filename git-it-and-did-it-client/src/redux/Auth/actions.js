@@ -21,7 +21,7 @@ export const logInStart = (usernameAndPassword) => {
       dispatch(logInProcess(token))
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(dispatch(logInFailure(error)));
       return dispatch(logInFailure(error))
     });
   }
@@ -29,7 +29,7 @@ export const logInStart = (usernameAndPassword) => {
 
 export const logInFailure = (error) => ({
   type: AuthActionTypes.LOG_IN_FAILURE,
-  payload: error,
+  payload: error
 });
 
 export const logOutProcess = () => ({

@@ -25,7 +25,6 @@ class App extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.currentUser !== this.props.currentUser) {
       this.setState(this.props.currentUser)
-      console.log('testing')
     }
   }
 
@@ -34,12 +33,6 @@ class App extends Component {
   }
 
   render() {
-
-    let { currentUser } = this.props
-
-    if (this.isEmptyObject(currentUser)) {
-      return <div className="testing">There are no tasks here</div>
-    }
 
     return (
       <BrowserRouter>
@@ -53,16 +46,16 @@ class App extends Component {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:id" component={UserShow} />
-            <Route exact path="/users/:id/edit" component={UserEdit} />
-            <Route exact path="/dashboard" render={() => !currentUser ? <Redirect to="/login" /> : <Dashboard />} />
+            <Route exact path="/users/:id/edit" render={() => JSON.parse(localStorage.getItem('token')) ?  <UserEdit /> : <Redirect to="/login" />} />
+            <Route exact path="/dashboard" render={() => JSON.parse(localStorage.getItem('token')) ? <Dashboard /> : <Redirect to="/login" />} />
             <Route exact path="/tasks" component={Tasks} />
-            <Route exact path="/tasks/new" component={TaskNew} />
+            <Route exact path="/tasks/new" render={() => JSON.parse(localStorage.getItem('token')) ? <TaskNew /> : <Redirect to="/login" />} />
             <Route exact path="/tasks/:id" component={TaskShow} />
             <Route exact path="/tasks/category/:category" component={Tasks} />
             <Route exact path="/tasks/priority/:priority" component={Tasks} />
             <Route exact path="/tasks/status/:status" component={Tasks} />
             <Route exact path="/tasks/assignee/:assignee" component={Tasks} />
-            <Route exact path="/tasks/:id/edit" component={TaskEdit} />
+            <Route exact path="/tasks/:id/edit" render={() => JSON.parse(localStorage.getItem('token')) ? <TaskEdit /> : <Redirect to="/login" />} />
           </Switch>
         </div>
       </BrowserRouter>
