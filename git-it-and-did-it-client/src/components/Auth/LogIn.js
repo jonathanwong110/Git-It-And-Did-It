@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { logInStart } from '../../redux/Auth/actions'
 import { Form, Button } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
+import { capitalizeFirstLetter } from '../../appearance/appearanceFunctions'
 
 class LogInForm extends Component {
 
@@ -28,7 +29,7 @@ class LogInForm extends Component {
 
   render() {
 
-    const { error } = this.props
+    const { errors } = this.props
 
     if (localStorage.getItem('token')) {
       return <Redirect to="/dashboard" />
@@ -37,14 +38,11 @@ class LogInForm extends Component {
     return (
       <Form onSubmit={e => this.handleSubmit(e)} className="loginAndSignUpForm">
         <h1 className="newTaskFormHeading">Log In</h1>
-        {error.length > 0 ?
-          <div>
-            {error.map((error, i) => {
-              return <div className="errorMessage" key={i}> {error} </div>
-            })}
-          </div>
-          : null
-        }
+        {Object.keys(errors).map((keyName, i) => (
+            <div key={i}>
+              <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
+            </div>
+          ))}
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username: </Form.Label>
           <br></br>
@@ -65,8 +63,8 @@ class LogInForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    error: state.auth.error
+    errors: state.auth.errors
   }
 }
 
-export default connect(mapStateToProps, { logInStart })(LogInForm)
+export default connect(mapStateToProps, { logInStart, capitalizeFirstLetter })(LogInForm)

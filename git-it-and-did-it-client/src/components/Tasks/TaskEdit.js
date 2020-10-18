@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/Auth/actions.js'
 import { editTask, getSpecificTask } from '../../redux/Tasks/actions.js'
 import { loadUsers } from '../../redux/Users/actions.js'
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux'
 
 class TaskEdit extends Component {
 
@@ -81,7 +83,7 @@ class TaskEdit extends Component {
       assignee: '',
       description: '',
     });
-    this.props.editTask(updatedTask).then(_ => this.props.history.push(`/tasks/${updatedTask.id}`))
+    this.props.editTask(updatedTask, this.props.history)
   }
 
   render() {
@@ -154,8 +156,9 @@ const mapStateToProps = (state) => {
   return {
     users: state.users.users,
     currentUser: state.auth.currentUser,
-    specificTask: state.tasks.specificTask
+    specificTask: state.tasks.specificTask,
+    errors: state.tasks.errors
   }
 }
 
-export default connect(mapStateToProps, { setCurrentUser, editTask, loadUsers, getSpecificTask })(TaskEdit)
+export default compose(withRouter, connect(mapStateToProps, { setCurrentUser, editTask, loadUsers, getSpecificTask }))(TaskEdit)

@@ -2,7 +2,7 @@ import AuthActionTypes from "./types";
 
 const INITIAL_STATE = {
   currentUser: { id: "", email: "", profile_icon: "", username: "", password: "" },
-  error: [],
+  errors: {},
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
@@ -11,24 +11,24 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: action.payload,
-        error: []
+        errors: {}
       }
     case AuthActionTypes.LOG_IN_FAILURE:
       return {
         ...state,
-        error: ['Incorrect Username and/or Password']
+        errors: action.errors.response.data.errors
       }
     case AuthActionTypes.SET_CURRENT_USER:
       return {
         ...state,
         currentUser: action.currentUser,
-        error: [],
+        errors: {},
       };
     case AuthActionTypes.LOG_OUT_START:
       return {
         ...state,
         currentUser: {},
-        error: [],
+        errors: {},
       };
     default:
       return state;

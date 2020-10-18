@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   status: null,
   specificTask: {},
   assignedTasks: [],
-  errors: []
+  errors: {}
 };
 
 const tasksReducer = (state = INITIAL_STATE, action) => {
@@ -44,10 +44,10 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
         ...state,
         tasks: [...state.tasks, action.task]
       }
-    case TasksActionTypes.NEW_TASK_FAILURE:
+    case TasksActionTypes.TASK_FAILURE:
       return {
         ...state,
-        errors: action.errors
+        errors: action.errors.response.data.errors
       }
     case TasksActionTypes.DELETE_TASK:
       return {

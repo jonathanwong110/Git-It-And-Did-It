@@ -3,8 +3,9 @@ import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { addTask } from '../../redux/Tasks/actions.js'
 import { loadUsers } from '../../redux/Users/actions.js'
-import { withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux'
+import { capitalizeFirstLetter } from '../../appearance/appearanceFunctions'
 
 class TaskNew extends Component {
 
@@ -73,13 +74,15 @@ class TaskNew extends Component {
   render() {
     const { users, errors } = this.props
 
-    console.log(errors)
-
     return (
       <>
         <Form id="new-task-form" onSubmit={e => this.handleSubmit(e)}>
           <h1 className="newTaskFormHeading">Report a New Task</h1>
-          <br></br>
+          {Object.keys(errors).map((keyName, i) => (
+            <div key={i}>
+              <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
+            </div>
+          ))}
           <Form.Group>
             <Form.Label>Title</Form.Label>
             <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.state.title} className="form-input-field" />
@@ -141,4 +144,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(withRouter, connect(mapStateToProps, { addTask, loadUsers }))(TaskNew)
+export default compose(withRouter, connect(mapStateToProps, { addTask, loadUsers, capitalizeFirstLetter }))(TaskNew)

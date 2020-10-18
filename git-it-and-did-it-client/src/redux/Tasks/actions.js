@@ -34,8 +34,7 @@ export const addTask = (task, history) => {
         history.push('/tasks/' + newTaskId)
       })
       .catch(function (error) {
-        console.log(error)
-        return dispatch(newTaskFailure(error));
+        return dispatch({ type: TasksActionTypes.TASK_FAILURE, errors: error })
       });
   }
 }
@@ -46,7 +45,7 @@ export const newTaskProcess = (task) => ({
 })
 
 export const newTaskFailure = (error) => ({
-  type: TasksActionTypes.NEW_TASK_FAILURE,
+  type: TasksActionTypes.TASK_FAILURE,
   payload: error,
 });
 
