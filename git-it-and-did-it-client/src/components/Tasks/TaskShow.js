@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/Auth/actions'
-import { loadTasks, deleteTask, getSpecificTask } from '../../redux/Tasks/actions'
+import { deleteTask, getSpecificTask } from '../../redux/Tasks/actions'
 import { getTaskComments, deleteComment } from '../../redux/Comments/actions'
 import CommentNew from '../../components/Comments/CommentNew'
 import { Button } from 'react-bootstrap'
@@ -18,7 +18,7 @@ class TaskShow extends Component {
   }
 
   deleteCurrentTask = () => {
-    this.props.deleteTask(this.props.currentTask.id, this.props.history)
+    this.props.deleteTask(this.props.match.params.id, this.props.history)
   }
 
   render() {
@@ -36,7 +36,7 @@ class TaskShow extends Component {
         {currentUser.id === specificTask.user_id ?
           <Button className="task-options-button"><Link to={`/tasks/${specificTask.id}/edit`} className="task-options">Edit</Link></Button> : null}
         {currentUser.id === specificTask.user_id ?
-          <Button onClick={this.deletespecificTask} className="task-options">Delete</Button> : null}
+          <Button onClick={this.deleteCurrentTask} className="task-options">Delete</Button> : null}
         <div className="task-details-section">
           <p className="task-details-heading"> Details </p>
           <div className="task-traits-grid">
@@ -129,4 +129,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadTasks, setCurrentUser, deleteTask, deleteComment, getSpecificTask, getTaskComments, capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat })(TaskShow)
+export default connect(mapStateToProps, { setCurrentUser, deleteTask, deleteComment, getSpecificTask, getTaskComments, capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat })(TaskShow)

@@ -31,15 +31,6 @@ export const logInFailure = (error) => ({
   payload: error,
 });
 
-// export const logInFailure = (error) => {
-//   return (dispatch) => {
-//     axios.post(logInBaseURL).then(res => {
-//       dispatch({ type: AuthActionTypes.LOG_IN_FAILURE, error: res.data })
-//     })
-//   }
-// };
-
-
 export const logOutProcess = () => ({
   type: AuthActionTypes.LOG_OUT_START,
 });

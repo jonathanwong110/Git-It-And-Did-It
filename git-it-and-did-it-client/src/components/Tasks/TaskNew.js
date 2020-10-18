@@ -3,6 +3,8 @@ import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { addTask } from '../../redux/Tasks/actions.js'
 import { loadUsers } from '../../redux/Users/actions.js'
+import { withRouter} from 'react-router-dom';
+import { compose } from 'redux'
 
 class TaskNew extends Component {
 
@@ -69,7 +71,10 @@ class TaskNew extends Component {
   }
 
   render() {
-    const { users } = this.props
+    const { users, errors } = this.props
+
+    console.log(errors)
+
     return (
       <>
         <Form id="new-task-form" onSubmit={e => this.handleSubmit(e)}>
@@ -131,8 +136,9 @@ class TaskNew extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users
+    users: state.users.users,
+    errors: state.tasks.errors
   }
 }
 
-export default connect(mapStateToProps, { addTask, loadUsers })(TaskNew)
+export default compose(withRouter, connect(mapStateToProps, { addTask, loadUsers }))(TaskNew)

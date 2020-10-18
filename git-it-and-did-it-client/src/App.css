@@ -416,4 +416,6 @@ html, body {
 
 .errorMessage {
   text-align: center;
+  color: red;
+  margin: 10px;
 }

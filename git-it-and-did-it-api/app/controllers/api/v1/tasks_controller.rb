@@ -39,6 +39,10 @@ class Api::V1::TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       render json: @task, status: 200
+    else
+      render json: { 
+        errors: @task.errors 
+      }, status: 500 
     end
   end
 

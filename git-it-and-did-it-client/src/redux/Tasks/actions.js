@@ -26,25 +26,38 @@ export const getSpecificTask = (taskId) => {
 
 export const addTask = (task, history) => {
   return (dispatch) => {
-    axios.post(tasksBaseURL, task).then(res => {
-      dispatch({ type: TasksActionTypes.ADD_TASK, task: res.data })
-      axios.get(tasksBaseURL)
+    return axios.post(tasksBaseURL, task
+    )
       .then(function (res) {
-        let newTaskId = res.data.slice(-1).pop().id
+        dispatch({ type: TasksActionTypes.NEW_TASK_PROCESS, task: res.data })
+        const newTaskId = res.data.id
         history.push('/tasks/' + newTaskId)
       })
-    })
+      .catch(function (error) {
+        console.log(error)
+        return dispatch(newTaskFailure(error));
+      });
   }
 }
+
+export const newTaskProcess = (task) => ({
+  type: TasksActionTypes.NEW_TASK_PROCESS,
+  payload: task,
+})
+
+export const newTaskFailure = (error) => ({
+  type: TasksActionTypes.NEW_TASK_FAILURE,
+  payload: error,
+});
 
 export const deleteTask = (id, history) => {
   return (dispatch) => {
     axios.delete(tasksBaseURL + id).then(res => {
       dispatch({ type: TasksActionTypes.DELETE_TASK, taskId: id })
       axios.get(tasksBaseURL)
-      .then(function (response) {
-        history.push('/tasks')
-      })
+        .then(function (response) {
+          history.push('/tasks')
+        })
     })
   }
 }
