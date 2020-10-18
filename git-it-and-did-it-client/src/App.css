@@ -413,3 +413,7 @@ html, body {
 #assignee-search-button a {
   color: white !important;
 }
+
+.errorMessage {
+  text-align: center;
+}

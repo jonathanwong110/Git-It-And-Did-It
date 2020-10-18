@@ -14,23 +14,31 @@ export const logInStart = (usernameAndPassword) => {
     return axios.post(logInBaseURL,
       usernameAndPassword
     )
-    .then(function (response) {
-      const token = response.data
-      delete token.password
-      localStorage.setItem('token', JSON.stringify(token))
-      dispatch(logInProcess(token))
-    })
-    .catch(function (error) {
-      console.log(dispatch(logInFailure(error)));
-      return dispatch(logInFailure(error))
-    });
+      .then(function (response) {
+        const token = response.data
+        delete token.password
+        localStorage.setItem('token', JSON.stringify(token))
+        dispatch(logInProcess(token))
+      })
+      .catch(function (error) {
+        return dispatch(logInFailure(error))
+      });
   }
 }
 
 export const logInFailure = (error) => ({
   type: AuthActionTypes.LOG_IN_FAILURE,
-  payload: error
+  payload: error,
 });
+
+// export const logInFailure = (error) => {
+//   return (dispatch) => {
+//     axios.post(logInBaseURL).then(res => {
+//       dispatch({ type: AuthActionTypes.LOG_IN_FAILURE, error: res.data })
+//     })
+//   }
+// };
+
 
 export const logOutProcess = () => ({
   type: AuthActionTypes.LOG_OUT_START,
@@ -56,9 +64,9 @@ export const setCurrentUser = () => {
 
 export const signUp = (user) => {
   return (dispatch) => {
-    axios.post(usersBaseURL, {user}).then(res => {
-        dispatch({ type: AuthActionTypes.SIGN_UP, user: res.data})
-      }
+    axios.post(usersBaseURL, { user }).then(res => {
+      dispatch({ type: AuthActionTypes.SIGN_UP, user: res.data })
+    }
     )
   }
 }

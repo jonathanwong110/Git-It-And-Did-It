@@ -5,12 +5,12 @@ import { Form, Button } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 
 class LogInForm extends Component {
-  
+
   constructor() {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
     }
   }
 
@@ -28,28 +28,45 @@ class LogInForm extends Component {
 
   render() {
 
+    const { error } = this.props
+
     if (localStorage.getItem('token')) {
-      return <Redirect to="/dashboard" /> 
+      return <Redirect to="/dashboard" />
     }
 
     return (
-      <Form onSubmit={e => this.handleSubmit(e)} className="loginAndSignUpForm">
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label>Username: </Form.Label>
-          <br></br>
-          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="form-input-field" />
-        </Form.Group>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password: </Form.Label>
-          <br></br>
-          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="form-input-field"></input>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Log In
+      <div>
+        <div className="testing"> Log In</div>
+        {error.length > 0 ?
+          <div className="errorMessage">
+            {error.map(error => {
+              return <div className="errorMessage" key={1}> {error} </div>
+            })}
+          </div> : null}
+        <Form onSubmit={e => this.handleSubmit(e)} className="loginAndSignUpForm">
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Username: </Form.Label>
+            <br></br>
+            <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="form-input-field" />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password: </Form.Label>
+            <br></br>
+            <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="form-input-field"></input>
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Log In
         </Button>
-      </Form>
+        </Form>
+      </div>
     );
   }
 }
 
-export default connect(null, {logInStart})(LogInForm)
+function mapStateToProps(state) {
+  return {
+    error: state.auth.error
+  }
+}
+
+export default connect(mapStateToProps, { logInStart })(LogInForm)

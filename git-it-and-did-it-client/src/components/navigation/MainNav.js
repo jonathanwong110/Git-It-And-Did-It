@@ -29,14 +29,14 @@ class MainNav extends Component {
           <Nav className="mr-auto">
           </Nav>
           <Nav>
-            {currentUser !== null ?
+            {currentUser.id !== undefined ?
               <NavDropdown title={<Image src={profileIcon} alt={null} width="40px" height="40px" />} id="lastMainNavItem">
                 <Link to="/" onClick={this.props.logOutStart} id="logoutoption">Log Out</Link>
               </NavDropdown> :
               <Link to="/login" id="log-in-link">
                 Log In
               </Link>}
-            {currentUser !== null ?
+            {currentUser.id !== undefined ?
               null :
               <Link to="/signup" id="sign-up-link">
                 Sign Up
