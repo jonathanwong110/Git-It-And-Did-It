@@ -21,14 +21,22 @@ export const getSpecificUser = (userId) => {
   }
 }
 
-export const editUser = (user) => {
+export const userFailure = (error) => ({
+  type: UsersActionTypes.USER_FAILURE,
+  payload: error,
+});
+
+export const editUser = (user, history) => {
   return (dispatch) => {
-    return axios.patch(usersBaseURL + user.id, {user}).then(res => {
-        dispatch({ type: UsersActionTypes.EDIT_USER, user: res.data});
-        let token = {user}.user
-        delete token.password
-        return localStorage.setItem('token', JSON.stringify(token))
-      }
-    )
+    return axios.patch(usersBaseURL + user.id, { user }).then(res => {
+      dispatch({ type: UsersActionTypes.EDIT_USER, user: res.data });
+      let token = { user }.user
+      delete token.password
+      history.push('/dashboard')
+      return localStorage.setItem('token', JSON.stringify(token))
+    })
+      .catch(function (error) {
+        return dispatch({ type: UsersActionTypes.USER_FAILURE, errors: error })
+      })
   }
 }

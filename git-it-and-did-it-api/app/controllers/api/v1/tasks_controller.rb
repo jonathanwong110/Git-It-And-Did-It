@@ -49,6 +49,10 @@ class Api::V1::TasksController < ApplicationController
   def update
     if @task.update(task_params)
       render json: @task, status: 200
+    else
+      render json: { 
+        errors: @task.errors 
+      }, status: 500 
     end
   end
 

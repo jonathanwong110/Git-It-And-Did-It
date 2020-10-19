@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { signUp, logInStart } from '../../redux/Auth/actions'
+import { capitalizeFirstLetter } from '../../appearance/appearanceFunctions'
 
 class SignUpForm extends Component {
 
@@ -26,19 +27,26 @@ class SignUpForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newUser = { ...this.state }
-    this.props.signUp(newUser)
-    this.props.history.push('/login')
+    this.props.signUp(newUser, this.props.history)
   }
 
 
   render() {
 
+    const { errors } = this.props
+
     if (localStorage.getItem('token')) {
-      return <Redirect to="/dashboard" /> 
+      return <Redirect to="/dashboard" />
     }
 
     return (
       <Form onSubmit={e => this.handleSubmit(e)} className="loginAndSignUpForm">
+        <h1 className="newTaskFormHeading">Sign Up</h1>
+        {Object.keys(errors).map((keyName, i) => (
+          <div key={i}>
+            <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
+          </div>
+        ))}
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email: </Form.Label>
           <br></br>
@@ -67,4 +75,10 @@ class SignUpForm extends Component {
   }
 }
 
-export default connect(null, {signUp, logInStart})(SignUpForm)
+function mapStateToProps(state) {
+  return {
+    errors: state.auth.errors
+  }
+}
+
+export default connect(mapStateToProps, { signUp, logInStart, capitalizeFirstLetter })(SignUpForm)

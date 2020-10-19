@@ -6,6 +6,7 @@ import { editTask, getSpecificTask } from '../../redux/Tasks/actions.js'
 import { loadUsers } from '../../redux/Users/actions.js'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux'
+import { capitalizeFirstLetter } from '../../appearance/appearanceFunctions'
 
 class TaskEdit extends Component {
 
@@ -87,7 +88,7 @@ class TaskEdit extends Component {
   }
 
   render() {
-    const { users, specificTask } = this.props
+    const { users, specificTask, errors } = this.props
 
     if (specificTask.id === undefined) {
       return <div>No Task Here</div>
@@ -97,7 +98,11 @@ class TaskEdit extends Component {
       <>
         <Form id="new-task-form" onSubmit={e => this.handleSubmit(e)}>
           <h1 className="newTaskFormHeading">Edit Task</h1>
-          <br></br>
+          {Object.keys(errors).map((keyName, i) => (
+            <div key={i}>
+              <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
+            </div>
+          ))}
           <Form.Group>
             <Form.Label>Title</Form.Label>
             <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.state.title} className="form-input-field" />
@@ -161,4 +166,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(withRouter, connect(mapStateToProps, { setCurrentUser, editTask, loadUsers, getSpecificTask }))(TaskEdit)
+export default compose(withRouter, connect(mapStateToProps, { setCurrentUser, editTask, loadUsers, getSpecificTask, capitalizeFirstLetter }))(TaskEdit)

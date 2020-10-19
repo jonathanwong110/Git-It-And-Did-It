@@ -13,7 +13,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         currentUser: action.payload,
         errors: {}
       }
-    case AuthActionTypes.LOG_IN_FAILURE:
+    case AuthActionTypes.AUTH_FAILURE:
       return {
         ...state,
         errors: action.errors.response.data.errors

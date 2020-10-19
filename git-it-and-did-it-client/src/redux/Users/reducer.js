@@ -4,7 +4,8 @@ import AuthActionTypes from "../Auth/types";
 const INITIAL_STATE = {
   users: [],
   status: null,
-  specificUser: {}
+  specificUser: {},
+  errors: {}
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -40,6 +41,11 @@ const usersReducer = (state = INITIAL_STATE, action) => {
           }
           return user
         })
+      }
+    case UsersActionTypes.USER_FAILURE:
+      return {
+        ...state,
+        errors: action.errors.response.data.errors
       }
     default:
       return state

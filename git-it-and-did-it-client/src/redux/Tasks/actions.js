@@ -63,10 +63,13 @@ export const deleteTask = (id, history) => {
 
 export const editTask = (updatedTask) => {
   return (dispatch) => {
-    return axios.patch(tasksBaseURL + updatedTask.id, updatedTask).then(res => {
+    return axios.patch(tasksBaseURL + updatedTask.id, updatedTask)
+    .then(res => {
       dispatch({ type: TasksActionTypes.EDIT_TASK, task: res.data })
-    }
-    )
+    })
+    .catch(function (error) {
+      return dispatch({ type: TasksActionTypes.TASK_FAILURE, errors: error })
+    });
   }
 }
 

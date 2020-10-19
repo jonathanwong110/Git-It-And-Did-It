@@ -21,13 +21,13 @@ export const logInStart = (usernameAndPassword) => {
         dispatch(logInProcess(token))
       })
       .catch(function (error) {
-        return dispatch({ type: AuthActionTypes.LOG_IN_FAILURE, errors: error })
+        return dispatch({ type: AuthActionTypes.AUTH_FAILURE, errors: error })
       });
   }
 }
 
-export const logInFailure = (error) => ({
-  type: AuthActionTypes.LOG_IN_FAILURE,
+export const authFailure = (error) => ({
+  type: AuthActionTypes.AUTH_FAILURE,
   payload: error,
 });
 
@@ -53,11 +53,15 @@ export const setCurrentUser = () => {
   }
 }
 
-export const signUp = (user) => {
+export const signUp = (user, history) => {
   return (dispatch) => {
-    axios.post(usersBaseURL, { user }).then(res => {
-      dispatch({ type: AuthActionTypes.SIGN_UP, user: res.data })
-    }
-    )
+    axios.post(usersBaseURL, { user })
+      .then(res => {
+        dispatch({ type: AuthActionTypes.SIGN_UP, user: res.data })
+        history.push('/login')
+      })
+      .catch(function (error) {
+        return dispatch({ type: AuthActionTypes.AUTH_FAILURE, errors: error })
+      })
   }
 }
