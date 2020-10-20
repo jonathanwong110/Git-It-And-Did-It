@@ -39,6 +39,11 @@ class CommentNew extends Component {
   }
 
   render() {
+
+    if (JSON.parse(localStorage.getItem('token')) === null) {
+      return null
+    }
+
     return (
       <Form id="newCommentForm" onSubmit={e => this.handleSubmit(e)}>
         <Form.Group>

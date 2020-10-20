@@ -15,21 +15,12 @@ import TaskNew from './components/Tasks/TaskNew'
 import TaskEdit from './components/Tasks/TaskEdit'
 import { setCurrentUser } from './redux/Auth/actions'
 import { connect } from 'react-redux'
+const NotFound = () =>(<h1 className="testing">404</h1>)
 
 class App extends Component {
 
   componentDidMount() {
     this.props.setCurrentUser()
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.currentUser !== this.props.currentUser) {
-      this.setState(this.props.currentUser)
-    }
-  }
-
-  isEmptyObject(obj) {
-    return JSON.stringify(obj) === '{}';
   }
 
   render() {
@@ -50,12 +41,13 @@ class App extends Component {
             <Route exact path="/dashboard" render={() => JSON.parse(localStorage.getItem('token')) ? <Dashboard /> : <Redirect to="/login" />} />
             <Route exact path="/tasks" component={Tasks} />
             <Route exact path="/tasks/new" render={() => JSON.parse(localStorage.getItem('token')) ? <TaskNew /> : <Redirect to="/login" />} />
-            <Route exact path="/tasks/:id" component={TaskShow} />
+            <Route exact path="/tasks/:id" render={() => JSON.parse(localStorage.getItem('token')) ? <TaskShow /> : <Redirect to="/login" />} />
             <Route exact path="/tasks/category/:category" component={Tasks} />
             <Route exact path="/tasks/priority/:priority" component={Tasks} />
             <Route exact path="/tasks/status/:status" component={Tasks} />
             <Route exact path="/tasks/assignee/:assignee" component={Tasks} />
             <Route exact path="/tasks/:id/edit" render={() => JSON.parse(localStorage.getItem('token')) ? <TaskEdit /> : <Redirect to="/login" />} />
+            <Route component={NotFound}/>
           </Switch>
         </div>
       </BrowserRouter>

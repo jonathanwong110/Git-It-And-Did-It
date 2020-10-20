@@ -96,7 +96,7 @@ class TaskEdit extends Component {
 
     return (
       <>
-        <Form id="new-task-form" onSubmit={e => this.handleSubmit(e)}>
+        <Form className="taskForm" onSubmit={e => this.handleSubmit(e)}>
           <h1 className="newTaskFormHeading">Edit Task</h1>
           {Object.keys(errors).map((keyName, i) => (
             <div key={i}>

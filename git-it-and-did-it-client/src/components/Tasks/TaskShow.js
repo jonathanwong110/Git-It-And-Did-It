@@ -7,6 +7,8 @@ import CommentNew from '../../components/Comments/CommentNew'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat } from '../../appearance/appearanceFunctions'
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux'
 
 class TaskShow extends Component {
 
@@ -22,10 +24,11 @@ class TaskShow extends Component {
   }
 
   render() {
+    
     let { specificTask, currentUser, deleteComment, comments } = this.props
 
-    if (specificTask.id === undefined) {
-      return <div className="testing">There are no tasks here</div>
+    if (specificTask && specificTask.id === undefined) {
+      return <div className="testing">This task does not exist</div>
     }
 
     return (
@@ -41,15 +44,15 @@ class TaskShow extends Component {
           <p className="task-details-heading"> Details </p>
           <div className="task-traits-grid">
             <p className="task-traits"> Category: </p>
-            <p className="task-traits" id="tasks-trait-second-col">
+            <p className="tasks-trait-second-col">
               {categoryNameChanger(specificTask.category)}
             </p>
             <p className="task-traits"> Priority: </p>
-            <p className="task-traits" id="tasks-trait-second-col">
+            <p className="tasks-trait-second-col">
               {capitalizeFirstLetter(specificTask.priority)}
             </p>
             <p className="task-traits"> Status: </p>
-            <p className="task-traits" id="tasks-trait-second-col">
+            <p className="tasks-trait-second-col">
               {statusNameChanger(specificTask.status)}
             </p>
           </div>
@@ -59,11 +62,11 @@ class TaskShow extends Component {
           <p className="task-people-heading"> People </p>
           <div className="task-traits-grid">
             <p className="task-traits"> Reporter: </p>
-            <p className="task-traits" id="tasks-trait-second-col">
+            <p className="tasks-trait-second-col">
               {specificTask.user.username}
             </p>
             <p className="task-traits"> Assignee: </p>
-            <p className="task-traits" id="tasks-trait-second-col">
+            <p className="tasks-trait-second-col">
               {specificTask.assignee}
             </p>
           </div>
@@ -129,4 +132,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setCurrentUser, deleteTask, deleteComment, getSpecificTask, getTaskComments, capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat })(TaskShow)
+export default compose(withRouter, connect(mapStateToProps, { setCurrentUser, deleteTask, deleteComment, getSpecificTask, getTaskComments, capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat }))(TaskShow)

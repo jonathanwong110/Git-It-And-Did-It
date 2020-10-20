@@ -36,6 +36,10 @@ class UserShow extends Component {
 
     let { specificUser, tasks, assignedTasks } = this.props
 
+    if (specificUser && specificUser.id === undefined) {
+      return <div className="testing">This user does not exist</div>
+    }
+
     return (
       <div>
         <Image src={specificUser.profile_icon} id="specificUserProfileIcon" />

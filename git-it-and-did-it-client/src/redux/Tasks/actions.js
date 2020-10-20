@@ -61,11 +61,15 @@ export const deleteTask = (id, history) => {
   }
 }
 
-export const editTask = (updatedTask) => {
+export const editTask = (updatedTask, history) => {
   return (dispatch) => {
     return axios.patch(tasksBaseURL + updatedTask.id, updatedTask)
     .then(res => {
       dispatch({ type: TasksActionTypes.EDIT_TASK, task: res.data })
+      axios.get(tasksBaseURL)
+      .then(function (response) {
+        history.push(`/tasks/${updatedTask.id}`)
+      })
     })
     .catch(function (error) {
       return dispatch({ type: TasksActionTypes.TASK_FAILURE, errors: error })

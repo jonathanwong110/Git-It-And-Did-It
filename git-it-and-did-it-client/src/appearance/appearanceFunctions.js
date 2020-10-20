@@ -30,12 +30,12 @@ export const changeTimeFormat = (str) => {
   if (hoursOfTime > 12) {
     let newHoursOfTime = hoursOfTime - 12
     let finalHoursOfTime = newHoursOfTime.toString()
-    let finalTime = finalHoursOfTime + ':' + minutesOfTime + 'PM'
+    let finalTime = finalHoursOfTime + ':' + minutesOfTime + ' PM'
     return finalTime
   } else {
     let hoursOfTime = parseInt(str.slice(12, 13))
     let finalHoursOfTime = hoursOfTime.toString()
-    let finalTime = finalHoursOfTime + ':' + minutesOfTime + 'AM'
+    let finalTime = finalHoursOfTime + ':' + minutesOfTime + ' AM'
     return finalTime
   }
 }

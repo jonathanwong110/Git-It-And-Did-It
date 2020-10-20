@@ -209,6 +209,12 @@ html, body {
   padding-right: 10px;
 }
 
+.tasks-trait-second-col {
+  font-size: 17px;
+  padding-right: 10px;
+  margin-left: 30px;
+}
+
 .task-people-section {
   position: absolute;
   right: 15%;
@@ -221,10 +227,6 @@ html, body {
   right: 15%;
   width: 20%;
   white-space: nowrap;
-}
-
-#tasks-trait-second-col {
-  margin-left: 30px;
 }
 
 .task-comment-heading {
