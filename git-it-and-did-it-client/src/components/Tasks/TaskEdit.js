@@ -97,7 +97,7 @@ class TaskEdit extends Component {
     return (
       <>
         <Form className="taskForm" onSubmit={e => this.handleSubmit(e)}>
-          <h1 className="newTaskFormHeading">Edit Task</h1>
+          <h1 className="taskFormHeading">Edit Task</h1>
           {Object.keys(errors).map((keyName, i) => (
             <div key={i}>
               <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
@@ -105,12 +105,12 @@ class TaskEdit extends Component {
           ))}
           <Form.Group>
             <Form.Label>Title</Form.Label>
-            <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.state.title} className="form-input-field" />
+            <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.state.title} className="formInputField" />
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Category: </Form.Label>
-            <select type="select" onChange={e => this.handleCategoryChange(e)} className="form-input-field" value={this.state.category}>
+            <select type="select" onChange={e => this.handleCategoryChange(e)} className="formInputField" value={this.state.category}>
               <option value="bugs"> Bugs </option>
               <option value="new_features"> New Feature </option>
             </select>
@@ -118,7 +118,7 @@ class TaskEdit extends Component {
 
           <Form.Group>
             <Form.Label>Status: </Form.Label>
-            <select type="select" onChange={e => this.handleStatusChange(e)} className="form-input-field" value={this.state.status}>
+            <select type="select" onChange={e => this.handleStatusChange(e)} className="formInputField" value={this.state.status}>
               <option value="to_do"> To Do </option>
               <option value="in_progress"> In Progress </option>
               <option value="finished"> Finished </option>
@@ -127,7 +127,7 @@ class TaskEdit extends Component {
 
           <Form.Group>
             <Form.Label>Priority: </Form.Label>
-            <select type="select" onChange={e => this.handlePriorityChange(e)} className="form-input-field" value={this.state.priority}>
+            <select type="select" onChange={e => this.handlePriorityChange(e)} className="formInputField" value={this.state.priority}>
               <option value="low"> Low </option>
               <option value="medium"> Medium </option>
               <option value="high"> High </option>
@@ -136,7 +136,7 @@ class TaskEdit extends Component {
 
           <Form.Group>
             <Form.Label>Assignee: </Form.Label>
-            <select type="select" className="form-input-field" onChange={e => this.handleAssigneeChange(e)} value={this.state.assignee} >
+            <select type="select" className="formInputField" onChange={e => this.handleAssigneeChange(e)} value={this.state.assignee} >
               {users.map(user => {
                 return <option key={user.id} value={user.username}>{user.username}</option>
               })}
@@ -145,10 +145,10 @@ class TaskEdit extends Component {
 
           <Form.Group>
             <Form.Label>Description</Form.Label>
-            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.state.description} className="form-input-field" />
+            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.state.description} className="formInputField" />
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="formSubmit">
+          <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>

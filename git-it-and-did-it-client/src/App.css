@@ -135,7 +135,7 @@ html, body {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-#new-task-form, .loginAndSignUpForm, #editUserForm {
+.taskForm, .loginAndSignUpForm, #editUserForm {
   min-width: 150px;
   max-width: 200px;
   width: 20%;
@@ -143,13 +143,13 @@ html, body {
   text-align: center;
 }
 
-.form-input-field {
+.formInputField {
   width: 100%;
   margin: 0 auto;
   height: calc(1.5em + .75rem + 2px);
 }
 
-.form-input-field::-webkit-input-placeholder {
+.formInputField::-webkit-input-placeholder {
   padding-left: 5px;
 }
 
@@ -165,71 +165,71 @@ html, body {
   text-align: center;
 }
 
-.individual-task {
+.individualTask {
   margin-left: 250px;
 }
 
-.task-title {
+.taskTitle {
   font-size: 45px;
   font-weight: 600;
 }
 
-.task-details-heading, .task-people-heading, .task-description-heading, .task-comment-heading, .task-date-heading {
+.taskDetailsHeading, .taskPeopleHeading, .taskDescriptionHeading, .taskCommentHeading, .taskDateHeading {
   font-size: 30px;
   border-bottom: 1px solid black;
   color: #1a8cff;
 }
 
-.task-details-section, .task-people-section {
+.taskDetailsSection, .taskPeopleSection {
   position: absolute;
   top: 235px;
   width: 30%;
 }
 
-.task-details-section, .task-description-section {
+.taskDetailsSection, .taskDescriptionSection {
   width: 40%;
   margin: 0;
   font-weight: 500;
 }
 
-.task-description-section, .task-dates-section {
+.taskDescriptionSection, .taskDatesSection {
   position: absolute;
   top: 430px;
   font-weight: 500;
 }
 
-.task-traits-grid {
+.taskTraitsGrid {
   display: inline-grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 20px;
 }
 
-.task-traits {
+.taskTraits {
   font-size: 17px;
   padding-right: 10px;
 }
 
-.tasks-trait-second-col {
+.tasksTraitSecondCol {
   font-size: 17px;
   padding-right: 10px;
   margin-left: 30px;
 }
 
-.task-people-section {
+.taskPeopleSection {
   position: absolute;
   right: 15%;
   width: 20%;
   font-weight: 500;
 }
 
-.task-dates-section {
+.taskDatesSection {
   position: absolute;
   right: 15%;
   width: 20%;
   white-space: nowrap;
 }
 
-.task-comment-heading {
+.taskCommentHeading {
   position: absolute;
   top: 650px;
   border-bottom: 1px solid black;
@@ -237,34 +237,34 @@ html, body {
   font-weight: 500;
 }
 
-.task-comments-section {
+.taskCommentsSection {
   position: absolute;
   top: 825px;
 }
 
-.task-individual-comment {
+.taskIndividualComment {
   display: inline-grid;
   grid-template-columns: repeat(4, 1fr);
 }
 
-.task-comment-header-section {
+.taskCommentAttributeDetail {
   font-weight: 500;
   padding-right: 10px;
   padding-top: 7px;
 }
 
-#task-comment-delete-button {
+#taskCommentDeleteButton {
   width: 10px;
   height: 10px;
   padding-right: 22px;
   padding-bottom: 30px;
 }
 
-.specificUserUsername, .specificUserEmail, .usernameShow, .usernameEmail, .user-section, .newTaskFormHeading, .loginAndSignUpForm, #editUserForm, .formHeading {
+.specificUserUsername, .specificUserEmail, .usernameShow, .usernameEmail, .user-section, .taskFormHeading, .loginAndSignUpForm, #editUserForm, .formHeading {
   text-align: center;
 }
 
-.form-input-field {
+.formInputField {
   border: 1px solid grey;
   border-radius: 5px;
 }
@@ -273,7 +273,7 @@ html, body {
   padding-left: 5px;
 }
 
-#searchForm:focus, .form-input-field:focus, #assignee-search-input:focus {
+#searchForm:focus, .formInputField:focus, #assignee-search-input:focus {
   border: 1px solid #286EFA !important;
   outline-width: 0;
 }
@@ -358,16 +358,16 @@ html, body {
   display: none;
 }
 
-.task-options {
+.taskOptionsLink {
   color: white;
 }
 
-.task-options:hover {
+.taskOptionsLink:hover {
   text-decoration: none;
   color: white;
 }
 
-.task-options-button {
+.taskOptionsButton {
   margin-right: 10px;
 }
 

@@ -61,17 +61,17 @@ class UserEdit extends Component {
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email: </Form.Label>
             <br></br>
-            <input name="email" type="text" placeholder="Email" onChange={e => this.handleChange(e)} value={this.state.email} className="form-input-field" />
+            <input name="email" type="text" placeholder="Email" onChange={e => this.handleChange(e)} value={this.state.email} className="formInputField" />
           </Form.Group>
           <Form.Group controlId="formBasicProfileIcon">
             <Form.Label>Profile Icon: </Form.Label>
             <br></br>
-            <input name="profile_icon" type="text" placeholder="Profile Icon" onChange={e => this.handleChange(e)} value={this.state.profile_icon} className="form-input-field" />
+            <input name="profile_icon" type="text" placeholder="Profile Icon" onChange={e => this.handleChange(e)} value={this.state.profile_icon} className="formInputField" />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password: </Form.Label>
             <br></br>
-            <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="form-input-field"></input>
+            <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"></input>
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit

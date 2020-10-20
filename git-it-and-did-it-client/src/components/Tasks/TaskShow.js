@@ -24,7 +24,7 @@ class TaskShow extends Component {
   }
 
   render() {
-    
+
     let { specificTask, currentUser, deleteComment, comments } = this.props
 
     if (specificTask && specificTask.id === undefined) {
@@ -32,86 +32,84 @@ class TaskShow extends Component {
     }
 
     return (
-      <div className="individual-task">
-        <p className="task-title">
+      <div className="individualTask">
+        <p className="taskTitle">
           {capitalizeFirstLetter(specificTask.title)}
         </p>
         {currentUser.id === specificTask.user_id ?
-          <Button className="task-options-button"><Link to={`/tasks/${specificTask.id}/edit`} className="task-options">Edit</Link></Button> : null}
+          <Button className="taskOptionsButton"><Link to={`/tasks/${specificTask.id}/edit`} className="taskOptionsLink">Edit</Link></Button> : null}
         {currentUser.id === specificTask.user_id ?
-          <Button onClick={this.deleteCurrentTask} className="task-options">Delete</Button> : null}
-        <div className="task-details-section">
-          <p className="task-details-heading"> Details </p>
-          <div className="task-traits-grid">
-            <p className="task-traits"> Category: </p>
-            <p className="tasks-trait-second-col">
+          <Button onClick={this.deleteCurrentTask} className="taskOptionsButtons">Delete</Button> : null}
+        <div className="taskDetailsSection">
+          <p className="taskDetailsHeading"> Details </p>
+          <div className="taskTraitsGrid">
+            <p className="taskTraits"> Category: </p>
+            <p className="tasksTraitSecondCol">
               {categoryNameChanger(specificTask.category)}
             </p>
-            <p className="task-traits"> Priority: </p>
-            <p className="tasks-trait-second-col">
+            <p className="taskTraits"> Priority: </p>
+            <p className="tasksTraitSecondCol">
               {capitalizeFirstLetter(specificTask.priority)}
             </p>
-            <p className="task-traits"> Status: </p>
-            <p className="tasks-trait-second-col">
+            <p className="taskTraits"> Status: </p>
+            <p className="tasksTraitSecondCol">
               {statusNameChanger(specificTask.status)}
             </p>
           </div>
         </div>
         <br></br>
-        <div className="task-people-section">
-          <p className="task-people-heading"> People </p>
-          <div className="task-traits-grid">
-            <p className="task-traits"> Reporter: </p>
-            <p className="tasks-trait-second-col">
+        <div className="taskPeopleSection">
+          <p className="taskPeopleHeading"> People </p>
+          <div className="taskTraitsGrid">
+            <p className="taskTraits"> Reporter: </p>
+            <p className="tasksTraitSecondCol">
               {specificTask.user.username}
             </p>
-            <p className="task-traits"> Assignee: </p>
-            <p className="tasks-trait-second-col">
+            <p className="taskTraits"> Assignee: </p>
+            <p className="tasksTraitSecondCol">
               {specificTask.assignee}
             </p>
           </div>
         </div>
         <br></br>
-        <div className="task-description-section">
-          <p className="task-description-heading"> Description </p>
-          <div className="task-description-details">
-            <p className="task-traits">
-              {capitalizeFirstLetter(specificTask.description)}
-            </p>
-          </div>
+        <div className="taskDescriptionSection">
+          <p className="taskDescriptionHeading"> Description </p>
+          <p className="taskTraits">
+            {capitalizeFirstLetter(specificTask.description)}
+          </p>
         </div>
-        <div className="task-dates-section">
-          <p className="task-date-heading"> Dates </p>
-          <div className="task-traits-grid">
-            <p className="task-traits"> Created: </p>
-            <p className="task-traits">
+        <div className="taskDatesSection">
+          <p className="taskDateHeading"> Dates </p>
+          <div className="taskTraitsGrid">
+            <p className="taskTraits"> Created: </p>
+            <p className="taskTraits">
               {changeDateFormat(specificTask.created_at) + ' ' + changeTimeFormat(specificTask.created_at)}
             </p>
-            <p className="task-traits"> Updated: </p>
-            <p className="task-traits">
+            <p className="taskTraits"> Updated: </p>
+            <p className="taskTraits">
               {changeDateFormat(specificTask.updated_at) + ' ' + changeTimeFormat(specificTask.updated_at)}
             </p>
           </div>
         </div>
         <br></br>
         <br></br>
-        <p className="task-comment-heading">Comments</p>
+        <p className="taskCommentHeading">Comments</p>
         <CommentNew task={specificTask} />
-        <div className="task-comments-section">
+        <div className="taskCommentsSection">
           {comments.map(comment => {
             return (
               <div key={comment.id}>
-                <div key={comment.id} className="task-individual-comment">
-                  <p className="task-comment-header-section">
+                <div key={comment.id} className="taskIndividualComment">
+                  <p className="taskCommentAttributeDetail">
                     {comment.username}
                   </p>
-                  <p className="task-comment-header-section">
+                  <p className="taskCommentAttributeDetail">
                     {changeDateFormat(comment.created_at)}
                   </p>
-                  <p className="task-comment-header-section">
+                  <p className="taskCommentAttributeDetail">
                     {changeTimeFormat(comment.created_at)}
                   </p>
-                  {JSON.parse(localStorage.getItem('token')).id === specificTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" className="task-comment-header-section" id="task-comment-delete-button" onClick={() => deleteComment(comment.id)}>X</Button> : null}
+                  {JSON.parse(localStorage.getItem('token')).id === specificTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" id="taskCommentDeleteButton" onClick={() => deleteComment(comment.id)}>X</Button> : null}
                 </div>
                 <div> {comment.content} </div>
                 <br></br>

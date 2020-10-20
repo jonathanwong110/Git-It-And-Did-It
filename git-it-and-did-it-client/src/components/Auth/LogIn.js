@@ -46,12 +46,12 @@ class LogInForm extends Component {
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username: </Form.Label>
           <br></br>
-          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="form-input-field" />
+          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="formInputField" />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password: </Form.Label>
           <br></br>
-          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="form-input-field"></input>
+          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"></input>
         </Form.Group>
         <Button variant="primary" type="submit">
           Log In
