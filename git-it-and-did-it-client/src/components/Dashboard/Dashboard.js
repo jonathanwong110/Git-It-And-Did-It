@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/Auth/actions'
 import { getSpecificUser } from '../../redux/Users/actions'
 import { getUserTasks, loadTasks, getAssignedTasks } from '../../redux/Tasks/actions'
-import { CardDeck, Container, Row, Card, Button, Image } from 'react-bootstrap'
+import { CardDeck, Container, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
+import TaskDisplay from '../Tasks/TaskDisplay'
 
 class Dashboard extends Component {
 
@@ -27,101 +28,53 @@ class Dashboard extends Component {
 
   render() {
 
-    let { currentUser, tasks, assignedTasks } = this.props
+    let { currentUser, tasks, assignedTasks, match } = this.props
 
     return (
       <div>
         <Image src={currentUser.profile_icon} id="specificUserProfileIcon" />
         <br></br>
-        <p className="specificUserProfileEdit"><Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEdit">
-          Edit Profile
-        </Link></p>
+        <div className="specificUserProfileEdit">
+          <Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEdit">
+            Edit Profile
+          </Link>
+        </div>
+        <br></br>
         <h1 className="specificUserUsername">{currentUser.username}</h1>
         <br></br>
         <h5 className="specificUserEmail">{currentUser.email}</h5>
         <br></br>
-        <br></br>
-        <h2 className="user-section">Tasks Reported</h2>
+        <h2 className="taskSection">Tasks Reported</h2>
         <br></br>
         <CardDeck>
           <Container>
-            <Row style={{ marginLeft: "20%" }}>
-              {tasks.length === 0 ? <div>This user has not reported any tasks yet </div> : tasks.map(task => {
-                return (
-                  <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
-                    <Card.Body key={task.id}>
-                      <Card.Title className="cardTitle">
-                        {capitalizeFirstLetter(task.title)}
-                      </Card.Title>
-                      <Card.Text>
-                        {categoryNameChanger(task.category)}
-                      </Card.Text>
-                      <Card.Text>
-                        {capitalizeFirstLetter(task.priority)}
-                      </Card.Text>
-                      <Card.Text>
-                        {statusNameChanger(task.status)}
-                      </Card.Text>
-                      <Card.Text>
-                        Reporter: {task.user.username}
-                      </Card.Text>
-                      <Card.Text>
-                        Assignee: {capitalizeFirstLetter(task.assignee)}
-                      </Card.Text>
-                      <Button variant="primary">
-                        <Link to={`/tasks/${task.id}`} className="more-details">
-                          View Details
-                        </Link>
-                      </Button>
-                      <br></br>
-                      <br></br>
-                    </Card.Body>
-                  </Card>
-                )
-              })}
+            <Row className="cardRow">
+              {tasks.length === 0 ?
+                <div className="emptySection">This user has not reported any tasks yet </div> :
+                tasks.map(task => {
+                  return (
+                    <TaskDisplay key={task.id} task={task} match={match} />
+                  )
+                })
+              }
             </Row>
           </Container>
         </CardDeck>
         <br></br>
         <br></br>
-        <h2 className="user-section">Tasks Assigned</h2>
+        <h2 className="taskSection">Tasks Assigned</h2>
         <br></br>
         <CardDeck>
           <Container>
-            <Row style={{ marginLeft: "20%" }}>
-              {assignedTasks.length === 0 ? <div>This user has not been assigned tasks yet </div> : assignedTasks.map(task => {
-                return (
-                  <Card style={{ width: '13rem', marginBottom: '30px' }} key={task.id} className="card-display">
-                    <Card.Body key={task.id}>
-                      <Card.Title className="cardTitle">
-                        {capitalizeFirstLetter(task.title)}
-                      </Card.Title>
-                      <Card.Text>
-                        {categoryNameChanger(task.category)}
-                      </Card.Text>
-                      <Card.Text>
-                        {capitalizeFirstLetter(task.priority)}
-                      </Card.Text>
-                      <Card.Text>
-                        {statusNameChanger(task.status)}
-                      </Card.Text>
-                      <Card.Text>
-                        Reporter: {task.user.username}
-                      </Card.Text>
-                      <Card.Text>
-                        Assignee: {capitalizeFirstLetter(task.assignee)}
-                      </Card.Text>
-                      <Button variant="primary">
-                        <Link to={`/tasks/${task.id}`} className="more-details">
-                          View Details
-                        </Link>
-                      </Button>
-                      <br></br>
-                      <br></br>
-                    </Card.Body>
-                  </Card>
-                )
-              })}
+            <Row className="cardRow">
+              {assignedTasks.length === 0 ?
+                <div className="emptySection">This user has not been assigned tasks yet </div> :
+                assignedTasks.map(task => {
+                  return (
+                    <TaskDisplay key={task.id} task={task} match={match} />
+                  )
+                })
+              }
             </Row>
           </Container>
         </CardDeck>

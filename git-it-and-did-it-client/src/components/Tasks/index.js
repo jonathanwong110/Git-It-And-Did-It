@@ -116,7 +116,7 @@ class Tasks extends Component {
         </Navbar>
         <CardDeck>
           <Container>
-            <Row style={{ marginLeft: "17.5%" }}>
+            <Row className="cardRow">
               {tasks.map(task => {
                 return (
                   <TaskDisplay key={task.id} task={task} match={match} />

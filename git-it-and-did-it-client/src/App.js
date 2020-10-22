@@ -15,7 +15,7 @@ import TaskNew from './components/Tasks/TaskNew'
 import TaskEdit from './components/Tasks/TaskEdit'
 import { setCurrentUser } from './redux/Auth/actions'
 import { connect } from 'react-redux'
-const NotFound = () =>(<h1 className="testing">404</h1>)
+const NotFound = () =>(<h1 className="emptySection">404</h1>)
 
 class App extends Component {
 

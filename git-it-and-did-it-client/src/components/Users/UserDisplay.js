@@ -7,9 +7,11 @@ export default function UserDisplay(props) {
   const { user } = props
 
   return (
-    <Card style={{ width: '13rem', margin: '20px' }} className="card-display">
-      <Card.Body className="cardBodyDisplay">
-        <Card.Title className="cardTitle">{user.username}</Card.Title>
+    <Card style={{ width: '13rem', margin: '20px' }}>
+      <Card.Body>
+        <Card.Title>
+          {user.username}
+        </Card.Title>
         <Image src={user.profile_icon} id="profile-image" />
         <Card.Text>
           {user.email}

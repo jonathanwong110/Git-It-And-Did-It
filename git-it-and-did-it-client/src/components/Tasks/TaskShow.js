@@ -28,7 +28,7 @@ class TaskShow extends Component {
     let { specificTask, currentUser, deleteComment, comments } = this.props
 
     if (specificTask && specificTask.id === undefined) {
-      return <div className="testing">This task does not exist</div>
+      return <div className="emptySection">This task does not exist</div>
     }
 
     return (
