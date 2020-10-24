@@ -35,7 +35,7 @@ class Dashboard extends Component {
         <Image src={currentUser.profile_icon} id="specificUserProfileIcon" />
         <br></br>
         <div className="specificUserProfileEdit">
-          <Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEdit">
+          <Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEditLink">
             Edit Profile
           </Link>
         </div>

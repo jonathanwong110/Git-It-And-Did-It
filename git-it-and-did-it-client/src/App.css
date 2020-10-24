@@ -119,7 +119,16 @@ html, body {
 }
 
 .cardRow.row {
-  margin-left: 11%;
+  margin-left: calc(30% - 12rem) !important;
+}
+
+@media (max-width: 575.98px) { 
+  .row{
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: auto auto auto !important;
+    text-align: center;
+  }
 }
 
 .card {
@@ -311,6 +320,12 @@ html, body {
   min-width: 100px;
 }
 
+#specificUserProfileIcon, .specificUserProfileEdit, .specificUserUsername, .specificUserEmail {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #specificUserProfileIcon {
   height: 200px;
   width: 200px;
@@ -319,13 +334,13 @@ html, body {
   margin-right: auto;
 }
 
-.specificUserProfileEdit {
+.specificUserProfileEdit, .specificUserProfileEditLink {
   font-size: 20px;
   text-align: center;
   color: black;
 }
 
-.specificUserProfileEdit:hover {
+.specificUserProfileEditLink:hover {
   text-decoration: none;
   color: black;
 }
