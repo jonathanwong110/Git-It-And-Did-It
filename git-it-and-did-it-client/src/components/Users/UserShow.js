@@ -43,24 +43,26 @@ class UserShow extends Component {
 
     return (
       <div>
-        <Image src={specificUser.profile_icon} id="specificUserProfileIcon" />
-        <br></br>
-        <div className="specificUserProfileEdit">
-          <Link to={`users/${specificUser.id}/edit`} className="specificUserProfileEdit">
-            Edit Profile
+        <div className="profileSectionWrapper">
+          <Image src={specificUser.profile_icon} id="specificUserProfileIcon" />
+          <br></br>
+          <div className="specificUserProfileEdit">
+            <Link to={`users/${specificUser.id}/edit`} className="specificUserProfileEditLink">
+              Edit Profile
           </Link>
+          </div>
+          <br></br>
+          <h1 className="specificUserUsername">{specificUser.username}</h1>
+          <br></br>
+          <h5 className="specificUserEmail">{specificUser.email}</h5>
+          <br></br>
+          <br></br>
+          <h2 className="taskSection">Tasks Reported</h2>
+          <br></br>
         </div>
-        <br></br>
-        <h1 className="specificUserUsername">{specificUser.username}</h1>
-        <br></br>
-        <h5 className="specificUserEmail">{specificUser.email}</h5>
-        <br></br>
-        <br></br>
-        <h2 className="taskSection">Tasks Reported</h2>
-        <br></br>
         <CardDeck>
           <Container>
-            <Row style={{ marginLeft: "17.5%" }}>
+            <Row className="taskRow">
               {tasks.length === 0 ?
                 <div>This user has not reported any tasks yet </div> :
                 tasks.map(task => {
@@ -72,13 +74,15 @@ class UserShow extends Component {
             </Row>
           </Container>
         </CardDeck>
-        <br></br>
-        <br></br>
-        <h2 className="taskSection">Tasks Assigned</h2>
-        <br></br>
+        <div className="profileSectionWrapper">
+          <br></br>
+          <br></br>
+          <h2 className="taskSection">Tasks Assigned</h2>
+          <br></br>
+        </div>
         <CardDeck>
           <Container>
-            <Row style={{ marginLeft: "17.5%" }}>
+            <Row className="taskRow">
               {assignedTasks.length === 0 ?
                 <div>This user has not been assigned tasks yet </div> :
                 assignedTasks.map(task => {

@@ -116,7 +116,7 @@ class Tasks extends Component {
         </Navbar>
         <CardDeck>
           <Container>
-            <Row className="cardRow">
+            <Row className="taskRow">
               {tasks.map(task => {
                 return (
                   <TaskDisplay key={task.id} task={task} match={match} />

@@ -32,23 +32,25 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <Image src={currentUser.profile_icon} id="specificUserProfileIcon" />
-        <br></br>
-        <div className="specificUserProfileEdit">
-          <Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEditLink">
-            Edit Profile
+        <div className="profileSectionWrapper">
+          <Image src={currentUser.profile_icon} id="specificUserProfileIcon" />
+          <br></br>
+          <div className="specificUserProfileEdit">
+            <Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEditLink">
+              Edit Profile
           </Link>
+          </div>
+          <br></br>
+          <h1 className="specificUserUsername">{currentUser.username}</h1>
+          <br></br>
+          <h5 className="specificUserEmail">{currentUser.email}</h5>
+          <br></br>
+          <h2 className="taskSection">Tasks Reported</h2>
+          <br></br>
         </div>
-        <br></br>
-        <h1 className="specificUserUsername">{currentUser.username}</h1>
-        <br></br>
-        <h5 className="specificUserEmail">{currentUser.email}</h5>
-        <br></br>
-        <h2 className="taskSection">Tasks Reported</h2>
-        <br></br>
         <CardDeck>
           <Container>
-            <Row className="cardRow">
+            <Row className="taskRow">
               {tasks.length === 0 ?
                 <div className="emptySection">This user has not reported any tasks yet </div> :
                 tasks.map(task => {
@@ -60,13 +62,15 @@ class Dashboard extends Component {
             </Row>
           </Container>
         </CardDeck>
-        <br></br>
-        <br></br>
-        <h2 className="taskSection">Tasks Assigned</h2>
-        <br></br>
+        <div className="profileSectionWrapper">
+          <br></br>
+          <br></br>
+          <h2 className="taskSection">Tasks Assigned</h2>
+          <br></br>
+        </div>
         <CardDeck>
           <Container>
-            <Row className="cardRow">
+            <Row className="taskRow">
               {assignedTasks.length === 0 ?
                 <div className="emptySection">This user has not been assigned tasks yet </div> :
                 assignedTasks.map(task => {
