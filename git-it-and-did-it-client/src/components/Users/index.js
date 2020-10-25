@@ -17,7 +17,7 @@ class Users extends Component {
     return (
       <CardDeck>
         <Container>
-          <Row style={{ marginLeft: "17.5%" }}>
+          <Row className="userRow">
             {users.map(user => {
               return (
                 <UserDisplay key={user.id} user={user} match={match}/>
