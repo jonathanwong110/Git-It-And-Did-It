@@ -557,3 +557,9 @@ html, body {
 .emptySection {
   margin: auto auto auto auto;
 }
+
+.emptyPage {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 500;
+}
