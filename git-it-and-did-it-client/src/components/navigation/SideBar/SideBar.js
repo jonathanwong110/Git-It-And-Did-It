@@ -5,7 +5,7 @@ import Menu from './Menu/Menu'
 const Container = styled.div`
   position: fixed;
   left: 0;
-  top: 50px;
+  top: 47px;
   bottom: 0;
   background-color: #618685;
   width: 12rem;

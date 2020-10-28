@@ -90,8 +90,8 @@ class TaskEdit extends Component {
   render() {
     const { users, specificTask, errors } = this.props
 
-    if (specificTask.id === undefined) {
-      return <div>No Task Here</div>
+    if (specificTask && specificTask.id === undefined) {
+      return <div className="emptyPage">This task does not exist</div>
     }
 
     return (

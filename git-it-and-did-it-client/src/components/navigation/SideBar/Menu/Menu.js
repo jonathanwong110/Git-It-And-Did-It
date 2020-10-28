@@ -18,7 +18,7 @@ const Menu = () => {
   const usersIcon = <FontAwesomeIcon icon={faUsers} />
 
   return (
-    <Container>
+    <Container className="sidebar-grid">
       <div className="sidebar-option">
         <Link to="/dashboard">
           <MenuLink title="Dashboard" icon={homeIcon} />
