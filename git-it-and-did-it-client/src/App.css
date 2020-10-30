@@ -254,7 +254,7 @@ html, body {
   text-align: center;
 }
 
-.taskForm, .loginAndSignUpForm, #editUserForm {
+.gidiForm {
   min-width: 150px;
   max-width: 200px;
   width: 20%;
@@ -367,7 +367,7 @@ html, body {
   padding-bottom: 30px;
 }
 
-.specificUserUsername, .specificUserEmail, .taskSection, .taskFormHeading, .loginAndSignUpForm, #editUserForm, .formHeading {
+.specificUserUsername, .specificUserEmail, .taskSection, #editUserForm, .formHeading {
   text-align: center;
 }
 

@@ -53,12 +53,15 @@ export const setCurrentUser = () => {
   }
 }
 
-export const signUp = (user, history) => {
+export const signUp = (user) => {
   return (dispatch) => {
     axios.post(usersBaseURL, { user })
       .then(res => {
         dispatch({ type: AuthActionTypes.SIGN_UP, user: res.data })
-        history.push('/login')
+        const newSignUpLogIn = user
+        delete newSignUpLogIn.email
+        delete newSignUpLogIn.profile_icon
+        return dispatch(logInStart(user))
       })
       .catch(function (error) {
         return dispatch({ type: AuthActionTypes.AUTH_FAILURE, errors: error })

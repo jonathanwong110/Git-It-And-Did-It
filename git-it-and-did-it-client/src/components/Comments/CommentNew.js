@@ -45,7 +45,7 @@ class CommentNew extends Component {
     }
 
     return (
-      <Form id="newCommentForm" onSubmit={e => this.handleSubmit(e)}>
+      <Form onSubmit={e => this.handleSubmit(e)} id="newCommentForm">
         <Form.Group>
           <input type="text" name="content" placeholder="Comment" onChange={e => this.handleChange(e)} value={this.state.content} className="formInputField"></input>
         </Form.Group>

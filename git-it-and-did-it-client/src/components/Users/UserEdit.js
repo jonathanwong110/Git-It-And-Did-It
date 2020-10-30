@@ -50,25 +50,26 @@ class UserEdit extends Component {
 
     return (
       <>
-        <Form onSubmit={e => this.handleSubmit(e)} id="editUserForm">
+        <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
           <h1 className="formHeading">Edit your Account</h1>
+          <br></br>
           {Object.keys(errors).map((keyName, i) => (
             <div key={i}>
               <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
             </div>
           ))}
           <br></br>
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group>
             <Form.Label>Email: </Form.Label>
             <br></br>
             <input name="email" type="text" placeholder="Email" onChange={e => this.handleChange(e)} value={this.state.email} className="formInputField" />
           </Form.Group>
-          <Form.Group controlId="formBasicProfileIcon">
+          <Form.Group>
             <Form.Label>Profile Icon: </Form.Label>
             <br></br>
             <input name="profile_icon" type="text" placeholder="Profile Icon" onChange={e => this.handleChange(e)} value={this.state.profile_icon} className="formInputField" />
           </Form.Group>
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group>
             <Form.Label>Password: </Form.Label>
             <br></br>
             <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"></input>

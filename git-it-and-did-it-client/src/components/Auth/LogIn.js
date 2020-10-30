@@ -36,19 +36,20 @@ class LogInForm extends Component {
     }
 
     return (
-      <Form onSubmit={e => this.handleSubmit(e)} className="loginAndSignUpForm">
-        <h1 className="newTaskFormHeading">Log In</h1>
+      <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
+        <h1 className="formHeading">Log In</h1>
+        <br></br>
         {Object.keys(errors).map((keyName, i) => (
             <div key={i}>
               <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
             </div>
           ))}
-        <Form.Group controlId="formBasicUsername">
+        <Form.Group>
           <Form.Label>Username: </Form.Label>
           <br></br>
           <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="formInputField" />
         </Form.Group>
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group>
           <Form.Label>Password: </Form.Label>
           <br></br>
           <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"></input>

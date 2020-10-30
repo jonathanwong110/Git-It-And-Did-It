@@ -96,8 +96,9 @@ class TaskEdit extends Component {
 
     return (
       <>
-        <Form className="taskForm" onSubmit={e => this.handleSubmit(e)}>
-          <h1 className="taskFormHeading">Edit Task</h1>
+        <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
+          <h1 className="formHeading">Edit Task</h1>
+          <br></br>
           {Object.keys(errors).map((keyName, i) => (
             <div key={i}>
               <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>

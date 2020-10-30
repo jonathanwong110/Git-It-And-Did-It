@@ -76,8 +76,8 @@ class TaskNew extends Component {
 
     return (
       <>
-        <Form className="taskForm" onSubmit={e => this.handleSubmit(e)}>
-          <h1 className="taskFormHeading">Report a New Task</h1>
+        <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
+          <h1 className="formHeading">Report a New Task</h1>
           {Object.keys(errors).map((keyName, i) => (
             <div key={i}>
               <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
