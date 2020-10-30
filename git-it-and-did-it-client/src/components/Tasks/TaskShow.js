@@ -4,7 +4,7 @@ import { setCurrentUser } from '../../redux/Auth/actions'
 import { deleteTask, getSpecificTask } from '../../redux/Tasks/actions'
 import { getTaskComments, deleteComment } from '../../redux/Comments/actions'
 import CommentNew from '../../components/Comments/CommentNew'
-import { Button } from 'react-bootstrap'
+import { Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat } from '../../appearance/appearanceFunctions'
 import { withRouter } from 'react-router-dom';
@@ -94,12 +94,16 @@ class TaskShow extends Component {
         <br></br>
         <br></br>
         <p className="taskCommentHeading">Comments</p>
+        <div id="taskCommentsAmount">{comments.length} Comments</div>
         <CommentNew task={specificTask} />
         <div className="taskCommentsSection">
           {comments.map(comment => {
             return (
               <div key={comment.id}>
                 <div key={comment.id} className="taskIndividualComment">
+                <Image className="taskCommentAttributeDetail"
+                    src={comment.user.profile_icon} style={{width: '40px'}}
+                  />
                   <p className="taskCommentAttributeDetail">
                     {comment.username}
                   </p>

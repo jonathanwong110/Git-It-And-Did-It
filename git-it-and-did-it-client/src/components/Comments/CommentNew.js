@@ -47,7 +47,7 @@ class CommentNew extends Component {
     return (
       <Form onSubmit={e => this.handleSubmit(e)} id="newCommentForm">
         <Form.Group>
-          <input type="text" name="content" placeholder="Comment" onChange={e => this.handleChange(e)} value={this.state.content} className="formInputField"></input>
+          <input type="text" name="content" placeholder="Add a comment" onChange={e => this.handleChange(e)} value={this.state.content} className="formInputField"></input>
         </Form.Group>
         <Button variant="primary" type="submit" id="newCommentSubmit">
           Submit
