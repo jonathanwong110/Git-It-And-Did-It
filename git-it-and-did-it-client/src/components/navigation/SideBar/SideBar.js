@@ -11,7 +11,6 @@ const Container = styled.div`
   width: 12rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
 `
 
 const SideBar = () => {

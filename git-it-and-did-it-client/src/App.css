@@ -266,6 +266,8 @@ html, body {
   width: 100%;
   margin: 0 auto;
   height: calc(1.5em + .75rem + 2px);
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 
 .formInputField::-webkit-input-placeholder {
@@ -369,11 +371,6 @@ html, body {
 
 .specificUserUsername, .specificUserEmail, .taskSection, #editUserForm, .formHeading {
   text-align: center;
-}
-
-.formInputField {
-  border: 1px solid grey;
-  border-radius: 5px;
 }
 
 #searchForm::-webkit-input-placeholder {
@@ -483,7 +480,7 @@ html, body {
 }
 
 #sidebar-menu-tasks {
-  margin-left: 31px;
+  margin-left: 34px;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-weight: 500;
   position: absolute;
@@ -518,12 +515,6 @@ html, body {
   top: 0px;
   left: -30px;
 }
-
-/* @media (max-width: 991px) {
-  #logOutOption {
-    top: 0;
-  }
-} */
 
 .category-section-title > div {
   background-color: #d9d9d9;
@@ -569,4 +560,8 @@ html, body {
   text-align: center;
   font-size: 50px;
   font-weight: 500;
+}
+
+#sidebarTasksCategory {
+  margin-left: 6px;
 }

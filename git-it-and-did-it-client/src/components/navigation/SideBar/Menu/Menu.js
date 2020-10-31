@@ -12,10 +12,10 @@ const Container = styled.div`
 `
 
 const Menu = () => {
-  
+
   const homeIcon = <FontAwesomeIcon icon={faHome} />
-  const boardIcon = <FontAwesomeIcon icon={faClipboard} />
   const usersIcon = <FontAwesomeIcon icon={faUsers} />
+  const boardIcon = <FontAwesomeIcon icon={faClipboard} id="taskIcon"/>
 
   return (
     <Container className="sidebar-grid">
@@ -30,7 +30,8 @@ const Menu = () => {
         </Link>
       </div>
       <div className="sidebar-option">
-        <MenuLink icon={boardIcon} />
+        <div id="sidebarTasksCategory">
+        <MenuLink icon={boardIcon}  />
         <Navbar id="sidebar-menu-tasks">
           <Nav>
             <NavDropdown title="Tasks" id="sidebar-tasks-dropdown">
@@ -44,6 +45,7 @@ const Menu = () => {
             </NavDropdown>
           </Nav>
         </Navbar>
+        </div>
       </div>
     </Container>
   )
