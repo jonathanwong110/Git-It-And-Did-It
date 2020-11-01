@@ -15,7 +15,7 @@ const Menu = () => {
 
   const homeIcon = <FontAwesomeIcon icon={faHome} />
   const usersIcon = <FontAwesomeIcon icon={faUsers} />
-  const boardIcon = <FontAwesomeIcon icon={faClipboard} id="taskIcon"/>
+  const boardIcon = <FontAwesomeIcon icon={faClipboard} id="taskIcon" />
 
   return (
     <Container className="sidebar-grid">
@@ -31,20 +31,20 @@ const Menu = () => {
       </div>
       <div className="sidebar-option">
         <div id="sidebarTasksCategory">
-        <MenuLink icon={boardIcon}  />
-        <Navbar id="sidebar-menu-tasks">
-          <Nav>
-            <NavDropdown title="Tasks" id="sidebar-tasks-dropdown">
-              <Link to="/tasks" className="menu-task-link">
-                View All Tasks
+          <MenuLink icon={boardIcon} />
+          <Navbar id="sidebar-menu-tasks">
+            <Nav>
+              <NavDropdown title="Tasks" id="sidebar-tasks-dropdown">
+                <Link to="/tasks" className="menu-task-link">
+                  View All Tasks
                 </Link>
-              <br></br>
-              <Link to="/tasks/new" className="menu-task-link">
-                New Task
+                <br></br>
+                <Link to="/tasks/new" className="menu-task-link">
+                  New Task
                 </Link>
-            </NavDropdown>
-          </Nav>
-        </Navbar>
+              </NavDropdown>
+            </Nav>
+          </Navbar>
         </div>
       </div>
     </Container>

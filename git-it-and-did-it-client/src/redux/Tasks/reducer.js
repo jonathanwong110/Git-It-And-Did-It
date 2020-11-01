@@ -28,11 +28,13 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
       }
     case TasksActionTypes.GET_USER_TASKS:
       return {
-        ...state, tasks: action.tasks
+        ...state,
+        tasks: action.tasks
       }
     case TasksActionTypes.GET_ASSIGNED_TASKS:
       return {
-        ...state, assignedTasks: action.tasks
+        ...state, 
+        assignedTasks: action.tasks,
       }
     case TasksActionTypes.REMOVE_CURRENT_TASK:
       return {

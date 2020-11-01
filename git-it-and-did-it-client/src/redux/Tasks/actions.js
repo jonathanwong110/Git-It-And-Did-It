@@ -64,16 +64,16 @@ export const deleteTask = (id, history) => {
 export const editTask = (updatedTask, history) => {
   return (dispatch) => {
     return axios.patch(tasksBaseURL + updatedTask.id, updatedTask)
-    .then(res => {
-      dispatch({ type: TasksActionTypes.EDIT_TASK, task: res.data })
-      axios.get(tasksBaseURL)
-      .then(function (response) {
-        history.push(`/tasks/${updatedTask.id}`)
+      .then(res => {
+        dispatch({ type: TasksActionTypes.EDIT_TASK, task: res.data })
+        axios.get(tasksBaseURL)
+          .then(function (response) {
+            history.push(`/tasks/${updatedTask.id}`)
+          })
       })
-    })
-    .catch(function (error) {
-      return dispatch({ type: TasksActionTypes.TASK_FAILURE, errors: error })
-    });
+      .catch(function (error) {
+        return dispatch({ type: TasksActionTypes.TASK_FAILURE, errors: error })
+      });
   }
 }
 
@@ -87,8 +87,9 @@ export const getUserTasks = (userId) => {
 
 export const getAssignedTasks = (assignee) => {
   return (dispatch) => {
-    axios.get(tasksBaseURL + 'assignee/' + assignee).then(res => {
-      dispatch({ type: TasksActionTypes.GET_ASSIGNED_TASKS, tasks: res.data })
-    })
+    return axios.get(tasksBaseURL + 'assignee/' + assignee)
+      .then(res => {
+        dispatch({ type: TasksActionTypes.GET_ASSIGNED_TASKS, tasks: res.data })
+      })
   }
 }

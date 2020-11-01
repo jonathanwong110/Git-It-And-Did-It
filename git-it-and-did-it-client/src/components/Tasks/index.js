@@ -4,7 +4,8 @@ import { loadTasks } from '../../redux/Tasks/actions'
 import { Nav, Navbar, NavDropdown, CardDeck, Container, Row } from 'react-bootstrap'
 import TaskDisplay from './TaskDisplay'
 import SearchTasks from './SearchTasks'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { compose } from 'redux'
 import SearchAssignee from './SearchAssignee'
 
 class Tasks extends Component {
@@ -71,6 +72,7 @@ class Tasks extends Component {
   }
 
   render() {
+
     const { searchEntry, searchQuery } = this.state
     let { tasks, match } = this.props
     if (searchQuery.length > 0) { tasks = tasks.filter(item => item.title.toLowerCase().includes(searchQuery)) }
@@ -117,11 +119,11 @@ class Tasks extends Component {
         <CardDeck>
           <Container>
             <Row className="taskRow">
-              {tasks.map(task => {
+              {tasks.length !== 0 ? tasks.map(task => {
                 return (
                   <TaskDisplay key={task.id} task={task} match={match} />
                 )
-              })}
+              }) : <div className="emptyPage">There are no tasks available under this current query</div>}
             </Row>
           </Container>
         </CardDeck>
@@ -133,8 +135,8 @@ class Tasks extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    tasks: state.tasks.tasks
+    tasks: state.tasks.tasks,
   }
 }
 
-export default connect(mapStateToProps, { loadTasks })(Tasks)
+export default compose(withRouter, connect(mapStateToProps, { loadTasks }))(Tasks)
