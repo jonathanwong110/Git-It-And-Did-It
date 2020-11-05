@@ -72,8 +72,11 @@ class TaskNew extends Component {
   }
 
   render() {
+
     const { users, errors } = this.props
 
+    let sortedUsers = users.sort((a, b) => (a.username > b.username) ? 1 : -1)
+    
     return (
       <>
         <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
@@ -117,7 +120,7 @@ class TaskNew extends Component {
           <Form.Group>
             <Form.Label>Assignee: </Form.Label>
             <select type="select" className="formInputField" onChange={e => this.handleAssigneeChange(e)} value={this.state.assignee} >
-              {users.map(user => {
+              {sortedUsers.map(user => {
                 return <option key={user.id} value={user.username}>{user.username}</option>
               })}
             </select>
