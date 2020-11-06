@@ -7,7 +7,9 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def show
-    render json: @task, status: 200
+    @assignee = User.find_by(username: @task.assignee)
+    @user = @task.user
+    render json: { task: @task, user: @user, assignee: @assignee}, status: 200
   end
 
   def user_tasks

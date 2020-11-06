@@ -571,3 +571,12 @@
 #sidebarTasksCategory {
   margin-left: 6px;
 }
+
+.plainLink {
+  color: black;
+}
+
+.plainLink:hover {
+  color: black;
+  text-decoration: none;
+}

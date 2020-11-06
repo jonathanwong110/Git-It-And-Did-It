@@ -27,33 +27,33 @@ class TaskShow extends Component {
 
     let { specificTask, currentUser, deleteComment, comments } = this.props
 
-    if (specificTask && specificTask.id === undefined) {
+    if (specificTask && specificTask.task === undefined) {
       return <div className="emptyPage">This task does not exist</div>
     }
 
     return (
       <div className="individualTask">
         <p className="taskTitle">
-          {capitalizeFirstLetter(specificTask.title)}
+          {capitalizeFirstLetter(specificTask.task.title)}
         </p>
-        {currentUser.id === specificTask.user_id ?
-          <Button className="taskOptionsButton"><Link to={`/tasks/${specificTask.id}/edit`} className="taskOptionsLink">Edit</Link></Button> : null}
-        {currentUser.id === specificTask.user_id ?
+        {currentUser.id === specificTask.task.user_id ?
+          <Button className="taskOptionsButton"><Link to={`/tasks/${specificTask.task.id}/edit`} className="taskOptionsLink">Edit</Link></Button> : null}
+        {currentUser.id === specificTask.task.user_id ?
           <Button onClick={this.deleteCurrentTask} className="taskOptionsButtons">Delete</Button> : null}
         <div className="taskDetailsSection">
           <p className="taskDetailsHeading"> Details </p>
           <div className="taskTraitsGrid">
             <p className="taskTraits"> Category: </p>
             <p className="tasksTraitSecondCol">
-              {categoryNameChanger(specificTask.category)}
+              {categoryNameChanger(specificTask.task.category)}
             </p>
             <p className="taskTraits"> Priority: </p>
             <p className="tasksTraitSecondCol">
-              {capitalizeFirstLetter(specificTask.priority)}
+              {capitalizeFirstLetter(specificTask.task.priority)}
             </p>
             <p className="taskTraits"> Status: </p>
             <p className="tasksTraitSecondCol">
-              {statusNameChanger(specificTask.status)}
+              {statusNameChanger(specificTask.task.status)}
             </p>
           </div>
         </div>
@@ -63,11 +63,11 @@ class TaskShow extends Component {
           <div className="taskTraitsGrid">
             <p className="taskTraits"> Reporter: </p>
             <p className="tasksTraitSecondCol">
-              {specificTask.user.username}
+              <Link to={`/users/${specificTask.task.user_id}`} className="plainLink">{specificTask.user.username}</Link>
             </p>
             <p className="taskTraits"> Assignee: </p>
             <p className="tasksTraitSecondCol">
-              {specificTask.assignee}
+              <Link to={`/users/${specificTask.assignee.id}`} className="plainLink">{specificTask.task.assignee}</Link>
             </p>
           </div>
         </div>
@@ -75,7 +75,7 @@ class TaskShow extends Component {
         <div className="taskDescriptionSection">
           <p className="taskDescriptionHeading"> Description </p>
           <p className="taskTraits">
-            {capitalizeFirstLetter(specificTask.description)}
+            {capitalizeFirstLetter(specificTask.task.description)}
           </p>
         </div>
         <div className="taskDatesSection">
@@ -83,19 +83,19 @@ class TaskShow extends Component {
           <div className="taskTraitsGrid">
             <p className="taskTraits"> Created: </p>
             <p className="taskTraits">
-              {changeDateFormat(specificTask.created_at) + ' ' + changeTimeFormat(specificTask.created_at)}
+              {changeDateFormat(specificTask.task.created_at) + ' ' + changeTimeFormat(specificTask.task.created_at)}
             </p>
             <p className="taskTraits"> Updated: </p>
             <p className="taskTraits">
-              {changeDateFormat(specificTask.updated_at) + ' ' + changeTimeFormat(specificTask.updated_at)}
+              {changeDateFormat(specificTask.task.updated_at) + ' ' + changeTimeFormat(specificTask.task.updated_at)}
             </p>
           </div>
         </div>
         <br></br>
         <br></br>
         <p className="taskCommentHeading">Comments</p>
-        <div id="taskCommentsAmount">{comments.length} Comments</div>
-        <CommentNew task={specificTask} />
+        <div id="taskCommentsAmount">{comments.length} Comment(s)</div>
+        <CommentNew task={specificTask.task} />
         <div className="taskCommentsSection">
           {comments.map(comment => {
             return (
@@ -113,7 +113,7 @@ class TaskShow extends Component {
                   <p className="taskCommentAttributeDetail">
                     {changeTimeFormat(comment.created_at)}
                   </p>
-                  {JSON.parse(localStorage.getItem('token')).id === specificTask.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" id="taskCommentDeleteButton" onClick={() => deleteComment(comment.id)}>X</Button> : null}
+                  {JSON.parse(localStorage.getItem('token')).id === specificTask.task.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" id="taskCommentDeleteButton" onClick={() => deleteComment(comment.id)}>X</Button> : null}
                 </div>
                 <div> {comment.content} </div>
                 <br></br>
