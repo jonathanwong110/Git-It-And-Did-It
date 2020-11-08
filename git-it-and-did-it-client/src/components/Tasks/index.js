@@ -52,7 +52,7 @@ class Tasks extends Component {
 
   handleChange = (e) => {
     this.setState({
-      searchEntry: e.target.value.toLowerCase(),
+      searchEntry: e.target.value,
       loading: true
     })
   }
@@ -65,7 +65,7 @@ class Tasks extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const searchQuery = this.state.searchEntry
+    const searchQuery = this.state.searchEntry.toLowerCase()
     this.setState({
       searchQuery
     })
@@ -75,13 +75,14 @@ class Tasks extends Component {
 
     const { searchEntry, searchQuery } = this.state
     let { tasks, match } = this.props
-    if (searchQuery.length > 0) { tasks = tasks.filter(item => item.title.toLowerCase().includes(searchQuery)) }
+
+    if (searchQuery.length > 0) { tasks = tasks.filter(task => task.title.toLowerCase().includes(searchQuery)) }
 
     return (
       <>
-        <Navbar id="task-navbar">
+        <Navbar className="secondaryNavbar">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar id="task-navbar-child">
+          <Navbar id="secondaryNavbar-child">
             <Nav className="mr-auto category-section">
               <NavDropdown title="Category" className="category-section-title">
                 <Link to="/tasks" className="category-section-link">All</Link><br></br>
@@ -123,7 +124,7 @@ class Tasks extends Component {
                 return (
                   <TaskDisplay key={task.id} task={task} match={match} />
                 )
-              }) : <div className="emptyPage">There are no tasks available under this current query</div>}
+              }) : <div className="emptyPage">No results found</div>}
             </Row>
           </Container>
         </CardDeck>

@@ -3,12 +3,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'react-bootstrap'
 
-export default function SearchTask(props) {
+export default function SearchTasks(props) {
 
   return (
     <div>
-      <input type="text" name="search" id="searchForm" value={props.searchEntry} placeholder="Search for a Task by Title" onKeyPress={props.onKeyPress} onChange={e => props.handleChange(e)} />
-      <Button variant="primary" id="search-tasks" type="submit" onClick={e => props.handleSubmit(e)}>
+      <input type="text" name="search" className="searchForm" value={props.searchEntry} placeholder="Search for a Task by Title" onKeyPress={props.onKeyPress} onChange={e => props.handleChange(e)} />
+      <Button variant="primary" id="searchTasks" type="submit" onClick={e => props.handleSubmit(e)}>
         <FontAwesomeIcon icon={faSearch}/>
       </Button>
     </div>
