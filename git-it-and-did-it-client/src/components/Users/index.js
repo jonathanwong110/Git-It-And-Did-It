@@ -51,14 +51,11 @@ class Users extends Component {
     return (
       <>
         <Navbar className="secondaryNavbar">
-          <Navbar.Brand className="navbarMainLink">User Search</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-            </Nav>
-            <Nav.Item>
+            <Nav className="mr-auto userSearchCategory">
               <SearchUsers onKeyPress={this.onKeyPress} {...{ searchEntry, searchQuery }} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-            </Nav.Item>
+            </Nav>
           </Navbar.Collapse>
         </Navbar>
         <CardDeck>

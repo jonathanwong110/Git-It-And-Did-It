@@ -7,7 +7,7 @@ export default function SearchTasks(props) {
 
   return (
     <div>
-      <input type="text" name="search" className="searchForm" value={props.searchEntry} placeholder="Search for a Task by Title" onKeyPress={props.onKeyPress} onChange={e => props.handleChange(e)} />
+      <input type="text" name="search" className="searchForm" value={props.searchEntry} placeholder="Search" onKeyPress={props.onKeyPress} onChange={e => props.handleChange(e)} />
       <Button variant="primary" id="searchTasks" type="submit" onClick={e => props.handleSubmit(e)}>
         <FontAwesomeIcon icon={faSearch}/>
       </Button>

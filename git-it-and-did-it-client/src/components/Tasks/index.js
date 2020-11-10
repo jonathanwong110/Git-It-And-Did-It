@@ -82,7 +82,6 @@ class Tasks extends Component {
       <>
         <Navbar className="secondaryNavbar">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar id="secondaryNavbar-child">
             <Nav className="mr-auto category-section">
               <NavDropdown title="Category" className="category-section-title">
                 <Link to="/tasks" className="category-section-link">All</Link><br></br>
@@ -115,7 +114,6 @@ class Tasks extends Component {
             <Nav className="mr-auto category-section">
               <SearchTasks onKeyPress={this.onKeyPress} {...{ searchEntry, searchQuery }} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
             </Nav>
-          </Navbar>
         </Navbar>
         <CardDeck>
           <Container>

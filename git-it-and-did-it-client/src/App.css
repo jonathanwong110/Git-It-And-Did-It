@@ -67,97 +67,44 @@
   color: white !important;
 }
 
-#searchTasks, #searchUsers {
+#searchUsers {
   color: white;
   height: 37px;
   margin-bottom: 5px;
 }
 
+#searchTasks {
+  color: white;
+  height: 37px;
+  margin-bottom: 5px;
+}
+
+.secondaryNavbar {
+  margin-left: 192px;
+  max-width: calc(100%-192px);
+  bottom: 31px;
+  justify-content: center;
+  font-size: 20px;
+  background-color: #d9d9d9;
+}
+
+.secondaryNavbar-child {
+  margin: 0 auto;
+  width: 80%;
+}
+
+@media (max-width: 1400px) {
+  .mr-auto.category-section {
+    margin-left: 1%;
+  }
+}
+
 .category-section {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 2%;
   color: black;
   white-space: nowrap;
   padding-left: 0px;
   font-weight: 500;
-}
-
-@media (min-width: 930px) {
-  .secondaryNavbar-child {
-    margin-left: 12.5%;
-  }
-  .searchForm {
-    width: 175px;
-  }
-  .mr-auto.category-section {
-    margin-left: 1% !important;
-  }
-}
-
-@media (min-width: 1000px) {
-  .secondaryNavbar-child {
-    margin-left: 12.5%;
-  }
-  .searchForm {
-    width: 180px;
-  }
-  .mr-auto.category-section {
-    margin-left: 3% !important;
-  }
-}
-
-@media (min-width: 1060px) {
-  .secondaryNavbar-child {
-    margin-left: 12.5%;
-  }
-  .searchForm {
-    width: 180px;
-  }
-  .mr-auto.category-section {
-    margin-left: 6% !important;
-  }
-}
-
-@media (min-width: 1160px) {
-  .secondaryNavbar-child {
-    margin-left: 5%;
-  }
-  .searchForm {
-    width: 200px;
-  }
-  .mr-auto.category-section {
-    margin-left: 7% !important;
-  }
-}
-
-@media (min-width: 1200px) {
-  .secondaryNavbar-child {
-    margin-left: 5%;
-  }
-  .searchForm {
-    width: 240px;
-  }
-  .mr-auto.category-section {
-    margin-left: 7.5% !important;
-  }
-}
-
-@media (min-width: 1280px) {
-  .searchForm {
-    width: 240px;
-  }
-  .mr-auto.category-section {
-    margin-left: 9% !important;
-  }
-}
-
-@media (min-width: 1281px) {
-  .searchForm {
-    width: 240px;
-  }
-  .mr-auto.category-section {
-    margin-left: 10%;
-  }
 }
 
 .category-section-title a {
@@ -174,21 +121,13 @@
   text-decoration: none;
 }
 
-#task-search {
-  float: right;
-}
-
-.secondaryNavbar {
-  margin-left: 192px;
-  max-width: calc(100%-192px);
-  bottom: 31px;
-  justify-content: center;
-  font-size: 20px;
-  background-color: #d9d9d9 !important;
-}
-
-.secondaryNavbar-child {
-  justify-content: center;
+.userSearchCategory {
+  margin: auto;
+  display: block;
+  color: black;
+  white-space: nowrap;
+  padding-left: 0px;
+  font-weight: 500;
 }
 
 .taskRow.row {
@@ -419,6 +358,11 @@
 
 .specificUserUsername, .specificUserEmail, .taskSection, #editUserForm, .formHeading {
   text-align: center;
+}
+
+.searchForm {
+  width: 90%;
+  max-width: 260px;
 }
 
 .searchForm::-webkit-input-placeholder {
