@@ -6,7 +6,7 @@ import { getTaskComments, deleteComment } from '../../redux/Comments/actions'
 import CommentNew from '../../components/Comments/CommentNew'
 import { Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat } from '../../appearance/appearanceFunctions'
+import { capitalizeFirstLetter, statusNameChanger, changeDateFormat, changeTimeFormat } from '../../appearance/appearanceFunctions'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux'
 
@@ -34,7 +34,7 @@ class TaskShow extends Component {
     return (
       <div className="individualTask">
         <p className="taskTitle">
-          {capitalizeFirstLetter(specificTask.task.title)}
+          {specificTask.task.title}
         </p>
         {currentUser.id === specificTask.task.user_id ?
           <Button className="taskOptionsButton">
@@ -48,11 +48,11 @@ class TaskShow extends Component {
           <div className="taskTraitsGrid">
             <p className="taskTraits"> Category: </p>
             <p className="tasksTraitSecondCol">
-              {categoryNameChanger(specificTask.task.category)}
+              {capitalizeFirstLetter(specificTask.task.category)}
             </p>
             <p className="taskTraits"> Priority: </p>
             <p className="tasksTraitSecondCol">
-              {capitalizeFirstLetter(specificTask.task.priority)}
+              {specificTask.task.priority}
             </p>
             <p className="taskTraits"> Status: </p>
             <p className="tasksTraitSecondCol">
@@ -78,7 +78,7 @@ class TaskShow extends Component {
         <div className="taskDescriptionSection">
           <p className="taskDescriptionHeading"> Description </p>
           <p className="taskTraits">
-            {capitalizeFirstLetter(specificTask.task.description)}
+            {specificTask.task.description}
           </p>
         </div>
         <div className="taskDatesSection">
@@ -137,4 +137,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(withRouter, connect(mapStateToProps, { setCurrentUser, deleteTask, deleteComment, getSpecificTask, getTaskComments, capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat }))(TaskShow)
+export default compose(withRouter, connect(mapStateToProps, { setCurrentUser, deleteTask, deleteComment, getSpecificTask, getTaskComments, capitalizeFirstLetter, statusNameChanger, changeDateFormat, changeTimeFormat }))(TaskShow)

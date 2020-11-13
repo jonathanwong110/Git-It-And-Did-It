@@ -5,7 +5,7 @@ import { getUserTasks, getAssignedTasks } from '../../redux/Tasks/actions'
 import { setCurrentUser } from '../../redux/Auth/actions'
 import { CardDeck, Container, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
+import { statusNameChanger } from '../../appearance/appearanceFunctions'
 import TaskDisplay from '../Tasks/TaskDisplay'
 
 class UserShow extends Component {
@@ -109,4 +109,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getAssignedTasks, setCurrentUser, capitalizeFirstLetter, categoryNameChanger, statusNameChanger })(UserShow)
+export default connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getAssignedTasks, setCurrentUser, statusNameChanger })(UserShow)

@@ -15,7 +15,7 @@ class SearchAssignee extends Component {
 
   handleChange = (e) => {
     this.setState({
-      assignee: e.target.value,
+      assignee: e.target.value.toLowerCase()
     })
   }
 

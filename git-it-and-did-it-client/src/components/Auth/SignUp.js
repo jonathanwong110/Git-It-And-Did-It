@@ -17,10 +17,21 @@ class SignUpForm extends Component {
     };
   }
 
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
+    })
+  }
+
+  handleEmailChange = (e) => {
+    this.setState({
+      email: e.target.value.toLowerCase()
+    })
+  }
+
+  handleUsernameChange = (e) => {
+    this.setState({
+      username: e.target.value.toLowerCase()
     })
   }
 
@@ -51,7 +62,7 @@ class SignUpForm extends Component {
         <Form.Group>
           <Form.Label>Email: </Form.Label>
           <br></br>
-          <input name="email" type="text" placeholder="Email" onChange={e => this.handleChange(e)} value={this.email} className="formInputField" />
+          <input name="email" type="text" placeholder="Email" onChange={e => this.handleEmailChange(e)} value={this.email} className="formInputField" />
         </Form.Group>
         <Form.Group>
           <Form.Label>Profile Icon: </Form.Label>
@@ -61,7 +72,7 @@ class SignUpForm extends Component {
         <Form.Group>
           <Form.Label>Username: </Form.Label>
           <br></br>
-          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="formInputField" />
+          <input name="username" type="text" placeholder="Username" onChange={e => this.handleUsernameChange(e)} value={this.username} className="formInputField" />
         </Form.Group>
         <Form.Group>
           <Form.Label>Password: </Form.Label>

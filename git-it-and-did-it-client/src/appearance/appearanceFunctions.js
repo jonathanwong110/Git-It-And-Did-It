@@ -2,14 +2,6 @@ export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export const categoryNameChanger = (category) => {
-  if (category === "bugs") {
-    return "Bugs"
-  } else {
-    return "New Features"
-  }
-}
-
 export const statusNameChanger = (status) => {
   if (status === "to_do") {
     return "To Do"
