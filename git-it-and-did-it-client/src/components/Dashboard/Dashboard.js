@@ -33,7 +33,7 @@ class Dashboard extends Component {
     return (
       <div>
         <div className="profileSectionWrapper">
-          <Image src={currentUser.profile_icon} id="specificUserProfileIcon" />
+          <Image src={currentUser.profile_icon} alt={null} id="specificUserProfileIcon" />
           <br></br>
           <div className="specificUserProfileEdit">
             <Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEditLink">

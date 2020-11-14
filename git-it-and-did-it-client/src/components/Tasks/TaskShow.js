@@ -6,7 +6,7 @@ import { getTaskComments, deleteComment } from '../../redux/Comments/actions'
 import CommentNew from '../../components/Comments/CommentNew'
 import { Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { capitalizeFirstLetter, statusNameChanger, changeDateFormat, changeTimeFormat } from '../../appearance/appearanceFunctions'
+import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat } from '../../appearance/appearanceFunctions'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux'
 
@@ -48,11 +48,11 @@ class TaskShow extends Component {
           <div className="taskTraitsGrid">
             <p className="taskTraits"> Category: </p>
             <p className="tasksTraitSecondCol">
-              {capitalizeFirstLetter(specificTask.task.category)}
+              {categoryNameChanger(specificTask.task.category)}
             </p>
             <p className="taskTraits"> Priority: </p>
             <p className="tasksTraitSecondCol">
-              {specificTask.task.priority}
+              {capitalizeFirstLetter(specificTask.task.priority)}
             </p>
             <p className="taskTraits"> Status: </p>
             <p className="tasksTraitSecondCol">
@@ -105,7 +105,7 @@ class TaskShow extends Component {
               <div key={comment.id}>
                 <div key={comment.id} className="taskIndividualComment">
                 <Image className="taskCommentAttributeDetail"
-                    src={comment.user.profile_icon} style={{width: '40px'}}
+                    src={comment.user.profile_icon} alt={null} style={{width: '40px'}}
                   />
                   <p className="taskCommentAttributeDetail">
                     {comment.username}
@@ -137,4 +137,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(withRouter, connect(mapStateToProps, { setCurrentUser, deleteTask, deleteComment, getSpecificTask, getTaskComments, capitalizeFirstLetter, statusNameChanger, changeDateFormat, changeTimeFormat }))(TaskShow)
+export default compose(withRouter, connect(mapStateToProps, { setCurrentUser, deleteTask, deleteComment, getSpecificTask, getTaskComments, capitalizeFirstLetter, categoryNameChanger, statusNameChanger, changeDateFormat, changeTimeFormat }))(TaskShow)

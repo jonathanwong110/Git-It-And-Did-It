@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { capitalizeFirstLetter, statusNameChanger } from '../../appearance/appearanceFunctions'
+import { capitalizeFirstLetter, categoryNameChanger, statusNameChanger } from '../../appearance/appearanceFunctions'
 
 export default function TaskDisplay(props) {
 
@@ -14,7 +14,7 @@ export default function TaskDisplay(props) {
           {capitalizeFirstLetter(props.task.title)}
         </Card.Title>
         <Card.Text>
-          {capitalizeFirstLetter(props.task.category)}
+          {categoryNameChanger(props.task.category)}
         </Card.Text>
         <Card.Text>
           {capitalizeFirstLetter(props.task.priority)}

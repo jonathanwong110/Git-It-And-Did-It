@@ -44,7 +44,7 @@ class UserShow extends Component {
     return (
       <div>
         <div className="profileSectionWrapper">
-          <Image src={specificUser.profile_icon} id="specificUserProfileIcon" />
+          <Image src={specificUser.profile_icon} alt={null} id="specificUserProfileIcon" />
           <br></br>
           <div className="specificUserProfileEdit">
             <Link to={`users/${specificUser.id}/edit`} className="specificUserProfileEditLink">
