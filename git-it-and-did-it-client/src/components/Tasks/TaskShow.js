@@ -44,7 +44,8 @@ class TaskShow extends Component {
         {currentUser.id === specificTask.task.user_id ?
           <Button onClick={this.deleteCurrentTask} className="taskOptionsButtons">Delete</Button> : null}
         <div className="taskDetailsSection">
-          <p className="taskDetailsHeading"> Details </p>
+          <div className="taskDetailsHeading"> Details </div>
+          <br></br>
           <div className="taskTraitsGrid">
             <p className="taskTraits"> Category: </p>
             <p className="tasksTraitSecondCol">
@@ -54,7 +55,7 @@ class TaskShow extends Component {
             <p className="tasksTraitSecondCol">
               {capitalizeFirstLetter(specificTask.task.priority)}
             </p>
-            <p className="taskTraits"> Status: </p>
+            <div className="taskTraits"> Status: </div>
             <p className="tasksTraitSecondCol">
               {statusNameChanger(specificTask.task.status)}
             </p>
@@ -62,33 +63,34 @@ class TaskShow extends Component {
         </div>
         <br></br>
         <div className="taskPeopleSection">
-          <p className="taskPeopleHeading"> People </p>
+          <div className="taskPeopleHeading"> People </div>
+          <br></br>
           <div className="taskTraitsGrid">
-            <p className="taskTraits"> Reporter: </p>
-            <p className="tasksTraitSecondCol">
-              <Link to={`/users/${specificTask.task.user_id}`} className="plainLink">{specificTask.user.username}</Link>
-            </p>
-            <p className="taskTraits"> Assignee: </p>
-            <p className="tasksTraitSecondCol">
-              <Link to={`/users/${specificTask.assignee.id}`} className="plainLink">{specificTask.task.assignee}</Link>
-            </p>
+            <div className="taskTraits"> Reporter: </div>
+            <div className="tasksTraitSecondCol">
+              <p><Link to={`/users/${specificTask.user.id}`} className="plainLink">{specificTask.user.username}</Link></p>
+            </div>
+            <div className="taskTraits"> Assignee: </div>
+            <div className="tasksTraitSecondCol">
+              <Link to={`/users/${specificTask.assignee.id}`} className="plainLink">{specificTask.assignee.username}</Link>
+            </div>
           </div>
         </div>
         <br></br>
         <div className="taskDescriptionSection">
-          <p className="taskDescriptionHeading"> Description </p>
-          <p className="taskTraits">
-            {specificTask.task.description}
-          </p>
+          <div className="taskDescriptionHeading"> Description </div>
+          <br></br>
+            <div id="descriptionBox">{specificTask.task.description}</div>
         </div>
         <div className="taskDatesSection">
-          <p className="taskDateHeading"> Dates </p>
+          <div className="taskDateHeading"> Dates </div>
+          <br></br>
           <div className="taskTraitsGrid">
-            <p className="taskTraits"> Created: </p>
+            <div className="taskTraits"> Created: </div>
             <p className="taskTraits">
               {changeDateFormat(specificTask.task.created_at) + ' ' + changeTimeFormat(specificTask.task.created_at)}
             </p>
-            <p className="taskTraits"> Updated: </p>
+            <div className="taskTraits"> Updated: </div>
             <p className="taskTraits">
               {changeDateFormat(specificTask.task.updated_at) + ' ' + changeTimeFormat(specificTask.task.updated_at)}
             </p>
@@ -96,7 +98,7 @@ class TaskShow extends Component {
         </div>
         <br></br>
         <br></br>
-        <p className="taskCommentHeading">Comments</p>
+        <div className="taskCommentHeading">Comments</div>
         <div id="taskCommentsAmount">{comments.length} Comment(s)</div>
         <CommentNew task={specificTask.task} />
         <div className="taskCommentsSection">
@@ -107,15 +109,15 @@ class TaskShow extends Component {
                 <Image className="taskCommentAttributeDetail"
                     src={comment.user.profile_icon} alt={null} style={{width: '40px'}}
                   />
-                  <p className="taskCommentAttributeDetail">
+                  <div className="taskCommentAttributeDetail">
                     {comment.username}
-                  </p>
-                  <p className="taskCommentAttributeDetail">
+                  </div>
+                  <div className="taskCommentAttributeDetail">
                     {changeDateFormat(comment.created_at)}
-                  </p>
-                  <p className="taskCommentAttributeDetail">
+                  </div>
+                  <div className="taskCommentAttributeDetail">
                     {changeTimeFormat(comment.created_at)}
-                  </p>
+                  </div>
                   {JSON.parse(localStorage.getItem('token')).id === specificTask.task.user_id || JSON.parse(localStorage.getItem('token')).id === comment.user_id ? <Button variant="primary" id="taskCommentDeleteButton" onClick={() => deleteComment(comment.id)}>X</Button> : null}
                 </div>
                 <div> {comment.content} </div>

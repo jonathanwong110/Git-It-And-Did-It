@@ -51,7 +51,7 @@ class UserEdit extends Component {
     return (
       <>
         <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
-          <h1 className="formHeading">Edit your Account</h1>
+          <h1 className="formHeading">Edit Account</h1>
           <br></br>
           {Object.keys(errors).map((keyName, i) => (
             <div key={i}>

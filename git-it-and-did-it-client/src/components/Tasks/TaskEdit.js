@@ -32,14 +32,14 @@ class TaskEdit extends Component {
 
   componentDidUpdate(prevProps) {
     let { specificTask } = this.props
-    if (prevProps.specificTask !== specificTask) {
-      this.setState(specificTask)
+    if (prevProps.specificTask.task !== specificTask.task) {
+      this.setState(specificTask.task)
     }
     if (specificTask.user === undefined) {
       return <div> No Task to be edited</div>
     }
-    if (Number(specificTask.user_id) !== Number(this.props.currentUser.id)) {
-      this.props.history.push(`/tasks/${specificTask.id}`)
+    if (Number(specificTask.user.id) !== Number(this.props.currentUser.id)) {
+      this.props.history.push(`/tasks/${specificTask.task.id}`)
     }
   }
 
@@ -76,21 +76,14 @@ class TaskEdit extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const updatedTask = { ...this.state }
-    this.setState({
-      title: '',
-      category: '',
-      status: '',
-      priority: '',
-      assignee: '',
-      description: '',
-    });
     this.props.editTask(updatedTask, this.props.history)
   }
 
   render() {
+
     const { users, specificTask, errors } = this.props
 
-    if (specificTask && specificTask.id === undefined) {
+    if (specificTask && specificTask.task === undefined) {
       return <div className="emptyPage">This task does not exist</div>
     }
 
@@ -148,7 +141,7 @@ class TaskEdit extends Component {
 
           <Form.Group>
             <Form.Label>Description</Form.Label>
-            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.state.description} className="formInputField" />
+            <textarea name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.state.description} className="formInputField" />
           </Form.Group>
 
           <Button variant="primary" type="submit">

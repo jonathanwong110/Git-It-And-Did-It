@@ -16,7 +16,7 @@ class TaskNew extends Component {
       category: "bugs",
       status: 'to_do',
       priority: 'low',
-      assignee: "JW",
+      assignee: "jw",
       description: '',
       user_id: JSON.parse(localStorage.getItem('token')).id,
     }
@@ -59,15 +59,6 @@ class TaskNew extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newTask = { ...this.state }
-    this.setState({
-      title: '',
-      category: "bugs",
-      status: 'to_do',
-      priority: 'low',
-      assignee: "JW",
-      description: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
-    });
     this.props.addTask(newTask, this.props.history)
   }
 
@@ -128,7 +119,7 @@ class TaskNew extends Component {
 
           <Form.Group>
             <Form.Label>Description</Form.Label>
-            <input name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.state.description} className="formInputField" />
+            <textarea name="description" type="text" placeholder="Description" onChange={e => this.handleChange(e)} value={this.state.description} className="formInputField" />
           </Form.Group>
 
           <Button variant="primary" type="submit">

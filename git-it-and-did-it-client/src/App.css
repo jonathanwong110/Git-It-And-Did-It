@@ -71,8 +71,8 @@
   position: relative;
   top: 3px;
   color: white;
-  height: 37px;
-  margin-bottom: 5px;
+  height: 36px;
+  margin-bottom: 6px;
 }
 
 .secondaryNavbar {
@@ -222,8 +222,8 @@
 
 .gidiForm {
   min-width: 150px;
-  max-width: 200px;
-  width: 20%;
+  max-width: 300px;
+  width: 30%;
   margin: 0 auto;
   text-align: center;
 }
@@ -265,24 +265,44 @@
   font-size: 30px;
   border-bottom: 1px solid black;
   color: #1a8cff;
+  font-weight: 500;
 }
 
-.taskDetailsSection, .taskPeopleSection {
+.taskDetailsSection {
   position: absolute;
   top: 235px;
-  width: 30%;
-}
-
-.taskDetailsSection, .taskDescriptionSection {
+  margin: 0;
   width: 40%;
   margin: 0;
   font-weight: 500;
 }
 
-.taskDescriptionSection, .taskDatesSection {
+.taskPeopleSection {
+  position: absolute;
+  width: 30%;
+  top: 235px;
+  margin: 0;
+}
+
+.taskDescriptionSection {
+  position: absolute;
+  top: 430px;
+  width: 40%;
+  margin: 0;
+  font-weight: 500;
+}
+
+.taskDatesSection {
   position: absolute;
   top: 430px;
   font-weight: 500;
+}
+
+#descriptionBox {
+  font-size: 17px;
+  padding-right: 10px;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .taskTraitsGrid {
@@ -314,6 +334,14 @@
   right: 15%;
   width: 20%;
   white-space: nowrap;
+}
+
+.taskCommentHeading {
+  position: absolute;
+  top: 650px;
+  border-bottom: 1px solid black;
+  width: 65%;
+  font-weight: 500;
 }
 
 .taskCommentHeading {
@@ -563,4 +591,55 @@
 .navbarMainLink {
   font-size: 23px !important;
   font-weight: 500 !important;
+}
+
+@media (max-width: 1050px) {
+  .taskDetailsSection {
+    width: 60%;
+  }
+  .taskPeopleSection {
+    position: absolute;
+    left: 247px;
+    top: 430px;
+    width: 60%;
+  }
+  .taskDatesSection {
+    position: absolute;
+    left: 247px;
+    top: 600px;
+    width: 60%;
+  }
+  .taskDatesSection {
+    width: 60%;
+  }
+  .taskDescriptionSection {
+    position: absolute;
+    left: 247px;
+    top: 800px;
+    width: 60%;
+  }
+  .taskCommentHeading {
+    position: absolute;
+    top: 1000px;
+    width: 60%;
+  }
+  #taskCommentsAmount {
+    position: absolute;
+    top: 1060px;
+  }
+  #newCommentForm {
+    position: absolute;
+    top: 1100px;
+    width: 60%;
+  }
+  .taskCommentsSection {
+    position: absolute;
+    top: 1175px;
+  }
+}
+
+@media (max-width: 600px) {
+  .taskDatesSection {
+    white-space: normal;
+  }
 }
