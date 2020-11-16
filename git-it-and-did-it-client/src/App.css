@@ -643,3 +643,7 @@
     white-space: normal;
   }
 }
+
+#multipleBreaks {
+  height: 96px;
+}

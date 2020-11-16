@@ -53,11 +53,13 @@ class UserEdit extends Component {
         <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
           <h1 className="formHeading">Edit Account</h1>
           <br></br>
-          {Object.keys(errors).map((keyName, i) => (
-            <div key={i}>
-              <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
-            </div>
-          ))}
+          {Object.keys(errors).map((keyName, i) => {
+            return (
+              <div key={i}>
+                <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
+              </div>
+            )
+          })}
           <br></br>
           <Form.Group>
             <Form.Label>Email: </Form.Label>

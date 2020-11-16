@@ -94,11 +94,13 @@ class TaskEdit extends Component {
         <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
           <h1 className="formHeading">Edit Task</h1>
           <br></br>
-          {Object.keys(errors).map((keyName, i) => (
-            <div key={i}>
-              <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
-            </div>
-          ))}
+          {Object.keys(errors).map((keyName, i) => {
+            return (
+              <div key={i}>
+                <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
+              </div>
+            )
+          })}
           <Form.Group>
             <Form.Label>Title</Form.Label>
             <input name="title" type="text" placeholder="Title" onChange={e => this.handleChange(e)} value={this.state.title} className="formInputField" />

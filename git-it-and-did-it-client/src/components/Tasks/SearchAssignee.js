@@ -33,7 +33,7 @@ class SearchAssignee extends Component {
 
     return (
       <>
-        <input type="text" name="Assignee" placeholder="Assignee (Case-Sensitive)" id="assignee-search-input" onChange={e => this.handleChange(e)} onKeyPress={this.handleKeyPress} />
+        <input type="text" name="Assignee" placeholder="Assignee" id="assignee-search-input" onChange={e => this.handleChange(e)} onKeyPress={this.handleKeyPress} />
         <Button variant="primary" id="assignee-search-button">
           {this.state.assignee.length !== 0 ? <Link to={`/tasks/assignee/${this.state.assignee}`}>
             <FontAwesomeIcon icon={faSearch} />

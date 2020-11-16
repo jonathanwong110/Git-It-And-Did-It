@@ -39,11 +39,13 @@ class LogInForm extends Component {
       <Form onSubmit={e => this.handleSubmit(e)} className="gidiForm">
         <h1 className="formHeading">Log In</h1>
         <br></br>
-        {Object.keys(errors).map((keyName, i) => (
+        {Object.keys(errors).map((keyName, i) => {
+          return (
             <div key={i}>
               <span className="errorMessage" key={i}> {capitalizeFirstLetter(keyName)} {errors[keyName]}</span>
             </div>
-          ))}
+          )
+        })}
         <Form.Group>
           <Form.Label>Username: </Form.Label>
           <br></br>
