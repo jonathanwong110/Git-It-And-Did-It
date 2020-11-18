@@ -1,5 +1,5 @@
 import UsersActionTypes from "./types";
-import axios from 'axios'
+import axios from '../API/index.js'
 
 let usersBaseURL = 'http://localhost:3000/api/v1/users/'
 

@@ -12,8 +12,8 @@ class Dashboard extends Component {
 
   componentDidMount() {
     let currentUser = JSON.parse(localStorage.getItem('token'))
-    let currentUserId = currentUser.id
-    let currentUserName = currentUser.username
+    let currentUserId = currentUser.user.id
+    let currentUserName = currentUser.user.username
     this.props.getSpecificUser(currentUserId)
     this.props.getUserTasks(currentUserId)
     this.props.getAssignedTasks(currentUserName)
@@ -21,7 +21,7 @@ class Dashboard extends Component {
 
   componentDidUpdate(prevProps) {
     let currentUser = JSON.parse(localStorage.getItem('token'))
-    if (currentUser.email !== this.props.currentUser.email || currentUser.profile_icon !== this.props.currentUser.profile_icon) {
+    if (currentUser.user.email !== this.props.currentUser.user.email || currentUser.user.profile_icon !== this.props.currentUser.user.profile_icon) {
       this.props.setCurrentUser()
     }
   }
@@ -33,17 +33,17 @@ class Dashboard extends Component {
     return (
       <div>
         <div className="profileSectionWrapper">
-          <Image src={currentUser.profile_icon} alt={null} id="specificUserProfileIcon" />
+          <Image src={currentUser.user?.profile_icon} alt="profile pic" id="specificUserProfileIcon" />
           <br></br>
           <div className="specificUserProfileEdit">
-            <Link to={`users/${currentUser.id}/edit`} className="specificUserProfileEditLink">
+            <Link to={`users/${currentUser.user?.id}/edit`} className="specificUserProfileEditLink">
               Edit Profile
           </Link>
           </div>
           <br></br>
-          <h1 className="specificUserUsername">{currentUser.username}</h1>
+          <h1 className="specificUserUsername">{currentUser.user?.username}</h1>
           <br></br>
-          <h5 className="specificUserEmail">{currentUser.email}</h5>
+          <h5 className="specificUserEmail">{currentUser.user?.email}</h5>
           <br></br>
           <h2 className="taskSection">Tasks Reported</h2>
           <br></br>

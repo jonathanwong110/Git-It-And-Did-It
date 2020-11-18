@@ -1,5 +1,5 @@
 import TasksActionTypes from "./types";
-import axios from 'axios'
+import axios from '../API/index.js'
 
 let tasksBaseURL = 'http://localhost:3000/api/v1/tasks/'
 

@@ -1,5 +1,5 @@
 import CommentsActionTypes from "./types";
-import axios from 'axios'
+import axios from '../API/index.js'
 
 let commentsBaseURL = 'http://localhost:3000/api/v1/comments/'
 

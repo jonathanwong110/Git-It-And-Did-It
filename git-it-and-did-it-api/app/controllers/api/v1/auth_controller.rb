@@ -1,4 +1,5 @@
 class Api::V1::AuthController < ApplicationController
+  skip_before_action :authorized, only: [:login]
 
   def login
     @user = User.find_by(username: params[:username])
@@ -7,7 +8,8 @@ class Api::V1::AuthController < ApplicationController
         errors: { Username: [' does not exist'] }
       }, status: 500
     elsif @user && @user.authenticate(params[:password])
-      render json: @user, status: 200
+      token = encode_token({ user_id: @user.id })
+      render json: { user: UserSerializer.new(@user), jwt: token }, status: 200
     else
       render json: { 
         errors: { Password: [' is invalid!'] }

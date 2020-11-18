@@ -20,7 +20,7 @@ class MainNav extends Component {
 
     const { currentUser } = this.props
 
-    let profileIcon = currentUser ? currentUser.profile_icon : null
+    let profileIcon = currentUser ? currentUser.user?.profile_icon : null
 
     return (
       <>
@@ -29,14 +29,14 @@ class MainNav extends Component {
           <Nav className="mr-auto">
           </Nav>
           <Nav>
-            {currentUser.id !== undefined ?
+            {currentUser.user?.id !== undefined ?
               <NavDropdown title={<Image src={profileIcon} alt={null} width="40px" height="40px" />} id="lastMainNavItem">
                 <Link to="/" onClick={this.props.logOutStart} id="logOutOption">Log Out</Link>
               </NavDropdown> :
               <Link to="/login" id="log-in-link">
                 Log In
               </Link>}
-            {currentUser.id !== undefined ?
+            {currentUser.user?.id !== undefined ?
               null :
               <Link to="/signup" id="sign-up-link">
                 Sign Up

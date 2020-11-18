@@ -11,14 +11,10 @@ import TaskDisplay from '../Tasks/TaskDisplay'
 class UserShow extends Component {
 
   componentDidMount() {
-    if (localStorage.getItem("token") === null) {
-      let userId = Number(this.props.match.params.id)
-      this.props.getSpecificUser(userId)
-      this.props.getUserTasks(userId)
-    } else {
+    if (localStorage.getItem("token") !== null) {
       const currentUser = JSON.parse(localStorage.getItem('token'))
-      const currentUserId = currentUser.id
-      let userId = Number(this.props.match.params.id)
+      const currentUserId = Number(currentUser.user.id)
+      let userId = this.props.match.params.id
       this.props.getSpecificUser(userId)
       if (currentUserId === userId) {
         return this.props.history.push('/dashboard')
