@@ -23,23 +23,20 @@ class TaskEdit extends Component {
   }
 
   componentDidMount() {
-    this.props.setCurrentUser()
     this.props.loadUsers()
-    let { match } = this.props
-    let taskId = match.params.id
+    let taskId = this.props.match.params.id
     this.props.getSpecificTask(taskId)
   }
 
   componentDidUpdate(prevProps) {
-    let { specificTask } = this.props
-    if (prevProps.specificTask.task !== specificTask.task) {
-      this.setState(specificTask.task)
+    if (this.props.specificTask.task !== prevProps.specificTask.task) {
+      this.setState(this.props.specificTask.task)
     }
-    if (specificTask.user === undefined) {
+    if (this.props.specificTask.task === undefined) {
       return <div> No Task to be edited</div>
     }
-    if (Number(specificTask.user.id) !== Number(this.props.currentUser.id)) {
-      this.props.history.push(`/tasks/${specificTask.task.id}`)
+    if (Number(this.props.specificTask.user.id) !== Number(this.props.currentUser.user.id)) {
+      this.props.history.push(`/tasks/${this.props.specificTask.task.id}`)
     }
   }
 

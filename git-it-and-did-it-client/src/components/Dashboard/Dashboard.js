@@ -20,8 +20,8 @@ class Dashboard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    let currentUser = JSON.parse(localStorage.getItem('token'))
-    if (currentUser.user.email !== this.props.currentUser.user.email || currentUser.user.profile_icon !== this.props.currentUser.user.profile_icon) {
+    let { currentUser } = this.props
+    if (prevProps.currentUser.user?.email !== currentUser.user?.email || prevProps.currentUser.user?.profile_icon !== currentUser.user?.profile_icon) {
       this.props.setCurrentUser()
     }
   }
@@ -33,12 +33,12 @@ class Dashboard extends Component {
     return (
       <div>
         <div className="profileSectionWrapper">
-          <Image src={currentUser.user?.profile_icon} alt="profile pic" id="specificUserProfileIcon" />
+          <Image src={currentUser.user?.profile_icon} alt="profile picture" id="specificUserProfileIcon" />
           <br></br>
           <div className="specificUserProfileEdit">
             <Link to={`users/${currentUser.user?.id}/edit`} className="specificUserProfileEditLink">
               Edit Profile
-          </Link>
+            </Link>
           </div>
           <br></br>
           <h1 className="specificUserUsername">{currentUser.user?.username}</h1>

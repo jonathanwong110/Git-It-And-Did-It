@@ -4,23 +4,22 @@ import { loadUsers, getSpecificUser } from '../../redux/Users/actions'
 import { getUserTasks, getAssignedTasks } from '../../redux/Tasks/actions'
 import { setCurrentUser } from '../../redux/Auth/actions'
 import { CardDeck, Container, Row, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import { statusNameChanger } from '../../appearance/appearanceFunctions'
 import TaskDisplay from '../Tasks/TaskDisplay'
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux'
 
 class UserShow extends Component {
 
   componentDidMount() {
-    if (localStorage.getItem("token") !== null) {
-      const currentUser = JSON.parse(localStorage.getItem('token'))
-      const currentUserId = Number(currentUser.user.id)
-      let userId = this.props.match.params.id
-      this.props.getSpecificUser(userId)
-      if (currentUserId === userId) {
-        return this.props.history.push('/dashboard')
-      }
-      this.props.getUserTasks(userId)
+    let currentUser = JSON.parse(localStorage.getItem('token'))
+    let currentUserId = Number(currentUser.user.id)
+    let userId = this.props.match.params.id
+    if (currentUserId === userId) {
+      return this.props.history.push('/dashboard')
     }
+    this.props.getSpecificUser(userId)
+    this.props.getUserTasks(userId)
   }
 
   componentDidUpdate(prevProps) {
@@ -40,13 +39,8 @@ class UserShow extends Component {
     return (
       <div>
         <div className="profileSectionWrapper">
-          <Image src={specificUser.profile_icon} alt={null} id="specificUserProfileIcon" />
+          <Image src={specificUser.profile_icon} alt="profile picture" id="specificUserProfileIcon" />
           <br></br>
-          <div className="specificUserProfileEdit">
-            <Link to={`users/${specificUser.id}/edit`} className="specificUserProfileEditLink">
-              Edit Profile
-          </Link>
-          </div>
           <br></br>
           <h1 className="specificUserUsername">{specificUser.username}</h1>
           <br></br>
@@ -105,4 +99,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getAssignedTasks, setCurrentUser, statusNameChanger })(UserShow)
+export default compose(withRouter, connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getAssignedTasks, setCurrentUser, statusNameChanger }))(UserShow)

@@ -12,14 +12,14 @@ export default function UserDisplay(props) {
         <Card.Title>
           {user.username}
         </Card.Title>
-        <Image src={user.profile_icon} alt={null} id="profile-image" />
+        <Image src={user.profile_icon} alt="profile picture" id="profile-image" />
         <Card.Text>
           {user.email}
         </Card.Text>
         <Button variant="primary">
           <Link to={`/users/${user.id}`} className="more-details">
             Profile
-            </Link>
+          </Link>
         </Button>
         <br></br>
         <br></br>

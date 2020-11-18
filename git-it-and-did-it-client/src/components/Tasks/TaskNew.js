@@ -18,7 +18,7 @@ class TaskNew extends Component {
       priority: 'low',
       assignee: "jw",
       description: '',
-      user_id: JSON.parse(localStorage.getItem('token')).id,
+      user_id: JSON.parse(localStorage.getItem('token')).user.id,
     }
   }
 

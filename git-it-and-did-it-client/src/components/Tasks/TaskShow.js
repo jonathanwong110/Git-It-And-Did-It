@@ -13,8 +13,7 @@ import { compose } from 'redux'
 class TaskShow extends Component {
 
   componentDidMount() {
-    let { match } = this.props
-    let taskId = match.params.id
+    let taskId = this.props.match.params.id
     this.props.getSpecificTask(taskId)
     this.props.getTaskComments(taskId)
   }
@@ -36,12 +35,12 @@ class TaskShow extends Component {
         <p className="taskTitle">
           {specificTask.task.title}
         </p>
-        {currentUser.id === specificTask.task.user_id ?
+        {currentUser.user?.id === specificTask.task.user_id ?
           <Button className="taskOptionsButton">
             <Link to={`/tasks/${specificTask.task.id}/edit`} className="taskOptionsLink">Edit</Link>
-          </Button> 
+          </Button>
           : null}
-        {currentUser.id === specificTask.task.user_id ?
+        {currentUser.user?.id === specificTask.task.user_id ?
           <Button onClick={this.deleteCurrentTask} className="taskOptionsButtons">Delete</Button> : null}
         <div className="taskDetailsSection">
           <div className="taskDetailsHeading"> Details </div>
@@ -80,7 +79,7 @@ class TaskShow extends Component {
         <div className="taskDescriptionSection">
           <div className="taskDescriptionHeading"> Description </div>
           <br></br>
-            <div id="descriptionBox">{specificTask.task.description}</div>
+          <div id="descriptionBox">{specificTask.task.description}</div>
         </div>
         <div className="taskDatesSection">
           <div className="taskDateHeading"> Dates </div>
@@ -106,8 +105,8 @@ class TaskShow extends Component {
             return (
               <div key={comment.id}>
                 <div key={comment.id} className="taskIndividualComment">
-                <Image className="taskCommentAttributeDetail"
-                    src={comment.user.profile_icon} alt={null} style={{width: '40px'}}
+                  <Image className="taskCommentAttributeDetail"
+                    src={comment.user.profile_icon} alt="profile picture" style={{ width: '40px' }}
                   />
                   <div className="taskCommentAttributeDetail">
                     {comment.username}

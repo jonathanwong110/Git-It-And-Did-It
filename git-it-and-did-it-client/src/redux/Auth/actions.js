@@ -50,6 +50,7 @@ export const setCurrentUser = () => {
   return (dispatch) => {
     if (localStorage.getItem('token')) {
       const currentUser = JSON.parse(localStorage.getItem('token'))
+      axios.defaults.headers.common['Authorization'] = getJWT();
       dispatch({ type: AuthActionTypes.SET_CURRENT_USER, currentUser })
     } else {
       return dispatch(logOutProcess())

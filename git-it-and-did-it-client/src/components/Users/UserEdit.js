@@ -19,16 +19,16 @@ class UserEdit extends Component {
   }
 
   componentDidMount() {
+    let userId = this.props.match.params.id
+    if (Number(userId) !== Number(this.props.currentUser.user?.id)) {
+      this.props.history.push('/dashboard')
+    }
     this.props.setCurrentUser()
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.currentUser.user !== this.props.currentUser.user) {
       this.setState(this.props.currentUser.user)
-    }
-    const userId = this.props.match.params.id
-    if (Number(userId) !== Number(this.props.currentUser.user?.id)) {
-      this.props.history.push('/dashboard')
     }
   }
 

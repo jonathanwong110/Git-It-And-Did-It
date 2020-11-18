@@ -30,7 +30,7 @@ class MainNav extends Component {
           </Nav>
           <Nav>
             {currentUser.user?.id !== undefined ?
-              <NavDropdown title={<Image src={profileIcon} alt={null} width="40px" height="40px" />} id="lastMainNavItem">
+              <NavDropdown title={<Image src={profileIcon} alt="profile picture" width="40px" height="40px" />} id="lastMainNavItem">
                 <Link to="/" onClick={this.props.logOutStart} id="logOutOption">Log Out</Link>
               </NavDropdown> :
               <Link to="/login" id="log-in-link">
