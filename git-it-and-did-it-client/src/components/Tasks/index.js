@@ -45,7 +45,7 @@ class Tasks extends Component {
   componentDidUpdate(prevProps) {
     const prevParams = this.getParamVal(prevProps.match)
     const currentParams = this.getParamVal(this.props.match)
-    if (prevParams.type !== currentParams.type || prevParams.value !== currentParams.value) {
+    if (currentParams.type !== prevParams.type || currentParams.value !== prevParams.value) {
       this.fetchTasks(currentParams.type, currentParams.value)
     }
   }

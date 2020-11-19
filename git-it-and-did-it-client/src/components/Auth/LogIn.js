@@ -17,7 +17,7 @@ class LogInForm extends Component {
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value.toLowerCase()
+      [e.target.name]: e.target.value
     })
   }
 
@@ -49,12 +49,12 @@ class LogInForm extends Component {
         <Form.Group>
           <Form.Label>Username: </Form.Label>
           <br></br>
-          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.username} className="formInputField" />
+          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.state.username} className="formInputField" />
         </Form.Group>
         <Form.Group>
           <Form.Label>Password: </Form.Label>
           <br></br>
-          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"></input>
+          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"/>
         </Form.Group>
         <Button variant="primary" type="submit">
           Log In

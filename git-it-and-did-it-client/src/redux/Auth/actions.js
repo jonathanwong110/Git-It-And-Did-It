@@ -22,7 +22,7 @@ export const logInStart = (usernameAndPassword) => {
         delete token.password
         localStorage.setItem('token', JSON.stringify(token))
         axios.defaults.headers.common['Authorization'] = getJWT();
-        dispatch(logInProcess(token))
+        return dispatch(logInProcess(token))
       })
       .catch(function (error) {
         return dispatch({ type: AuthActionTypes.AUTH_FAILURE, errors: error })
@@ -42,7 +42,7 @@ export const logOutProcess = () => ({
 export const logOutStart = () => {
   localStorage.removeItem('token')
   return dispatch => {
-    dispatch(logOutProcess())
+    return dispatch(logOutProcess())
   }
 }
 

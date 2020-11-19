@@ -30,10 +30,13 @@ export const editUser = (user, history) => {
   return (dispatch) => {
     return axios.patch(usersBaseURL + user.id, { user }).then(res => {
       dispatch({ type: UsersActionTypes.EDIT_USER, user: res.data });
-      let token = { user }.user
-      delete token.password
-      history.push('/dashboard')
-      return localStorage.setItem('token', JSON.stringify(token))
+      let jwt = JSON.parse(localStorage.getItem('token')).jwt
+      let token = { user }
+      delete token.user.password
+      token["user"]["email"] = token["user"]["email"].toLowerCase()
+      token["jwt"] = jwt
+      localStorage.setItem('token', JSON.stringify(token))
+      return history.push('/dashboard')
     })
       .catch(function (error) {
         return dispatch({ type: UsersActionTypes.USER_FAILURE, errors: error })

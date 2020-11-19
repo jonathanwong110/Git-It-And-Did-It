@@ -2,7 +2,7 @@ class Api::V1::AuthController < ApplicationController
   skip_before_action :authorized, only: [:login]
 
   def login
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(username: params[:username].downcase)
     if !@user
       render json: { 
         errors: { Username: [' does not exist'] }

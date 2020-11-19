@@ -12,6 +12,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
+    params[:user][:username].downcase!
+    params[:user][:email].downcase!
     @user = User.new(user_params)
     if @user.save
       @token = encode_token(user_id: @user.id)
@@ -24,6 +26,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    params[:user][:username].downcase!
+    params[:user][:email].downcase!
     if @user.update(user_params)
       render json: @user, status: 200
     else
@@ -45,4 +49,5 @@ class Api::V1::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :profile_icon, :username, :password)
     end
+    
 end

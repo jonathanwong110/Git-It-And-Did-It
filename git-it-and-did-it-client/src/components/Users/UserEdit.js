@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/Auth/actions.js'
-import { editUser } from '../../redux/Users/actions.js'
+import { getSpecificUser, editUser } from '../../redux/Users/actions.js'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux'
 import { capitalizeFirstLetter } from '../../appearance/appearanceFunctions'
@@ -14,20 +14,22 @@ class UserEdit extends Component {
     this.state = {
       email: '',
       profile_icon: '',
-      password: ''
+      password: '',
     }
   }
 
   componentDidMount() {
+    let currentUser = JSON.parse(localStorage.getItem('token'))
+    let currentUserId = Number(currentUser.user.id)
+    this.props.setCurrentUser()
     let userId = this.props.match.params.id
-    if (Number(userId) !== Number(this.props.currentUser.user?.id)) {
+    if (Number(userId) !== currentUserId) {
       this.props.history.push('/dashboard')
     }
-    this.props.setCurrentUser()
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.currentUser.user !== this.props.currentUser.user) {
+    if (this.props.currentUser.user !== prevProps.currentUser.user) {
       this.setState(this.props.currentUser.user)
     }
   }
@@ -74,7 +76,7 @@ class UserEdit extends Component {
           <Form.Group>
             <Form.Label>Password: </Form.Label>
             <br></br>
-            <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"></input>
+            <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"/>
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit
@@ -92,4 +94,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(withRouter, connect(mapStateToProps, { editUser, setCurrentUser, capitalizeFirstLetter }))(UserEdit)
+export default compose(withRouter, connect(mapStateToProps, { getSpecificUser, editUser, setCurrentUser, capitalizeFirstLetter }))(UserEdit)

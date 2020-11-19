@@ -11,7 +11,7 @@ class MainNav extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.currentUser !== this.props.currentUser) {
+    if (this.props.currentUser !== prevProps.currentUser) {
       this.setState(this.props.currentUser)
     }
   }

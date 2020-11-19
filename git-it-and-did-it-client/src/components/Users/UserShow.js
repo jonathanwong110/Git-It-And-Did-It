@@ -14,7 +14,7 @@ class UserShow extends Component {
   componentDidMount() {
     let currentUser = JSON.parse(localStorage.getItem('token'))
     let currentUserId = Number(currentUser.user.id)
-    let userId = this.props.match.params.id
+    let userId = Number(this.props.match.params.id)
     if (currentUserId === userId) {
       return this.props.history.push('/dashboard')
     }
@@ -23,7 +23,7 @@ class UserShow extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.specificUser.username !== this.props.specificUser.username) {
+    if (this.props.specificUser.username !== prevProps.specificUser.username) {
       this.props.getAssignedTasks(this.props.specificUser.username)
     }
   }

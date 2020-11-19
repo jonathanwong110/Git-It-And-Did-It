@@ -34,7 +34,7 @@ class TaskNew extends Component {
 
   handleCategoryChange = (e) => {
     this.setState({
-      category: e.target.value,
+      category: e.target.value
     })
   }
 

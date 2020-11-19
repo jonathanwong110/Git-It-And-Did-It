@@ -22,19 +22,7 @@ class SignUpForm extends Component {
       [e.target.name]: e.target.value
     })
   }
-
-  handleEmailChange = (e) => {
-    this.setState({
-      email: e.target.value.toLowerCase()
-    })
-  }
-
-  handleUsernameChange = (e) => {
-    this.setState({
-      username: e.target.value.toLowerCase()
-    })
-  }
-
+  
   handleSubmit = (e) => {
     e.preventDefault();
     const newUser = { ...this.state }
@@ -64,22 +52,22 @@ class SignUpForm extends Component {
         <Form.Group>
           <Form.Label>Email: </Form.Label>
           <br></br>
-          <input name="email" type="text" placeholder="Email" onChange={e => this.handleEmailChange(e)} value={this.email} className="formInputField" />
+          <input name="email" type="text" placeholder="Email" onChange={e => this.handleChange(e)} value={this.state.email} className="formInputField" />
         </Form.Group>
         <Form.Group>
           <Form.Label>Profile Icon: </Form.Label>
           <br></br>
-          <input name="profile_icon" type="text" placeholder="Profile Icon" onChange={e => this.handleChange(e)} value={this.profile_icon} className="formInputField" />
+          <input name="profile_icon" type="text" placeholder="Profile Icon" onChange={e => this.handleChange(e)} value={this.state.profile_icon} className="formInputField" />
         </Form.Group>
         <Form.Group>
           <Form.Label>Username: </Form.Label>
           <br></br>
-          <input name="username" type="text" placeholder="Username" onChange={e => this.handleUsernameChange(e)} value={this.username} className="formInputField" />
+          <input name="username" type="text" placeholder="Username" onChange={e => this.handleChange(e)} value={this.state.username} className="formInputField" />
         </Form.Group>
         <Form.Group>
           <Form.Label>Password: </Form.Label>
           <br></br>
-          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"></input>
+          <input type="password" name="password" placeholder="Password" onChange={e => this.handleChange(e)} value={this.state.password} className="formInputField"/>
         </Form.Group>
         <Button variant="primary" type="submit">
           Sign Up
