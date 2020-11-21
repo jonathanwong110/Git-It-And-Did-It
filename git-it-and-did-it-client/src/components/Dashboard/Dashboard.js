@@ -14,10 +14,15 @@ class Dashboard extends Component {
     let currentUser = JSON.parse(localStorage.getItem('token'))
     let currentUserId = currentUser.user.id
     let currentUserName = currentUser.user.username
-    this.props.setCurrentUser()
     this.props.getSpecificUser(currentUserId)
     this.props.getUserTasks(currentUserId)
     this.props.getAssignedTasks(currentUserName)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.specificUser !== prevProps.specificUser) {
+      this.props.setCurrentUser()
+    }
   }
 
   render() {
@@ -85,6 +90,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
+    specificUser: state.users.specificUser,
     tasks: state.tasks.tasks,
     assignedTasks: state.tasks.assignedTasks
   }

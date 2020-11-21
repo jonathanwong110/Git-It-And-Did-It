@@ -54,7 +54,7 @@ class UserShow extends Component {
           <Container>
             <Row className="taskRow">
               {tasks.length === 0 ?
-                <div>This user has not reported any tasks yet </div> :
+                <div className="emptySection">This user has not reported any tasks yet </div> :
                 tasks.map(task => {
                   return (
                     <TaskDisplay key={task.id} task={task} match={match} />
@@ -74,7 +74,7 @@ class UserShow extends Component {
           <Container>
             <Row className="taskRow">
               {assignedTasks.length === 0 ?
-                <div>This user has not been assigned tasks yet </div> :
+                <div className="emptySection">This user has not been assigned tasks yet </div> :
                 assignedTasks.map(task => {
                   return (
                     <TaskDisplay key={task.id} task={task} match={match} />
