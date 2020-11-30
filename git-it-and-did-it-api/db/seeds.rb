@@ -5,13 +5,13 @@ User.create([
 ])
 
 Task.create([
-  { title: 'task 1', category: 0, description: 'task description 1', status: 0, priority: 0, assignee: "kl", user_id: 1 },
-  { title: 'task 2', category: 0, description: 'task description 2', status: 1, priority: 1, assignee: "jw", user_id: 2 },
-  { title: 'task 3', category: 1, description: 'task description 3', status: 2, priority: 2, assignee: "om", user_id: 3 }
+  { title: 'mobile issue', category: 0, description: 'the homepage takes too long to load', status: 0, priority: 0, assignee: "kl", user_id: 1 },
+  { title: 'graphic glitch', category: 0, description: 'the live background spazzes', status: 1, priority: 1, assignee: "jw", user_id: 2 },
+  { title: 'needs update', category: 1, description: 'we can optimize the code for better performance', status: 2, priority: 2, assignee: "om", user_id: 3 }
 ])
 
 Comment.create([
-  { content: 'comment 1', user_id: 3, task_id: 1 },
-  { content: 'comment 2', user_id: 2, task_id: 2 },
-  { content: 'comment 3', user_id: 1, task_id: 3 }
+  { content: 'I can get this done by today', user_id: 3, task_id: 1 },
+  { content: 'Me and KL can get this done by the end of the week', user_id: 2, task_id: 2 },
+  { content: 'Testing', user_id: 1, task_id: 3 }
 ])
