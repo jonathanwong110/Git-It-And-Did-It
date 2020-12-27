@@ -96,4 +96,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setCurrentUser, getSpecificUser, getUserTasks, getAssignedTasks, loadTasks, statusNameChanger })(Dashboard)
+export default connect(mapStateToProps, { setCurrentUser, getSpecificUser, getUserTasks, getAssignedTasks, loadTasks })(Dashboard)

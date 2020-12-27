@@ -83,4 +83,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { signUp, logInStart, capitalizeFirstLetter })(SignUpForm)
+export default connect(mapStateToProps, { signUp, logInStart })(SignUpForm)

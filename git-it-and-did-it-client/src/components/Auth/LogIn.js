@@ -70,4 +70,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { logInStart, capitalizeFirstLetter })(LogInForm)
+export default connect(mapStateToProps, { logInStart })(LogInForm)

@@ -94,4 +94,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(withRouter, connect(mapStateToProps, { getSpecificUser, editUser, setCurrentUser, capitalizeFirstLetter }))(UserEdit)
+export default compose(withRouter, connect(mapStateToProps, { getSpecificUser, editUser, setCurrentUser }))(UserEdit)

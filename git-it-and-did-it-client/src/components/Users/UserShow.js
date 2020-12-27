@@ -99,4 +99,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(withRouter, connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getAssignedTasks, setCurrentUser, statusNameChanger }))(UserShow)
+export default compose(withRouter, connect(mapStateToProps, { loadUsers, getSpecificUser, getUserTasks, getAssignedTasks, setCurrentUser }))(UserShow)

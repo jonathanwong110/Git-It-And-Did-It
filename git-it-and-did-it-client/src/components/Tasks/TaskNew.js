@@ -140,4 +140,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(withRouter, connect(mapStateToProps, { addTask, loadUsers, capitalizeFirstLetter }))(TaskNew)
+export default compose(withRouter, connect(mapStateToProps, { addTask, loadUsers }))(TaskNew)
