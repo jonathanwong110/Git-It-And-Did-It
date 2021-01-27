@@ -5,7 +5,6 @@ import { getSpecificUser } from '../../redux/Users/actions'
 import { getUserTasks, loadTasks, getAssignedTasks } from '../../redux/Tasks/actions'
 import { CardDeck, Container, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { statusNameChanger } from '../../appearance/appearanceFunctions'
 import TaskDisplay from '../Tasks/TaskDisplay'
 
 class Dashboard extends Component {

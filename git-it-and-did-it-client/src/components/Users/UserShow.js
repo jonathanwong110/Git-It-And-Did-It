@@ -4,7 +4,6 @@ import { loadUsers, getSpecificUser } from '../../redux/Users/actions'
 import { getUserTasks, getAssignedTasks } from '../../redux/Tasks/actions'
 import { setCurrentUser } from '../../redux/Auth/actions'
 import { CardDeck, Container, Row, Image } from 'react-bootstrap'
-import { statusNameChanger } from '../../appearance/appearanceFunctions'
 import TaskDisplay from '../Tasks/TaskDisplay'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux'

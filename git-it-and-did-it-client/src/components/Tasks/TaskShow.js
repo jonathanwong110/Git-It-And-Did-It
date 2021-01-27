@@ -117,7 +117,6 @@ class TaskShow extends Component {
                   <div className="taskCommentAttributeDetail">
                     {changeTimeFormat(comment.created_at)}
                   </div>
-                  {console.log(currentUser)}
                   {currentUser.user.id === specificTask.task.user_id || currentUser.user.id === comment.user_id ? <Button variant="primary" id="taskCommentDeleteButton" onClick={() => deleteComment(comment.id)}>X</Button> : null}
                 </div>
                 <div> {comment.content} </div>
